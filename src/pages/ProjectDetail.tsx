@@ -27,6 +27,13 @@ import mr90Light2 from "@/assets/projects/mr90-light-2.jpg";
 import mr90Bathroom1 from "@/assets/projects/mr90-bathroom-1.jpg";
 import mr90Bathroom2 from "@/assets/projects/mr90-bathroom-2.jpg";
 import mr90Video from "@/assets/projects/mr90-video.mp4";
+// MatchPoint project assets
+import MP_1.png from "@/assets/projects/flow-detail.jpg";
+import MP_2.png from "@/assets/projects/flow-yoga-1.png";
+import MP_3.png from "@/assets/projects/flow-yoga-1.png";
+import MP_4.png from "@/assets/projects/flow-yoga-1.png";
+import MP_5.png from "@/assets/projects/flow-yoga-1.png";
+import MP_6.png from "@/assets/projects/flow-yoga-1.png";
 // Flow project assets
 import flowDetail from "@/assets/projects/flow-detail.jpg";
 import flowYoga1 from "@/assets/projects/flow-yoga-1.png";
@@ -851,7 +858,8 @@ const ProjectDetail = () => {
               <source src={mr90Video} type="video/mp4" />
             </video>
           </div>
-        </section>
+        </section>npm run build
+
       )}
 
       {/* MatchPoint Project Content */}
