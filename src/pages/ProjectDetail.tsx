@@ -858,12 +858,12 @@ const ProjectDetail = () => {
       {project.id === "matchpoint" && (
   <section className="-mt-8 sm:-mt-12">
     <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16">
-      <img src="/projects/matchpoint/screen-1.png" className="w-full h-auto" />
-      <img src="/projects/matchpoint/screen-2.png" className="w-full h-auto" />
-      <img src="/projects/matchpoint/screen-3.png" className="w-full h-auto" />
-      <img src="/projects/matchpoint/screen-4.png" className="w-full h-auto" />
-      <img src="/projects/matchpoint/screen-5.png" className="w-full h-auto" />
-      <img src="/projects/matchpoint/screen-6.png" className="w-full h-auto" />
+      <img src="/projects/MP_1.png" className="w-full h-auto" />
+      <img src="/projects/MP_2.png" className="w-full h-auto" />
+      <img src="/projects/MP_3.png" className="w-full h-auto" />
+      <img src="/projects/MP_4.png" className="w-full h-auto" />
+      <img src="/projects/MP_5.png" className="w-full h-auto" />
+      <img src="/projects/MP_6.png" className="w-full h-auto" />
     </div>
   </section>
 )}
