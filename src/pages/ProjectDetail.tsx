@@ -27,13 +27,6 @@ import mr90Light2 from "@/assets/projects/mr90-light-2.jpg";
 import mr90Bathroom1 from "@/assets/projects/mr90-bathroom-1.jpg";
 import mr90Bathroom2 from "@/assets/projects/mr90-bathroom-2.jpg";
 import mr90Video from "@/assets/projects/mr90-video.mp4";
-// MatchPoint project assets
-import matchpointScreen1 from "@/assets/projects/matchpoint-screen-1.png";
-import matchpointScreen2 from "@/assets/projects/project-test-ULTRA.png";
-import matchpointScreen3 from "@/assets/projects/matchpoint-screen-3.png";
-import matchpointScreen4 from "@/assets/projects/matchpoint-screen-4.png";
-import matchpointScreen5 from "@/assets/projects/matchpoint-screen-5.png";
-import matchpointScreen6 from "@/assets/projects/matchpoint-screen-6.png";
 // Flow project assets
 import flowDetail from "@/assets/projects/flow-detail.jpg";
 import flowYoga1 from "@/assets/projects/flow-yoga-1.png";
@@ -863,41 +856,17 @@ const ProjectDetail = () => {
 
       {/* MatchPoint Project Content */}
       {project.id === "matchpoint" && (
-        <section className="-mt-8 sm:-mt-12">
-          <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16">
-            <img 
-              src={matchpointScreen1} 
-              alt="MatchPoint screen 1"
-              className="w-full h-auto"
-            />
-            <img 
-              src={matchpointScreen2} 
-              alt="MatchPoint screen 2"
-              className="w-full h-auto"
-            />
-            <img 
-              src={matchpointScreen3} 
-              alt="MatchPoint screen 3"
-              className="w-full h-auto"
-            />
-            <img 
-              src={matchpointScreen4} 
-              alt="MatchPoint screen 4"
-              className="w-full h-auto"
-            />
-            <img 
-              src={matchpointScreen5} 
-              alt="MatchPoint screen 5"
-              className="w-full h-auto"
-            />
-            <img 
-              src={matchpointScreen6} 
-              alt="MatchPoint screen 6"
-              className="w-full h-auto"
-            />
-          </div>
-        </section>
-      )}
+  <section className="-mt-8 sm:-mt-12">
+    <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16">
+      <img src="/projects/matchpoint/screen-1.png" className="w-full h-auto" />
+      <img src="/projects/matchpoint/screen-2.png" className="w-full h-auto" />
+      <img src="/projects/matchpoint/screen-3.png" className="w-full h-auto" />
+      <img src="/projects/matchpoint/screen-4.png" className="w-full h-auto" />
+      <img src="/projects/matchpoint/screen-5.png" className="w-full h-auto" />
+      <img src="/projects/matchpoint/screen-6.png" className="w-full h-auto" />
+    </div>
+  </section>
+)}
 
       {/* Children's Room About Project Section */}
       {project.id === "childrens-room" && (
