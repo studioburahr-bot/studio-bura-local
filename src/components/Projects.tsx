@@ -16,12 +16,12 @@ const Projects = () => {
               to={`/projects/${project.id}`}
               className="group cursor-pointer block"
             >
-              <div className="aspect-[5/4] bg-secondary mb-4 sm:mb-6 overflow-hidden flex items-center justify-center">
+              <div className="h-auto bg-secondary mb-4 sm:mb-6 overflow-hidden flex items-center justify-center">
                 {project.image ? (
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-102"
+                    className="w-full h-auto max-w-full group-hover:scale-105 transition-transform duration-700"
                   />
                 ) : (
                   <div className="w-full h-full bg-gradient-to-br from-muted to-accent transition-transform duration-500 group-hover:scale-102" />
