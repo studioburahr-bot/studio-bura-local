@@ -28,12 +28,12 @@ import mr90Bathroom1 from "@/assets/projects/mr90-bathroom-1.jpg";
 import mr90Bathroom2 from "@/assets/projects/mr90-bathroom-2.jpg";
 import mr90Video from "@/assets/projects/mr90-video.mp4";
 // MatchPoint project assets
-import MP_1.png from "@/assets/projects/flow-detail.jpg";
-import MP_2.png from "@/assets/projects/flow-yoga-1.png";
-import MP_3.png from "@/assets/projects/flow-yoga-1.png";
-import MP_4.png from "@/assets/projects/flow-yoga-1.png";
-import MP_5.png from "@/assets/projects/flow-yoga-1.png";
-import MP_6.png from "@/assets/projects/flow-yoga-1.png";
+import MP1 from "@/assets/projects/MP_1.png";
+import MP2 from "@/assets/projects/MP_2.png";
+import MP3 from "@/assets/projects/MP_3.png";
+import MP4 from "@/assets/projects/MP_4.png";
+import MP5 from "@/assets/projects/MP_5.png";
+import MP6 from "@/assets/projects/MP_6.png";
 // Flow project assets
 import flowDetail from "@/assets/projects/flow-detail.jpg";
 import flowYoga1 from "@/assets/projects/flow-yoga-1.png";
@@ -858,7 +858,7 @@ const ProjectDetail = () => {
               <source src={mr90Video} type="video/mp4" />
             </video>
           </div>
-        </section>npm run build
+        </section>
 
       )}
 
@@ -866,12 +866,12 @@ const ProjectDetail = () => {
       {project.id === "matchpoint" && (
   <section className="-mt-8 sm:-mt-12">
     <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16">
-      <img src="/projects/MP_1.png" className="w-full h-auto" />
-      <img src="/projects/MP_2.png" className="w-full h-auto" />
-      <img src="/projects/MP_3.png" className="w-full h-auto" />
-      <img src="/projects/MP_4.png" className="w-full h-auto" />
-      <img src="/projects/MP_5.png" className="w-full h-auto" />
-      <img src="/projects/MP_6.png" className="w-full h-auto" />
+      <img src={MP1} className="w-full h-auto" />
+      <img src={MP2} className="w-full h-auto" />
+      <img src={MP3} className="w-full h-auto" />
+      <img src={MP4} className="w-full h-auto" />
+      <img src={MP5} className="w-full h-auto" />
+      <img src={MP6} className="w-full h-auto" />
     </div>
   </section>
 )}
