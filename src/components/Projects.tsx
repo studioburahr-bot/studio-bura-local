@@ -4,7 +4,7 @@ import { projects } from "@/data/projects";
 const Projects = () => {
   return (
     <section id="projects" className="py-16 sm:py-24 md:py-32">
-      <div className="container mx-auto px-4 sm:px-6">
+      <div className="w-full px-4 sm:px-6">
         <h2 className="text-4xl sm:text-5xl md:text-7xl font-light mb-12 sm:mb-16 md:mb-24 tracking-tight">
           Projects
         </h2>
