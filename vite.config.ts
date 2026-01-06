@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => ({
   // If deploying to GitHub Pages subdirectory, change to "/studio-bura-local/"
   base: "/",
   build: {
-    outDir: "docs",
+    outDir: "dist",
     // Optimize images during build
     assetsInlineLimit: 4096,
   },
