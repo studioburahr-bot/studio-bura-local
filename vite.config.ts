@@ -5,8 +5,9 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  // Only use base path in production (for GitHub Pages)
-  base: mode === "production" ? "/studio-bura-local/" : "/",
+  // Use root base path for custom domain (www.studiobura.com)
+  // If deploying to GitHub Pages subdirectory, change to "/studio-bura-local/"
+  base: "/",
   build: {
     outDir: "docs",
     // Optimize images during build

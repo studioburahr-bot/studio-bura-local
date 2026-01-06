@@ -11,7 +11,7 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 // Get basename from import.meta.env.BASE_URL (set by Vite)
-// This will be "/studio-bura-local/" in production and "/" in development
+// This will be "/" for both development and production (custom domain)
 const basename = import.meta.env.BASE_URL;
 
 const App = () => (
