@@ -1,10 +1,10 @@
-import cho7Main from "@/assets/projects/cho7-main.png";
-import mr90Main from "@/assets/projects/mr90-main.png";
-import matchpointMain from "@/assets/projects/matchpoint-main.jpg";
-import flowMain from "@/assets/projects/flow-main.png";
-import childrensRoomMain from "@/assets/projects/childrens-room-main.png";
-import childrensRoom2Main from "@/assets/projects/childrens-room2-main.png";
-import pictureBookMain from "@/assets/projects/picture-book-main.png";
+import cho7Main from "@/assets/projects/cho7-main.png?webp";
+import mr90Main from "@/assets/projects/mr90-main.png?webp";
+import matchpointMain from "@/assets/projects/matchpoint-main.jpg?webp";
+import flowMain from "@/assets/projects/flow-main.png?webp";
+import childrensRoomMain from "@/assets/projects/childrens-room-main.png?webp";
+import childrensRoom2Main from "@/assets/projects/childrens-room2-main.png?webp";
+import pictureBookMain from "@/assets/projects/picture-book-main.png?webp";
 
 export interface ProjectInfo {
   label: string;

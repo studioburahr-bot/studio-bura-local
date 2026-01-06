@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
+import { imagetools } from "vite-imagetools";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -19,6 +20,19 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
+    imagetools({
+      defaultDirectives: (url: URL) => {
+        // Convert JPG and PNG to WebP format for better compression
+        if (url.searchParams.has("webp") === false) {
+          url.searchParams.set("format", "webp");
+        }
+        // Set quality to 85 for good balance between size and quality
+        if (url.searchParams.has("quality") === false) {
+          url.searchParams.set("quality", "85");
+        }
+        return new URLSearchParams(url.searchParams);
+      },
+    }),
     mode === "development" && componentTagger(),
   ].filter(Boolean),
   resolve: {

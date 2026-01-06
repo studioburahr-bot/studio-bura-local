@@ -1,5 +1,5 @@
 import { Instagram, Linkedin, Mail } from "lucide-react";
-import contactPhoto from "@/assets/contact-photo.jpg";
+import contactPhoto from "@/assets/contact-photo.jpg?webp";
 
 const Contact = () => {
   return (

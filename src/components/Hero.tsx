@@ -1,8 +1,8 @@
-import heroImage from "@/assets/hero-image.jpg";
-import mockupImage from "@/assets/mockup2.jpg";
+import heroImage from "@/assets/hero-image.jpg?webp";
+import mockupImage from "@/assets/mockup2.jpg?webp";
 import heroVideo from "@/assets/projects/cho7-video.mp4";
-import neurodesignChild from "@/assets/neurodesign-child.jpg";
-import neurodesignCity from "@/assets/neurodesign-city.jpg";
+import neurodesignChild from "@/assets/neurodesign-child.jpg?webp";
+import neurodesignCity from "@/assets/neurodesign-city.jpg?webp";
 
 const Hero = () => {
   return (
@@ -46,7 +46,6 @@ const Hero = () => {
               muted
               playsInline
               className="w-full h-full object-cover"
-              loading="lazy"
             />
           </div>
         </div>
