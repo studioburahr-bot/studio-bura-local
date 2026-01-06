@@ -97,7 +97,7 @@ const Navigation = () => {
 
       {/* Mobile full-screen overlay menu */}
       {isMobileMenuOpen && (
-        <div 
+        <div
           className="fixed inset-0 z-[100] bg-white md:hidden transition-opacity duration-300"
           style={{ animation: "fadeInSubtle 0.25s ease-out forwards" }}
         >

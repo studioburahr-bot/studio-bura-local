@@ -83,8 +83,8 @@ const ProjectDetail = () => {
         <Navigation />
         <div className="pt-32 pb-16 container mx-auto px-4 sm:px-6 text-center">
           <h1 className="text-4xl font-light mb-8">Project Not Found</h1>
-          <Link 
-            to="/projects" 
+          <Link
+            to="/projects"
             className="text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2"
           >
             <ArrowLeft size={20} />
@@ -99,13 +99,13 @@ const ProjectDetail = () => {
   return (
     <div className="min-h-screen bg-background animate-fade-in">
       <Navigation />
-      
+
       {/* Hero Section */}
       <section className="pt-24 sm:pt-32 pb-12 sm:pb-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-16">
           {/* Back Link */}
-          <Link 
-            to="/projects" 
+          <Link
+            to="/projects"
             className="inline-flex items-center gap-2 mb-12 sm:mb-16 text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft size={20} />
@@ -116,7 +116,7 @@ const ProjectDetail = () => {
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-light mb-6 tracking-tight text-foreground">
             {project.subtitle}
           </h1>
-          
+
           {/* Project Info (hidden for MatchPoint) */}
           {projectId !== "matchpoint" && (
             <div className="space-y-1 text-sm sm:text-base text-muted-foreground">
@@ -142,10 +142,11 @@ const ProjectDetail = () => {
         <section className="pb-0">
           <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-16">
             <div className="aspect-[5/4] overflow-hidden">
-              <img 
-                src={project.image} 
+              <img
+                src={project.image}
                 alt={project.title}
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
             </div>
           </div>
@@ -156,10 +157,11 @@ const ProjectDetail = () => {
       {project.id === "flow" && (
         <section className="pb-0">
           <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-16">
-            <img 
-              src={flowDetail} 
+            <img
+              src={flowDetail}
               alt="Flow - Yoga Studio project showcase"
               className="w-full h-auto"
+              loading="lazy"
             />
           </div>
         </section>
@@ -173,34 +175,38 @@ const ProjectDetail = () => {
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mb-8 sm:mb-12">
               About project
             </h2>
-            
+
             {/* About Text */}
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
               FLOW Yoga Studio is a web experience designed to connect users with a yoga community while evoking calmness and focus through design. The goal was to create a clean and intuitive landing page that reflects the studio's values - balance, movement, and harmony.
             </p>
           </div>
-          
+
           {/* Four Images Grid */}
           <div className="mt-16 sm:mt-24 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-16 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-            <img 
-              src={flowYoga1} 
+            <img
+              src={flowYoga1}
               alt="Yoga pose 1"
               className="w-full h-auto"
+              loading="lazy"
             />
-            <img 
-              src={flowYoga2} 
+            <img
+              src={flowYoga2}
               alt="Yoga pose 2"
               className="w-full h-auto"
+              loading="lazy"
             />
-            <img 
-              src={flowYoga3} 
+            <img
+              src={flowYoga3}
               alt="Yoga pose 3"
               className="w-full h-auto"
+              loading="lazy"
             />
-            <img 
-              src={flowYoga4} 
+            <img
+              src={flowYoga4}
               alt="Yoga class meditation"
               className="w-full h-auto"
+              loading="lazy"
             />
           </div>
         </section>
@@ -214,7 +220,7 @@ const ProjectDetail = () => {
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mb-12 sm:mb-16 text-center">
               Design Process
             </h2>
-            
+
             {/* Process Steps */}
             <div className="space-y-8 sm:space-y-10">
               {/* Step 01 */}
@@ -225,7 +231,7 @@ const ProjectDetail = () => {
                   yoga studios research, user expectations, identifying a need for calm aesthetics, clear structure, and effortless booking
                 </div>
               </div>
-              
+
               {/* Step 02 */}
               <div className="grid grid-cols-12 gap-4 items-start">
                 <div className="col-span-2 text-sm text-muted-foreground">02/</div>
@@ -234,7 +240,7 @@ const ProjectDetail = () => {
                   defining goals: intuitive navigation, minimal layout and clear CTAs creating personas and user flow to guide design decisions
                 </div>
               </div>
-              
+
               {/* Step 03 */}
               <div className="grid grid-cols-12 gap-4 items-start">
                 <div className="col-span-2 text-sm text-muted-foreground">03/</div>
@@ -243,7 +249,7 @@ const ProjectDetail = () => {
                   building wireframes and an interactive prototype in Figma exploring visual direction with soft tones, clean typography, and balanced composition
                 </div>
               </div>
-              
+
               {/* Step 04 */}
               <div className="grid grid-cols-12 gap-4 items-start">
                 <div className="col-span-2 text-sm text-muted-foreground">04/</div>
@@ -254,23 +260,26 @@ const ProjectDetail = () => {
               </div>
             </div>
           </div>
-          
+
           {/* Three Process Images */}
           <div className="mt-16 sm:mt-24 max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 grid grid-cols-3 gap-4 sm:gap-6">
-            <img 
-              src={flowProcess1} 
+            <img
+              src={flowProcess1}
               alt="Design process illustration 1"
               className="w-full h-auto"
+              loading="lazy"
             />
-            <img 
-              src={flowProcess2} 
+            <img
+              src={flowProcess2}
               alt="Design process illustration 2"
               className="w-full h-auto"
+              loading="lazy"
             />
-            <img 
-              src={flowProcess3} 
+            <img
+              src={flowProcess3}
               alt="Design process illustration 3"
               className="w-full h-auto"
+              loading="lazy"
             />
           </div>
         </section>
@@ -284,7 +293,7 @@ const ProjectDetail = () => {
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mb-12 sm:mb-16 text-center">
               Information Architecture
             </h2>
-            
+
             {/* Site Map Diagram */}
             <div className="relative flex items-center justify-center">
               <svg viewBox="0 0 800 700" className="w-full max-w-[800px] h-auto">
@@ -294,7 +303,7 @@ const ProjectDetail = () => {
                 <path d="M 80 60 Q 90 200 220 340" fill="none" stroke="currentColor" strokeWidth="0.8" className="text-muted-foreground/40" />
                 <path d="M 80 60 Q 70 350 220 480" fill="none" stroke="currentColor" strokeWidth="0.8" className="text-muted-foreground/40" />
                 <path d="M 80 60 Q 50 450 220 600" fill="none" stroke="currentColor" strokeWidth="0.8" className="text-muted-foreground/40" />
-                
+
                 {/* Home to sub-items */}
                 <path d="M 290 60 Q 420 20 520 20" fill="none" stroke="currentColor" strokeWidth="0.8" className="text-muted-foreground/40" />
                 <path d="M 290 60 Q 400 35 520 40" fill="none" stroke="currentColor" strokeWidth="0.8" className="text-muted-foreground/40" />
@@ -302,30 +311,30 @@ const ProjectDetail = () => {
                 <path d="M 290 60 Q 390 70 520 80" fill="none" stroke="currentColor" strokeWidth="0.8" className="text-muted-foreground/40" />
                 <path d="M 290 60 Q 400 90 520 100" fill="none" stroke="currentColor" strokeWidth="0.8" className="text-muted-foreground/40" />
                 <path d="M 290 60 Q 420 105 520 120" fill="none" stroke="currentColor" strokeWidth="0.8" className="text-muted-foreground/40" />
-                
+
                 {/* About us to sub-items */}
                 <path d="M 300 180 Q 420 155 520 160" fill="none" stroke="currentColor" strokeWidth="0.8" className="text-muted-foreground/40" />
                 <path d="M 300 180 Q 410 175 520 180" fill="none" stroke="currentColor" strokeWidth="0.8" className="text-muted-foreground/40" />
                 <path d="M 300 180 Q 410 195 520 200" fill="none" stroke="currentColor" strokeWidth="0.8" className="text-muted-foreground/40" />
                 <path d="M 300 180 Q 420 210 520 220" fill="none" stroke="currentColor" strokeWidth="0.8" className="text-muted-foreground/40" />
-                
+
                 {/* Services to sub-items */}
                 <path d="M 300 340 Q 420 300 520 300" fill="none" stroke="currentColor" strokeWidth="0.8" className="text-muted-foreground/40" />
                 <path d="M 300 340 Q 410 320 520 320" fill="none" stroke="currentColor" strokeWidth="0.8" className="text-muted-foreground/40" />
                 <path d="M 300 340 Q 410 355 520 340" fill="none" stroke="currentColor" strokeWidth="0.8" className="text-muted-foreground/40" />
                 <path d="M 300 340 Q 420 375 520 360" fill="none" stroke="currentColor" strokeWidth="0.8" className="text-muted-foreground/40" />
-                
+
                 {/* Classes to sub-items */}
                 <path d="M 290 480 Q 410 445 520 445" fill="none" stroke="currentColor" strokeWidth="0.8" className="text-muted-foreground/40" />
                 <path d="M 290 480 Q 400 465 520 465" fill="none" stroke="currentColor" strokeWidth="0.8" className="text-muted-foreground/40" />
                 <path d="M 290 480 Q 400 490 520 485" fill="none" stroke="currentColor" strokeWidth="0.8" className="text-muted-foreground/40" />
                 <path d="M 290 480 Q 410 510 520 505" fill="none" stroke="currentColor" strokeWidth="0.8" className="text-muted-foreground/40" />
-                
+
                 {/* Contact us to sub-items */}
                 <path d="M 310 600 Q 430 575 520 575" fill="none" stroke="currentColor" strokeWidth="0.8" className="text-muted-foreground/40" />
                 <path d="M 310 600 Q 420 600 520 595" fill="none" stroke="currentColor" strokeWidth="0.8" className="text-muted-foreground/40" />
                 <path d="M 310 600 Q 430 625 520 615" fill="none" stroke="currentColor" strokeWidth="0.8" className="text-muted-foreground/40" />
-                
+
                 {/* Main Labels */}
                 <text x="40" y="65" className="fill-foreground" style={{ fontSize: '16px' }}>FLOW</text>
                 <text x="230" y="65" className="fill-foreground" style={{ fontSize: '14px' }}>home</text>
@@ -333,7 +342,7 @@ const ProjectDetail = () => {
                 <text x="230" y="345" className="fill-foreground" style={{ fontSize: '14px' }}>services</text>
                 <text x="230" y="485" className="fill-foreground" style={{ fontSize: '14px' }}>classes</text>
                 <text x="230" y="605" className="fill-foreground" style={{ fontSize: '14px' }}>contact us</text>
-                
+
                 {/* Home sub-items */}
                 <text x="530" y="25" className="fill-muted-foreground" style={{ fontSize: '14px' }}>introduction</text>
                 <text x="530" y="45" className="fill-muted-foreground" style={{ fontSize: '14px' }}>what we offer</text>
@@ -341,25 +350,25 @@ const ProjectDetail = () => {
                 <text x="530" y="85" className="fill-muted-foreground" style={{ fontSize: '14px' }}>customer feedback</text>
                 <text x="530" y="105" className="fill-muted-foreground" style={{ fontSize: '14px' }}>latest from blog</text>
                 <text x="530" y="125" className="fill-muted-foreground" style={{ fontSize: '14px' }}>get in touch</text>
-                
+
                 {/* About us sub-items */}
                 <text x="530" y="165" className="fill-muted-foreground" style={{ fontSize: '14px' }}>our mission</text>
                 <text x="530" y="185" className="fill-muted-foreground" style={{ fontSize: '14px' }}>studio philosophy</text>
                 <text x="530" y="205" className="fill-muted-foreground" style={{ fontSize: '14px' }}>our team</text>
                 <text x="530" y="225" className="fill-muted-foreground" style={{ fontSize: '14px' }}>FAQ</text>
-                
+
                 {/* Services sub-items */}
                 <text x="530" y="305" className="fill-muted-foreground" style={{ fontSize: '14px' }}>group classes</text>
                 <text x="530" y="325" className="fill-muted-foreground" style={{ fontSize: '14px' }}>private sessions</text>
                 <text x="530" y="345" className="fill-muted-foreground" style={{ fontSize: '14px' }}>workshops & retreats</text>
                 <text x="530" y="365" className="fill-muted-foreground" style={{ fontSize: '14px' }}>corporate yoga</text>
-                
+
                 {/* Classes sub-items */}
                 <text x="530" y="450" className="fill-muted-foreground" style={{ fontSize: '14px' }}>our classes</text>
                 <text x="530" y="470" className="fill-muted-foreground" style={{ fontSize: '14px' }}>schedule</text>
                 <text x="530" y="490" className="fill-muted-foreground" style={{ fontSize: '14px' }}>prices</text>
                 <text x="530" y="510" className="fill-muted-foreground" style={{ fontSize: '14px' }}>booking classes</text>
-                
+
                 {/* Contact us sub-items */}
                 <text x="530" y="580" className="fill-muted-foreground" style={{ fontSize: '14px' }}>how to contact us?</text>
                 <text x="530" y="600" className="fill-muted-foreground" style={{ fontSize: '14px' }}>where to find us?</text>
@@ -377,11 +386,11 @@ const ProjectDetail = () => {
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mb-12 sm:mb-16 text-center">
               Problem & Objectives
             </h2>
-            
+
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground text-center mb-8">
               The challenge was to design a minimal yet engaging landing page that communicates the studio's philosophy and makes booking a class easy and straightforward.
             </p>
-            
+
             <div className="space-y-4 text-sm sm:text-base text-muted-foreground text-center">
               <p>/ calm, breathable layout that mirrors the rhythm of yoga</p>
               <p>/ improve navigation and highlight core services</p>
@@ -399,9 +408,9 @@ const ProjectDetail = () => {
               Moodboard
             </h2>
             <div className="flex justify-center">
-              <img 
-                src={flowMoodboard} 
-                alt="Flow Yoga Studio Moodboard" 
+              <img
+                src={flowMoodboard}
+                alt="Flow Yoga Studio Moodboard"
                 className="w-full max-w-[1400px] h-auto"
               />
             </div>
@@ -417,9 +426,9 @@ const ProjectDetail = () => {
               Typography
             </h2>
             <div className="flex justify-center">
-              <img 
-                src={flowTypography} 
-                alt="Flow Typography - Montserrat and Playfair Display" 
+              <img
+                src={flowTypography}
+                alt="Flow Typography - Montserrat and Playfair Display"
                 className="w-full max-w-[1000px] h-auto"
               />
             </div>
@@ -435,9 +444,9 @@ const ProjectDetail = () => {
               Colours
             </h2>
             <div className="flex justify-center">
-              <img 
-                src={flowColours} 
-                alt="Flow Color Palette" 
+              <img
+                src={flowColours}
+                alt="Flow Color Palette"
                 className="w-full max-w-[1400px] h-auto"
               />
             </div>
@@ -453,9 +462,9 @@ const ProjectDetail = () => {
               Grid System
             </h2>
             <div className="flex justify-center">
-              <img 
-                src={flowGrid} 
-                alt="Flow Grid System - Desktop and Mobile" 
+              <img
+                src={flowGrid}
+                alt="Flow Grid System - Desktop and Mobile"
                 className="w-full max-w-[1400px] h-auto"
               />
             </div>
@@ -470,7 +479,7 @@ const ProjectDetail = () => {
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mb-12 sm:mb-16 text-center">
               Logo Design
             </h2>
-            
+
             <div className="text-sm sm:text-base leading-relaxed text-muted-foreground text-center space-y-6">
               <p>The logo for Flow Studio reflects the brand's essence — calm movement, balance, and fluidity.</p>
               <p>The rounded, organic typography embodies the natural flow of yoga poses, while the bold weight gives it a grounded and stable feel.</p>
@@ -488,9 +497,9 @@ const ProjectDetail = () => {
               Logo
             </h2>
             <div className="flex justify-center">
-              <img 
-                src={flowLogo} 
-                alt="Flow Studio Logo" 
+              <img
+                src={flowLogo}
+                alt="Flow Studio Logo"
                 className="w-full max-w-[600px] h-auto"
               />
             </div>
@@ -506,9 +515,9 @@ const ProjectDetail = () => {
               Logo Grid System
             </h2>
             <div className="flex justify-center">
-              <img 
-                src={flowLogoGrid} 
-                alt="Flow Studio Logo Grid System" 
+              <img
+                src={flowLogoGrid}
+                alt="Flow Studio Logo Grid System"
                 className="w-full max-w-[600px] h-auto"
               />
             </div>
@@ -524,9 +533,9 @@ const ProjectDetail = () => {
               Typography
             </h2>
             <div className="flex justify-center">
-              <img 
-                src={flowTypography2} 
-                alt="Flow Typography - Montserrat and Bagel Fat One" 
+              <img
+                src={flowTypography2}
+                alt="Flow Typography - Montserrat and Bagel Fat One"
                 className="w-full max-w-[1000px] h-auto"
               />
             </div>
@@ -539,9 +548,9 @@ const ProjectDetail = () => {
         <section className="py-16 sm:py-24">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-16">
             <div className="flex justify-center">
-              <img 
-                src={flowFinal} 
-                alt="Flow Yoga Studio Final Design Showcase" 
+              <img
+                src={flowFinal}
+                alt="Flow Yoga Studio Final Design Showcase"
                 className="w-full max-w-[1400px] h-auto"
               />
             </div>
@@ -557,24 +566,25 @@ const ProjectDetail = () => {
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mb-8 sm:mb-12">
               About project
             </h2>
-            
+
             {/* First Paragraph */}
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground mb-6 sm:mb-8">
               The clients had a clear vision: a kitchen island for occasional meals, more natural light, an open and fluid layout, and a kitchen without upper cabinetry. They also wished for a cozy evening atmosphere, with neutral, warm tones and earthy colors that create a sense of calm and intimacy.
             </p>
-            
+
             {/* Second Paragraph */}
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
               To meet their needs, the partition wall was removed to create a unified open-plan kitchen and living area. The entrance was repositioned to allow a more natural circulation flow, resulting in improved spatial logic, better light distribution, and a brighter atmosphere.
             </p>
           </div>
-          
+
           {/* Floor Plan Image */}
           <div className="mt-16 sm:mt-24 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-16">
-            <img 
-              src={cho7Floorplan} 
+            <img
+              src={cho7Floorplan}
               alt="Floor plan before and after"
               className="w-full h-auto"
+              loading="lazy"
             />
           </div>
 
@@ -582,13 +592,14 @@ const ProjectDetail = () => {
           <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mt-16 sm:mt-24 mb-8 sm:mb-12 text-center">
             Moodboard
           </h2>
-          
+
           {/* Moodboard Image */}
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-16">
-            <img 
-              src={cho7Moodboard} 
+            <img
+              src={cho7Moodboard}
               alt="Project moodboard"
               className="w-full h-auto"
+              loading="lazy"
             />
           </div>
 
@@ -596,7 +607,7 @@ const ProjectDetail = () => {
           <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mt-16 sm:mt-24 mb-8 sm:mb-12 text-center">
             Values & Concept
           </h2>
-          
+
           {/* Values & Concept Text */}
           <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center">
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground mb-6 sm:mb-8">
@@ -609,20 +620,23 @@ const ProjectDetail = () => {
 
           {/* Render Images */}
           <div className="mt-16 sm:mt-24 max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 space-y-8 sm:space-y-12">
-            <img 
-              src={cho7Render1} 
+            <img
+              src={cho7Render1}
               alt="Living room render"
               className="w-full h-auto"
+              loading="lazy"
             />
-            <img 
-              src={cho7Render2} 
+            <img
+              src={cho7Render2}
               alt="Living room angle render"
               className="w-full h-auto"
+              loading="lazy"
             />
-            <img 
-              src={cho7Render3} 
+            <img
+              src={cho7Render3}
               alt="Kitchen and living area render"
               className="w-full h-auto"
+              loading="lazy"
             />
           </div>
 
@@ -635,15 +649,17 @@ const ProjectDetail = () => {
 
           {/* Kitchen Images Side by Side */}
           <div className="mt-12 sm:mt-16 max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-            <img 
-              src={cho7Kitchen1} 
+            <img
+              src={cho7Kitchen1}
               alt="Kitchen detail render"
               className="w-full h-auto"
+              loading="lazy"
             />
-            <img 
-              src={cho7Kitchen2} 
+            <img
+              src={cho7Kitchen2}
               alt="Kitchen hood render"
               className="w-full h-auto"
+              loading="lazy"
             />
           </div>
 
@@ -654,20 +670,23 @@ const ProjectDetail = () => {
 
           {/* Light Images - Three in a row */}
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-16 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-            <img 
-              src={cho7Light1} 
+            <img
+              src={cho7Light1}
               alt="Evening lighting render"
               className="w-full h-auto"
+              loading="lazy"
             />
-            <img 
-              src={cho7Light2} 
+            <img
+              src={cho7Light2}
               alt="Night lighting render"
               className="w-full h-auto"
+              loading="lazy"
             />
-            <img 
-              src={cho7Light3} 
+            <img
+              src={cho7Light3}
               alt="Daylight render"
               className="w-full h-auto"
+              loading="lazy"
             />
           </div>
 
@@ -680,10 +699,10 @@ const ProjectDetail = () => {
 
           {/* Video */}
           <div className="mt-16 sm:mt-24 max-w-[600px] mx-auto px-4 sm:px-6 lg:px-16">
-            <video 
-              autoPlay 
-              muted 
-              loop 
+            <video
+              autoPlay
+              muted
+              loop
               playsInline
               className="w-full h-auto"
             >
@@ -701,19 +720,20 @@ const ProjectDetail = () => {
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mb-8 sm:mb-12">
               About project
             </h2>
-            
+
             {/* About Text */}
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
               The master bedroom is designed as a private retreat divided into three connected zones: the sleeping area, master bathroom, and walk-in closet. The concept emphasizes warm tones and the use of dark wood, which extends across the custom-made headboard that also functions as discreet storage.
             </p>
           </div>
-          
+
           {/* Floor Plan Image */}
           <div className="mt-16 sm:mt-24 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-16">
-            <img 
-              src={mr90Floorplan} 
+            <img
+              src={mr90Floorplan}
               alt="Floor plan"
               className="w-full h-auto"
+              loading="lazy"
             />
           </div>
 
@@ -721,13 +741,14 @@ const ProjectDetail = () => {
           <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mt-16 sm:mt-24 mb-8 sm:mb-12 text-center">
             Moodboard
           </h2>
-          
+
           {/* Moodboard Image */}
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-16">
-            <img 
-              src={mr90Moodboard} 
+            <img
+              src={mr90Moodboard}
               alt="Project moodboard"
               className="w-full h-auto"
+              loading="lazy"
             />
           </div>
 
@@ -735,7 +756,7 @@ const ProjectDetail = () => {
           <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mt-16 sm:mt-24 mb-8 sm:mb-12 text-center">
             Values & Concept
           </h2>
-          
+
           {/* Values & Concept Text */}
           <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center">
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground mb-6 sm:mb-8">
@@ -748,15 +769,17 @@ const ProjectDetail = () => {
 
           {/* Render Images */}
           <div className="mt-16 sm:mt-24 max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 space-y-8 sm:space-y-12">
-            <img 
-              src={mr90Render1} 
+            <img
+              src={mr90Render1}
               alt="Bedroom render with forest view"
               className="w-full h-auto"
+              loading="lazy"
             />
-            <img 
-              src={mr90Render2} 
+            <img
+              src={mr90Render2}
               alt="Bedroom render interior"
               className="w-full h-auto"
+              loading="lazy"
             />
           </div>
 
@@ -769,15 +792,17 @@ const ProjectDetail = () => {
 
           {/* Headboard Images Side by Side */}
           <div className="mt-12 sm:mt-16 max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-            <img 
-              src={mr90Headboard1} 
+            <img
+              src={mr90Headboard1}
               alt="Headboard detail"
               className="w-full h-auto"
+              loading="lazy"
             />
-            <img 
-              src={mr90Headboard2} 
+            <img
+              src={mr90Headboard2}
               alt="Headboard storage detail"
               className="w-full h-auto"
+              loading="lazy"
             />
           </div>
 
@@ -798,15 +823,17 @@ const ProjectDetail = () => {
 
           {/* Light Images Side by Side */}
           <div className="mt-12 sm:mt-16 max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-            <img 
-              src={mr90Light1} 
+            <img
+              src={mr90Light1}
               alt="Hallway daylight view"
               className="w-full h-auto"
+              loading="lazy"
             />
-            <img 
-              src={mr90Light2} 
+            <img
+              src={mr90Light2}
               alt="Hallway evening view"
               className="w-full h-auto"
+              loading="lazy"
             />
           </div>
 
@@ -827,15 +854,17 @@ const ProjectDetail = () => {
 
           {/* Bathroom Images Side by Side */}
           <div className="mt-12 sm:mt-16 max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-            <img 
-              src={mr90Bathroom1} 
+            <img
+              src={mr90Bathroom1}
               alt="Bathroom bathtub detail"
               className="w-full h-auto"
+              loading="lazy"
             />
-            <img 
-              src={mr90Bathroom2} 
+            <img
+              src={mr90Bathroom2}
               alt="Bathroom vanity view"
               className="w-full h-auto"
+              loading="lazy"
             />
           </div>
 
@@ -848,10 +877,10 @@ const ProjectDetail = () => {
 
           {/* Video */}
           <div className="mt-16 sm:mt-24 max-w-[600px] mx-auto px-4 sm:px-6 lg:px-16">
-            <video 
-              autoPlay 
-              muted 
-              loop 
+            <video
+              autoPlay
+              muted
+              loop
               playsInline
               className="w-full h-auto"
             >
@@ -883,11 +912,11 @@ const ProjectDetail = () => {
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mb-8 sm:mb-12">
               About project
             </h2>
-            
+
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground mb-6 sm:mb-8">
               This children's room was designed as a sensory-oriented environment that grows with the child through play, movement, and imagination.
             </p>
-            
+
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
               The project explores how spatial flow, sensory stimulation, and clear zoning can support a child's neurological, emotional, and motor development.
             </p>
@@ -899,17 +928,17 @@ const ProjectDetail = () => {
       {project.id === "childrens-room" && (
         <section className="py-2 sm:py-4">
           <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16">
-            <img 
-              src={childrensRoomZones} 
-              alt="Children's room zones diagram" 
+            <img
+              src={childrensRoomZones}
+              alt="Children's room zones diagram"
               className="w-full h-auto mb-4 sm:mb-6"
             />
-            
+
             <div className="max-w-[800px] mx-auto text-center">
               <p className="text-sm sm:text-base leading-relaxed text-muted-foreground mb-6 sm:mb-8">
                 The room is organized into distinct yet interconnected zones — a sensory wall, sensory activity equipment area, toy storage, sitting area, and sleeping area. This structure enables flexible use of space and intuitive movement, allowing the environment to adapt to the child's changing needs over time.
               </p>
-              
+
               <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
                 Through carefully designed sensory activities and predictable movement patterns, the room becomes more than a functional interior — it becomes a supportive framework for learning, exploration, and emotional regulation.
               </p>
@@ -925,93 +954,93 @@ const ProjectDetail = () => {
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mb-8 sm:mb-12">
               Values & Concept
             </h2>
-            
+
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
               The project is rooted in neurodesign principles, recognizing the connection between spatial design and the nervous system. Predictable circulation, clear zoning, and balanced sensory input help create a sense of safety, support self-regulation, and encourage sensory integration.
             </p>
           </div>
-          
+
           <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 mt-16 sm:mt-24">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-              <img 
-                src={childrensRoomNeuro1} 
-                alt="Children's room sensory design" 
+              <img
+                src={childrensRoomNeuro1}
+                alt="Children's room sensory design"
                 className="w-full h-auto"
               />
-              <img 
-                src={childrensRoomNeuro2} 
-                alt="Children's room pegboard wall" 
+              <img
+                src={childrensRoomNeuro2}
+                alt="Children's room pegboard wall"
                 className="w-full h-auto"
               />
             </div>
           </div>
-          
+
           <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center mt-16 sm:mt-24">
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
               The space is divided into active zones (play and movement) and calm zones (sitting and sleeping), connected through a clear and intuitive flow from the entrance toward the glass wall and terrace. This circulation supports natural transitions between activity and rest, helping the child move through the space with ease and confidence.
             </p>
           </div>
-          
+
           {/* House images */}
           <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 mt-16 sm:mt-24">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-              <img 
-                src={childrensRoomHouse1} 
-                alt="Children's room storage house" 
+              <img
+                src={childrensRoomHouse1}
+                alt="Children's room storage house"
                 className="w-full h-auto"
               />
-              <img 
-                src={childrensRoomHouse2} 
-                alt="Children's room play house" 
+              <img
+                src={childrensRoomHouse2}
+                alt="Children's room play house"
                 className="w-full h-auto"
               />
             </div>
           </div>
-          
+
           <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center mt-16 sm:mt-24">
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
               Climbing elements, a swing, gymnastic rings, and soft balance forms create a dynamic sensory landscape. These elements encourage exploration through movement, touch, and balance, supporting both gross and fine motor development.
             </p>
           </div>
-          
+
           {/* Active and calm zone images */}
           <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 mt-16 sm:mt-24">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-              <img 
-                src={childrensRoomActive} 
-                alt="Children's room active zone" 
+              <img
+                src={childrensRoomActive}
+                alt="Children's room active zone"
                 className="w-full h-auto"
               />
-              <img 
-                src={childrensRoomCalm} 
-                alt="Children's room calm zone" 
+              <img
+                src={childrensRoomCalm}
+                alt="Children's room calm zone"
                 className="w-full h-auto"
               />
             </div>
           </div>
-          
+
           <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center mt-16 sm:mt-24">
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
               The sensory wall features a perforated system that allows elements to be rearranged, added, or removed. This enables the sensory activity area to expand or contract over time, ensuring the room evolves alongside the child.
             </p>
           </div>
-          
+
           {/* Light images */}
           <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 mt-16 sm:mt-24">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-              <img 
-                src={childrensRoomLight1} 
-                alt="Children's room night lighting" 
+              <img
+                src={childrensRoomLight1}
+                alt="Children's room night lighting"
                 className="w-full h-auto"
               />
-              <img 
-                src={childrensRoomLight2} 
-                alt="Children's room sleep zone lighting" 
+              <img
+                src={childrensRoomLight2}
+                alt="Children's room sleep zone lighting"
                 className="w-full h-auto"
               />
             </div>
           </div>
-          
+
           <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center mt-16 sm:mt-24">
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
               Soft, warm lighting supports nervous system regulation and gently prepares the body for rest and sleep.
@@ -1034,13 +1063,14 @@ const ProjectDetail = () => {
               A large glass wall opens the room toward the outdoors, offering views of treetops, sky, and the changing play of light and shadow. These visual connections activate the visual system, reduce sensory overload, and have a calming effect on the nervous system.
             </p>
           </div>
-          
+
           {/* Nature view image */}
           <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 mt-16 sm:mt-24">
-            <img 
-              src={childrensRoom2Nature} 
-              alt="Children's room with nature view and climbing wall" 
+            <img
+              src={childrensRoom2Nature}
+              alt="Children's room with nature view and climbing wall"
               className="w-full h-auto"
+              loading="lazy"
             />
           </div>
         </section>
@@ -1060,41 +1090,44 @@ const ProjectDetail = () => {
               Designed through neurodesign principles, the space supports the child's nervous system by combining natural light, clear spatial organization, and balanced sensory input. The room encourages exploration and movement, while also offering moments of rest and regulation.
             </p>
           </div>
-          
+
           {/* Climbing wall image */}
           <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 mt-16 sm:mt-24">
-            <img 
-              src={childrensRoom2Climbing} 
-              alt="Children's room interior with climbing wall and wooden elements" 
+            <img
+              src={childrensRoom2Climbing}
+              alt="Children's room interior with climbing wall and wooden elements"
               className="w-full h-auto"
+              loading="lazy"
             />
           </div>
-          
+
           {/* Multifunctional wall text */}
           <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center mt-16 sm:mt-24">
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
               The central element is a multifunctional wall that allows flexible integration of sensory and movement elements. A large lounging net, built-in storage, and a system with an integrated climbing wall create opportunities for play, rest, and physical activity within a single, adaptable structure.
             </p>
           </div>
-          
+
           {/* Wall with shelves image */}
           <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 mt-16 sm:mt-24">
-            <img 
-              src={childrensRoom2Wall} 
-              alt="Pegboard wall with modular shelving and toys" 
+            <img
+              src={childrensRoom2Wall}
+              alt="Pegboard wall with modular shelving and toys"
               className="w-full h-auto"
+              loading="lazy"
             />
           </div>
-          
+
           {/* Storage image */}
           <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 mt-16 sm:mt-24">
-            <img 
-              src={childrensRoom2Storage} 
-              alt="Storage cabinets and pegboard organization system" 
+            <img
+              src={childrensRoom2Storage}
+              alt="Storage cabinets and pegboard organization system"
               className="w-full h-auto"
+              loading="lazy"
             />
           </div>
-          
+
           {/* Final text */}
           <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center mt-16 sm:mt-24">
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
@@ -1119,45 +1152,48 @@ const ProjectDetail = () => {
               The project was developed with the goal of introducing the youngest residents of Varaždin County to traditional local products that hold European protection status. Through storytelling, illustration, and playful activities, the book presents complex topics such as food origin and production in a simple, engaging, and age-appropriate way.
             </p>
           </div>
-          
+
           {/* First image */}
           <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 mt-16 sm:mt-24">
-            <img 
-              src={pictureBookCharacters} 
-              alt="Picture book spread showing Sunčica and Zelenko superhero characters" 
+            <img
+              src={pictureBookCharacters}
+              alt="Picture book spread showing Sunčica and Zelenko superhero characters"
               className="w-full h-auto"
+              loading="lazy"
             />
           </div>
-          
+
           {/* Story description */}
           <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center mt-16 sm:mt-24">
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
               The story follows two little superheroes, Sunčica and Zelenko, who guide children through an adventure that encourages curiosity, learning through play, and creative exploration. Designed specifically for early childhood, the book supports independent thinking and helps children build an early connection with food, local heritage, and sustainability.
             </p>
           </div>
-          
+
           {/* Kitchen scene image */}
           <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 mt-16 sm:mt-24">
-            <img 
-              src={pictureBookKitchen} 
-              alt="Picture book spread showing kitchen baking scene with interactive activities" 
+            <img
+              src={pictureBookKitchen}
+              alt="Picture book spread showing kitchen baking scene with interactive activities"
               className="w-full h-auto"
+              loading="lazy"
             />
           </div>
-          
+
           {/* Educational content description */}
           <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center mt-16 sm:mt-24">
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
               By combining educational content with a warm narrative and expressive illustrations, the project creates a meaningful learning experience tailored to young children.
             </p>
           </div>
-          
+
           {/* Pumpkin field image */}
           <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 mt-16 sm:mt-24">
-            <img 
-              src={pictureBookPumpkin} 
-              alt="Picture book spread showing pumpkin field and maze activity" 
+            <img
+              src={pictureBookPumpkin}
+              alt="Picture book spread showing pumpkin field and maze activity"
               className="w-full h-auto"
+              loading="lazy"
             />
           </div>
         </section>

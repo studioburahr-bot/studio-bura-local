@@ -22,6 +22,7 @@ const Projects = () => {
                     src={project.image}
                     alt={project.title}
                     className="w-full h-auto max-w-full group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
                   />
                 ) : (
                   <div className="w-full h-full bg-gradient-to-br from-muted to-accent transition-transform duration-500 group-hover:scale-102" />

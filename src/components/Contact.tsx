@@ -8,12 +8,13 @@ const Contact = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-start">
             {/* Left - Contact Photo */}
-            <img 
-              src={contactPhoto} 
-              alt="Dora Ernoić - Studio Bura founder" 
+            <img
+              src={contactPhoto}
+              alt="Dora Ernoić - Studio Bura founder"
               className="w-full aspect-[3/4] object-cover rounded-lg"
+              loading="lazy"
             />
-            
+
             {/* Right - Contact Info */}
             <div>
               <h2 className="text-4xl sm:text-5xl md:text-7xl font-light mb-6 sm:mb-8 tracking-tight">
@@ -32,13 +33,13 @@ const Contact = () => {
                 <p>
                   In my free time, you can catch me running or cooking, exploring either new places or new food.
                 </p>
-                
+
                 {/* Location & Phone */}
                 <div className="pt-6 sm:pt-8 space-y-1 text-base sm:text-lg">
                   <p>Zagreb, Croatia</p>
                   <p>+385 98 582 307</p>
                 </div>
-                
+
                 {/* Contact Links */}
                 <div className="pt-4 sm:pt-6 space-y-4 sm:space-y-6">
                   <div>

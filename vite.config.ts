@@ -5,9 +5,12 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "/studio-bura-local/",           
+  // Only use base path in production (for GitHub Pages)
+  base: mode === "production" ? "/studio-bura-local/" : "/",
   build: {
-    outDir: "docs",           
+    outDir: "docs",
+    // Optimize images during build
+    assetsInlineLimit: 4096,
   },
   server: {
     host: "::",
@@ -21,5 +24,9 @@ export default defineConfig(({ mode }) => ({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+  },
+  // Optimize dependencies
+  optimizeDeps: {
+    include: ["react", "react-dom", "react-router-dom"],
   },
 }));
