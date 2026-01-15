@@ -34,6 +34,13 @@ import MP3 from "@/assets/projects/MP_3.png?webp";
 import MP4 from "@/assets/projects/MP_4.png?webp";
 import MP5 from "@/assets/projects/MP_5.png?webp";
 import MP6 from "@/assets/projects/MP_6.png?webp";
+// StravaUI project assets
+import StravaUI_01 from "@/assets/projects/StravaUI_01.webp";
+import StravaUI_02 from "@/assets/projects/StravaUI_02.webp";
+import StravaUI_03 from "@/assets/projects/StravaUI_03.webp";
+import StravaUI_04 from "@/assets/projects/StravaUI_04.webp";
+import StravaUI_05 from "@/assets/projects/StravaUI_05.webp";
+import StravaUI_06 from "@/assets/projects/StravaUI_06.webp";
 // Flow project assets
 import flowDetail from "@/assets/projects/flow-detail.jpg?webp";
 import flowYoga1 from "@/assets/projects/flow-yoga-1.png?webp";
@@ -137,8 +144,8 @@ const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* Single Image - 5:4 aspect ratio (hidden for MatchPoint and Flow) */}
-      {project.image && project.id !== "matchpoint" && project.id !== "flow" && (
+      {/* Single Image - 5:4 aspect ratio (hidden for MatchPoint, Flow and StravUI) */}
+      {project.image && project.id !== "matchpoint" && project.id !== "flow" && project.id !== "stravaui" && (
         <section className="pb-0">
           <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-16">
             <div className="aspect-[5/4] overflow-hidden">
@@ -1198,6 +1205,20 @@ const ProjectDetail = () => {
           </div>
         </section>
       )}
+
+      {/* StravaUI Project Content */}
+      {project.id === "stravaui" && (
+  <section className="-mt-8 sm:-mt-12">
+    <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16">
+      <img src={StravaUI_01} className="w-full h-auto" />
+      <img src={StravaUI_02} className="w-full h-auto" />
+      <img src={StravaUI_03} className="w-full h-auto" />
+      <img src={StravaUI_04} className="w-full h-auto" />
+      <img src={StravaUI_05} className="w-full h-auto" />
+      <img src={StravaUI_06} className="w-full h-auto" />
+    </div>
+  </section>
+)}
 
       {/* Blank space */}
       <div className="py-24 sm:py-32" />

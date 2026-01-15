@@ -5,6 +5,7 @@ import flowMain from "@/assets/projects/flow-main.png?webp";
 import childrensRoomMain from "@/assets/projects/childrens-room-main.png?webp";
 import childrensRoom2Main from "@/assets/projects/childrens-room2-main.png?webp";
 import pictureBookMain from "@/assets/projects/picture-book-main.png?webp";
+import StravaUI_main2 from "@/assets/projects/StravaUI_main2.webp";
 
 export interface ProjectInfo {
   label: string;
@@ -67,17 +68,17 @@ export const projects: Project[] = [
     gallery: [],
   },
   {
-    id: "flow",
-    title: "Flow",
-    subtitle: "UX/UI Design",
-    category: "UX/UI Design",
+   id: "stravaui",
+    title: "Strava - Feature concept",
+    subtitle: "Product Feature Concept",
+    category: "Human behaviour case study",
     year: "2025",
-    image: flowMain,
+    image: StravaUI_main2,
     info: [
       { label: "Year", value: "2025" },
-      { label: "Type", value: "web | landing page | logo" },
+      { label: "Type", value: "UX Concept | Interaction Design | Behavioural Insight" },
     ],
-    tagline: "Flow - Yoga Studio",
+    tagline: "Run Flow - Decision-minimized in-run guidance",
     gallery: [],
   },
   {
@@ -122,6 +123,20 @@ export const projects: Project[] = [
     tagline: "Kako je to došlo na moj tanjur?/How did it get to my plate?",
     gallery: [],
   },
+  {
+    id: "flow",
+    title: "Flow",
+    subtitle: "UX/UI Design",
+    category: "UX/UI Design",
+    year: "2025",
+    image: flowMain,
+    info: [
+      { label: "Year", value: "2025" },
+      { label: "Type", value: "web | landing page | logo" },
+    ],
+    tagline: "Flow - Yoga Studio",
+    gallery: [],
+    },
 ];
 
 export const getProjectById = (id: string): Project | undefined => {
