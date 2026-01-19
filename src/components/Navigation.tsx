@@ -47,7 +47,7 @@ const Navigation = () => {
             {/* Hamburger menu for mobile */}
             <button
               onClick={() => setIsMobileMenuOpen(true)}
-              className="md:hidden text-foreground hover:opacity-60 transition-all duration-500"
+              className="lg:hidden text-foreground hover:opacity-60 transition-all duration-500"
               aria-label="Open menu"
               style={{ transform: 'rotateY(0deg)' }}
             >
@@ -55,7 +55,7 @@ const Navigation = () => {
             </button>
 
             {/* Desktop navigation links */}
-            <div className="hidden md:flex items-center gap-4 sm:gap-6 md:gap-8">
+            <div className="hidden lg:flex items-center gap-4 sm:gap-6 md:gap-8">
               <button
                 onClick={() => scrollToSection("home")}
                 className="text-xs sm:text-sm font-light tracking-wider hover:opacity-60 transition-opacity"
