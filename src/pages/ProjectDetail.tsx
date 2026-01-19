@@ -109,7 +109,7 @@ const ProjectDetail = () => {
 
       {/* Hero Section */}
       <section className="pt-24 sm:pt-32 pb-12 sm:pb-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-16">
+        <div className="container mx-auto px-4 sm:px-6">
           {/* Back Link */}
           <Link
             to="/projects"
@@ -147,7 +147,7 @@ const ProjectDetail = () => {
       {/* Single Image - 5:4 aspect ratio (hidden for MatchPoint, Flow and StravUI) */}
       {project.image && project.id !== "matchpoint" && project.id !== "flow" && project.id !== "stravaui" && (
         <section className="pb-0">
-          <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="max-w-container mx-auto px-4 sm:px-6">
             <div className="aspect-[5/4] overflow-hidden">
               <img
                 src={project.image}
@@ -163,7 +163,7 @@ const ProjectDetail = () => {
       {/* Flow project detail image */}
       {project.id === "flow" && (
         <section className="pb-0">
-          <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="max-w-container mx-auto px-4 sm:px-6">
             <img
               src={flowDetail}
               alt="Flow - Yoga Studio project showcase"
@@ -177,7 +177,7 @@ const ProjectDetail = () => {
       {/* Flow About Project Section */}
       {project.id === "flow" && (
         <section className="py-16 sm:py-24">
-          <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center">
+          <div className="max-w-container mx-auto px-4 sm:px-6 text-center">
             {/* About Project Title */}
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mb-8 sm:mb-12">
               About project
@@ -190,7 +190,7 @@ const ProjectDetail = () => {
           </div>
 
           {/* Four Images Grid */}
-          <div className="mt-16 sm:mt-24 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-16 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+          <div className="mt-16 sm:mt-24 max-w-container mx-auto px-4 sm:px-6 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
             <img
               src={flowYoga1}
               alt="Yoga pose 1"
@@ -222,7 +222,7 @@ const ProjectDetail = () => {
       {/* Flow Design Process Section */}
       {project.id === "flow" && (
         <section className="py-16 sm:py-24">
-          <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="max-w-container mx-auto px-4 sm:px-6">
             {/* Design Process Title */}
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mb-12 sm:mb-16 text-center">
               Design Process
@@ -269,7 +269,7 @@ const ProjectDetail = () => {
           </div>
 
           {/* Three Process Images */}
-          <div className="mt-16 sm:mt-24 max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 grid grid-cols-3 gap-4 sm:gap-6">
+          <div className="mt-16 sm:mt-24 max-w-container mx-auto px-4 sm:px-6 grid grid-cols-3 gap-4 sm:gap-6">
             <img
               src={flowProcess1}
               alt="Design process illustration 1"
@@ -295,7 +295,7 @@ const ProjectDetail = () => {
       {/* Flow Information Architecture Section */}
       {project.id === "flow" && (
         <section className="py-16 sm:py-24">
-          <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="max-w-container mx-auto px-4 sm:px-6">
             {/* Information Architecture Title */}
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mb-12 sm:mb-16 text-center">
               Information Architecture
@@ -389,7 +389,7 @@ const ProjectDetail = () => {
       {/* Flow Problem & Objectives Section */}
       {project.id === "flow" && (
         <section className="py-16 sm:py-24">
-          <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="max-w-container mx-auto px-4 sm:px-6">
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mb-12 sm:mb-16 text-center">
               Problem & Objectives
             </h2>
@@ -410,7 +410,7 @@ const ProjectDetail = () => {
       {/* Flow Moodboard Section */}
       {project.id === "flow" && (
         <section className="py-16 sm:py-24">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="max-w-container mx-auto px-4 sm:px-6">
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mb-12 sm:mb-16 text-center">
               Moodboard
             </h2>
@@ -418,7 +418,7 @@ const ProjectDetail = () => {
               <img
                 src={flowMoodboard}
                 alt="Flow Yoga Studio Moodboard"
-                className="w-full max-w-[1400px] h-auto"
+                className="w-full max-w-container h-auto"
               />
             </div>
           </div>
@@ -428,7 +428,7 @@ const ProjectDetail = () => {
       {/* Flow Typography Section */}
       {project.id === "flow" && (
         <section className="py-16 sm:py-24">
-          <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="max-w-container mx-auto px-4 sm:px-6">
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mb-12 sm:mb-16 text-center">
               Typography
             </h2>
@@ -436,7 +436,7 @@ const ProjectDetail = () => {
               <img
                 src={flowTypography}
                 alt="Flow Typography - Montserrat and Playfair Display"
-                className="w-full max-w-[1000px] h-auto"
+                className="w-full max-w-container h-auto"
               />
             </div>
           </div>
@@ -446,7 +446,7 @@ const ProjectDetail = () => {
       {/* Flow Colours Section */}
       {project.id === "flow" && (
         <section className="py-16 sm:py-24">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="max-w-container mx-auto px-4 sm:px-6">
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mb-12 sm:mb-16 text-center">
               Colours
             </h2>
@@ -454,7 +454,7 @@ const ProjectDetail = () => {
               <img
                 src={flowColours}
                 alt="Flow Color Palette"
-                className="w-full max-w-[1400px] h-auto"
+                className="w-full max-w-container h-auto"
               />
             </div>
           </div>
@@ -464,7 +464,7 @@ const ProjectDetail = () => {
       {/* Flow Grid System Section */}
       {project.id === "flow" && (
         <section className="py-16 sm:py-24">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="max-w-container mx-auto px-4 sm:px-6">
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mb-12 sm:mb-16 text-center">
               Grid System
             </h2>
@@ -472,7 +472,7 @@ const ProjectDetail = () => {
               <img
                 src={flowGrid}
                 alt="Flow Grid System - Desktop and Mobile"
-                className="w-full max-w-[1400px] h-auto"
+                className="w-full max-w-container h-auto"
               />
             </div>
           </div>
@@ -482,7 +482,7 @@ const ProjectDetail = () => {
       {/* Flow Logo Design Section */}
       {project.id === "flow" && (
         <section className="py-16 sm:py-24">
-          <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="max-w-container mx-auto px-4 sm:px-6">
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mb-12 sm:mb-16 text-center">
               Logo Design
             </h2>
@@ -499,7 +499,7 @@ const ProjectDetail = () => {
       {/* Flow Logo Section */}
       {project.id === "flow" && (
         <section className="py-16 sm:py-24">
-          <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="max-w-container mx-auto px-4 sm:px-6">
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mb-12 sm:mb-16 text-center">
               Logo
             </h2>
@@ -517,7 +517,7 @@ const ProjectDetail = () => {
       {/* Flow Logo Grid System Section */}
       {project.id === "flow" && (
         <section className="py-16 sm:py-24">
-          <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="max-w-container mx-auto px-4 sm:px-6">
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mb-12 sm:mb-16 text-center">
               Logo Grid System
             </h2>
@@ -535,7 +535,7 @@ const ProjectDetail = () => {
       {/* Flow Typography 2 Section */}
       {project.id === "flow" && (
         <section className="py-16 sm:py-24">
-          <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="max-w-container mx-auto px-4 sm:px-6">
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mb-12 sm:mb-16 text-center">
               Typography
             </h2>
@@ -543,7 +543,7 @@ const ProjectDetail = () => {
               <img
                 src={flowTypography2}
                 alt="Flow Typography - Montserrat and Bagel Fat One"
-                className="w-full max-w-[1000px] h-auto"
+                className="w-full max-w-container h-auto"
               />
             </div>
           </div>
@@ -553,12 +553,12 @@ const ProjectDetail = () => {
       {/* Flow Final Showcase Section */}
       {project.id === "flow" && (
         <section className="py-16 sm:py-24">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="max-w-container mx-auto px-4 sm:px-6">
             <div className="flex justify-center">
               <img
                 src={flowFinal}
                 alt="Flow Yoga Studio Final Design Showcase"
-                className="w-full max-w-[1400px] h-auto"
+                className="w-full max-w-container h-auto"
               />
             </div>
           </div>
@@ -568,7 +568,7 @@ const ProjectDetail = () => {
       {/* About Project Section - only for CHO7 */}
       {project.id === "cho7" && (
         <section className="py-16 sm:py-24">
-          <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center">
+          <div className="max-w-container mx-auto px-4 sm:px-6 text-center">
             {/* About Project Title */}
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mb-8 sm:mb-12">
               About project
@@ -586,7 +586,7 @@ const ProjectDetail = () => {
           </div>
 
           {/* Floor Plan Image */}
-          <div className="mt-16 sm:mt-24 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="mt-16 sm:mt-24 max-w-container mx-auto px-4 sm:px-6">
             <img
               src={cho7Floorplan}
               alt="Floor plan before and after"
@@ -601,7 +601,7 @@ const ProjectDetail = () => {
           </h2>
 
           {/* Moodboard Image */}
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="max-w-container mx-auto px-4 sm:px-6">
             <img
               src={cho7Moodboard}
               alt="Project moodboard"
@@ -616,7 +616,7 @@ const ProjectDetail = () => {
           </h2>
 
           {/* Values & Concept Text */}
-          <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center">
+          <div className="max-w-container mx-auto px-4 sm:px-6 text-center">
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground mb-6 sm:mb-8">
               The concept balances aesthetics, functionality, and environmental consciousness, focusing on how the space supports everyday life.
             </p>
@@ -626,7 +626,7 @@ const ProjectDetail = () => {
           </div>
 
           {/* Render Images */}
-          <div className="mt-16 sm:mt-24 max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 space-y-8 sm:space-y-12">
+          <div className="mt-16 sm:mt-24 max-w-container mx-auto px-4 sm:px-6 space-y-8 sm:space-y-12">
             <img
               src={cho7Render1}
               alt="Living room render"
@@ -648,14 +648,14 @@ const ProjectDetail = () => {
           </div>
 
           {/* Kitchen Text */}
-          <div className="mt-16 sm:mt-24 max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center">
+          <div className="mt-16 sm:mt-24 max-w-[800px] mx-auto px-4 sm:px-6 text-center">
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
               The kitchen island invites casual meals and conversation, while the open layout and absence of upper cabinetry maximize natural light and fluidity.
             </p>
           </div>
 
           {/* Kitchen Images Side by Side */}
-          <div className="mt-12 sm:mt-16 max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          <div className="mt-12 sm:mt-16 max-w-container mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             <img
               src={cho7Kitchen1}
               alt="Kitchen detail render"
@@ -676,7 +676,7 @@ const ProjectDetail = () => {
           </h2>
 
           {/* Light Images - Three in a row */}
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-16 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+          <div className="max-w-container mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
             <img
               src={cho7Light1}
               alt="Evening lighting render"
@@ -698,14 +698,14 @@ const ProjectDetail = () => {
           </div>
 
           {/* Closing Text */}
-          <div className="mt-16 sm:mt-24 max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center">
+          <div className="mt-16 sm:mt-24 max-w-[800px] mx-auto px-4 sm:px-6 text-center">
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
               The result is a home that feels warm, fluid, and personal - a design that gently enhances daily rituals.
             </p>
           </div>
 
           {/* Video */}
-          <div className="mt-16 sm:mt-24 max-w-[600px] mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="mt-16 sm:mt-24 max-w-container mx-auto px-4 sm:px-6">
             <video
               autoPlay
               muted
@@ -722,7 +722,7 @@ const ProjectDetail = () => {
       {/* MR90 Project Content */}
       {project.id === "mr90" && (
         <section className="py-16 sm:py-24">
-          <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center">
+          <div className="max-w-container mx-auto px-4 sm:px-6 text-center">
             {/* About Project Title */}
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mb-8 sm:mb-12">
               About project
@@ -735,7 +735,7 @@ const ProjectDetail = () => {
           </div>
 
           {/* Floor Plan Image */}
-          <div className="mt-16 sm:mt-24 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="mt-16 sm:mt-24 max-w-[1400px] mx-auto px-4 sm:px-6">
             <img
               src={mr90Floorplan}
               alt="Floor plan"
@@ -750,7 +750,7 @@ const ProjectDetail = () => {
           </h2>
 
           {/* Moodboard Image */}
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="max-w-container mx-auto px-4 sm:px-6">
             <img
               src={mr90Moodboard}
               alt="Project moodboard"
@@ -765,7 +765,7 @@ const ProjectDetail = () => {
           </h2>
 
           {/* Values & Concept Text */}
-          <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center">
+          <div className="max-w-container mx-auto px-4 sm:px-6 text-center">
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground mb-6 sm:mb-8">
               The concept is guided by a sense of calm, balance, and intimacy, emphasizing how materiality and light shape the atmosphere of rest. A large glazed wall opens the room toward the surrounding forest, allowing natural light to flow in and blurring the boundary between interior and nature.
             </p>
@@ -775,7 +775,7 @@ const ProjectDetail = () => {
           </div>
 
           {/* Render Images */}
-          <div className="mt-16 sm:mt-24 max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 space-y-8 sm:space-y-12">
+          <div className="mt-16 sm:mt-24 max-w-container mx-auto px-4 sm:px-6 space-y-8 sm:space-y-12">
             <img
               src={mr90Render1}
               alt="Bedroom render with forest view"
@@ -791,14 +791,14 @@ const ProjectDetail = () => {
           </div>
 
           {/* Headboard Text */}
-          <div className="mt-16 sm:mt-24 max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center">
+          <div className="mt-16 sm:mt-24 max-w-[800px] mx-auto px-4 sm:px-6 text-center">
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
               Crafted in dark wood, the custom-made headboard serves as both a visual and functional piece of the bedroom. Extending across the entire wall, it integrates upper storage compartments and discreet cabinets positioned at both ends beside the nightstands.
             </p>
           </div>
 
           {/* Headboard Images Side by Side */}
-          <div className="mt-12 sm:mt-16 max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          <div className="mt-12 sm:mt-16 max-w-container mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             <img
               src={mr90Headboard1}
               alt="Headboard detail"
@@ -819,7 +819,7 @@ const ProjectDetail = () => {
           </h2>
 
           {/* Light Text */}
-          <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center">
+          <div className="max-w-container mx-auto px-4 sm:px-6 text-center">
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground mb-6 sm:mb-8">
               The String Light by Michael Anastassiades functions not only as illumination but also as an integral design element, visually accentuating the wall behind the bed.
             </p>
@@ -829,7 +829,7 @@ const ProjectDetail = () => {
           </div>
 
           {/* Light Images Side by Side */}
-          <div className="mt-12 sm:mt-16 max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          <div className="mt-12 sm:mt-16 max-w-container mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             <img
               src={mr90Light1}
               alt="Hallway daylight view"
@@ -850,7 +850,7 @@ const ProjectDetail = () => {
           </h2>
 
           {/* Bathroom Text */}
-          <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center">
+          <div className="max-w-container mx-auto px-4 sm:px-6 text-center">
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground mb-6 sm:mb-8">
               The master bathroom combines warm ceramic tones with dark wood elements, visually linking it to the adjoining bedroom.
             </p>
@@ -860,7 +860,7 @@ const ProjectDetail = () => {
           </div>
 
           {/* Bathroom Images Side by Side */}
-          <div className="mt-12 sm:mt-16 max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          <div className="mt-12 sm:mt-16 max-w-container mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             <img
               src={mr90Bathroom1}
               alt="Bathroom bathtub detail"
@@ -876,14 +876,14 @@ const ProjectDetail = () => {
           </div>
 
           {/* Closing Text */}
-          <div className="mt-16 sm:mt-24 max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center">
+          <div className="mt-16 sm:mt-24 max-w-[800px] mx-auto px-4 sm:px-6 text-center">
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
               Every element - from the custom woodwork to the play of light and reflections, contributes to an atmosphere that feels calm, timeless, and deeply personal. The result is a home that gently supports everyday life.
             </p>
           </div>
 
           {/* Video */}
-          <div className="mt-16 sm:mt-24 max-w-[600px] mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="mt-16 sm:mt-24 max-w-container mx-auto px-4 sm:px-6">
             <video
               autoPlay
               muted
@@ -901,7 +901,7 @@ const ProjectDetail = () => {
       {/* MatchPoint Project Content */}
       {project.id === "matchpoint" && (
   <section className="-mt-8 sm:-mt-12">
-    <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16">
+    <div className="max-w-container mx-auto px-4 sm:px-6">
       <img src={MP1} className="w-full h-auto" />
       <img src={MP2} className="w-full h-auto" />
       <img src={MP3} className="w-full h-auto" />
@@ -915,7 +915,7 @@ const ProjectDetail = () => {
       {/* Children's Room About Project Section */}
       {project.id === "childrens-room" && (
         <section className="py-16 sm:py-24">
-          <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center">
+          <div className="max-w-container mx-auto px-4 sm:px-6 text-center">
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mb-8 sm:mb-12">
               About project
             </h2>
@@ -934,14 +934,14 @@ const ProjectDetail = () => {
       {/* Children's Room Zones Image & Text */}
       {project.id === "childrens-room" && (
         <section className="py-2 sm:py-4">
-          <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="max-w-container mx-auto px-4 sm:px-6">
             <img
               src={childrensRoomZones}
               alt="Children's room zones diagram"
               className="w-full h-auto mb-4 sm:mb-6"
             />
 
-            <div className="max-w-[800px] mx-auto text-center">
+            <div className="max-w-container mx-auto text-center">
               <p className="text-sm sm:text-base leading-relaxed text-muted-foreground mb-6 sm:mb-8">
                 The room is organized into distinct yet interconnected zones — a sensory wall, sensory activity equipment area, toy storage, sitting area, and sleeping area. This structure enables flexible use of space and intuitive movement, allowing the environment to adapt to the child's changing needs over time.
               </p>
@@ -957,7 +957,7 @@ const ProjectDetail = () => {
       {/* Children's Room Values & Concept Section */}
       {project.id === "childrens-room" && (
         <section className="py-16 sm:py-24">
-          <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center">
+          <div className="max-w-container mx-auto px-4 sm:px-6 text-center">
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mb-8 sm:mb-12">
               Values & Concept
             </h2>
@@ -967,7 +967,7 @@ const ProjectDetail = () => {
             </p>
           </div>
 
-          <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 mt-16 sm:mt-24">
+          <div className="max-w-container mx-auto px-4 sm:px-6 mt-16 sm:mt-24">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <img
                 src={childrensRoomNeuro1}
@@ -982,14 +982,14 @@ const ProjectDetail = () => {
             </div>
           </div>
 
-          <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center mt-16 sm:mt-24">
+          <div className="max-w-container mx-auto px-4 sm:px-6 text-center mt-16 sm:mt-24">
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
               The space is divided into active zones (play and movement) and calm zones (sitting and sleeping), connected through a clear and intuitive flow from the entrance toward the glass wall and terrace. This circulation supports natural transitions between activity and rest, helping the child move through the space with ease and confidence.
             </p>
           </div>
 
           {/* House images */}
-          <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 mt-16 sm:mt-24">
+          <div className="max-w-container mx-auto px-4 sm:px-6 mt-16 sm:mt-24">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <img
                 src={childrensRoomHouse1}
@@ -1004,14 +1004,14 @@ const ProjectDetail = () => {
             </div>
           </div>
 
-          <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center mt-16 sm:mt-24">
+          <div className="max-w-container mx-auto px-4 sm:px-6 text-center mt-16 sm:mt-24">
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
               Climbing elements, a swing, gymnastic rings, and soft balance forms create a dynamic sensory landscape. These elements encourage exploration through movement, touch, and balance, supporting both gross and fine motor development.
             </p>
           </div>
 
           {/* Active and calm zone images */}
-          <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 mt-16 sm:mt-24">
+          <div className="max-w-container mx-auto px-4 sm:px-6 mt-16 sm:mt-24">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <img
                 src={childrensRoomActive}
@@ -1026,14 +1026,14 @@ const ProjectDetail = () => {
             </div>
           </div>
 
-          <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center mt-16 sm:mt-24">
+          <div className="max-w-container mx-auto px-4 sm:px-6 text-center mt-16 sm:mt-24">
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
               The sensory wall features a perforated system that allows elements to be rearranged, added, or removed. This enables the sensory activity area to expand or contract over time, ensuring the room evolves alongside the child.
             </p>
           </div>
 
           {/* Light images */}
-          <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 mt-16 sm:mt-24">
+          <div className="max-w-container mx-auto px-4 sm:px-6 mt-16 sm:mt-24">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <img
                 src={childrensRoomLight1}
@@ -1048,7 +1048,7 @@ const ProjectDetail = () => {
             </div>
           </div>
 
-          <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center mt-16 sm:mt-24">
+          <div className="max-w-container mx-auto px-4 sm:px-6 text-center mt-16 sm:mt-24">
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
               Soft, warm lighting supports nervous system regulation and gently prepares the body for rest and sleep.
             </p>
@@ -1059,7 +1059,7 @@ const ProjectDetail = () => {
       {/* Children's Room 2 - About Project */}
       {project.id === "childrens-room-2" && (
         <section className="py-16 sm:py-24">
-          <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center">
+          <div className="max-w-container mx-auto px-4 sm:px-6 text-center">
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mb-8 sm:mb-12">
               About project
             </h2>
@@ -1072,7 +1072,7 @@ const ProjectDetail = () => {
           </div>
 
           {/* Nature view image */}
-          <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 mt-16 sm:mt-24">
+          <div className="max-w-container mx-auto px-4 sm:px-6 mt-16 sm:mt-24">
             <img
               src={childrensRoom2Nature}
               alt="Children's room with nature view and climbing wall"
@@ -1086,7 +1086,7 @@ const ProjectDetail = () => {
       {/* Children's Room 2 - Values & Concept */}
       {project.id === "childrens-room-2" && (
         <section className="py-16 sm:py-24">
-          <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center">
+          <div className="max-w-container mx-auto px-4 sm:px-6 text-center">
             <h2 className="text-xs sm:text-sm uppercase tracking-[0.2em] text-muted-foreground mb-8 sm:mb-12">
               Values & Concept
             </h2>
@@ -1099,7 +1099,7 @@ const ProjectDetail = () => {
           </div>
 
           {/* Climbing wall image */}
-          <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 mt-16 sm:mt-24">
+          <div className="max-w-container mx-auto px-4 sm:px-6 mt-16 sm:mt-24">
             <img
               src={childrensRoom2Climbing}
               alt="Children's room interior with climbing wall and wooden elements"
@@ -1109,14 +1109,14 @@ const ProjectDetail = () => {
           </div>
 
           {/* Multifunctional wall text */}
-          <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center mt-16 sm:mt-24">
+          <div className="max-w-container mx-auto px-4 sm:px-6 text-center mt-16 sm:mt-24">
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
               The central element is a multifunctional wall that allows flexible integration of sensory and movement elements. A large lounging net, built-in storage, and a system with an integrated climbing wall create opportunities for play, rest, and physical activity within a single, adaptable structure.
             </p>
           </div>
 
           {/* Wall with shelves image */}
-          <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 mt-16 sm:mt-24">
+          <div className="max-w-container mx-auto px-4 sm:px-6 mt-16 sm:mt-24">
             <img
               src={childrensRoom2Wall}
               alt="Pegboard wall with modular shelving and toys"
@@ -1126,7 +1126,7 @@ const ProjectDetail = () => {
           </div>
 
           {/* Storage image */}
-          <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 mt-16 sm:mt-24">
+          <div className="max-w-container mx-auto px-4 sm:px-6 mt-16 sm:mt-24">
             <img
               src={childrensRoom2Storage}
               alt="Storage cabinets and pegboard organization system"
@@ -1136,7 +1136,7 @@ const ProjectDetail = () => {
           </div>
 
           {/* Final text */}
-          <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center mt-16 sm:mt-24">
+          <div className="max-w-container mx-auto px-4 sm:px-6 text-center mt-16 sm:mt-24">
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
               By integrating natural light, nature-inspired materials, and neurodesign principles, this children's room becomes a dynamic yet calming environment that supports healthy development, independence, and emotional balance.
             </p>
@@ -1148,7 +1148,7 @@ const ProjectDetail = () => {
       {projectId === "picture-book" && (
         <section className="py-12 sm:py-16">
           {/* ABOUT PROJECT */}
-          <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center">
+          <div className="max-w-container mx-auto px-4 sm:px-6 text-center">
             <h2 className="text-lg sm:text-xl font-light mb-6 sm:mb-8 tracking-wide text-foreground">
               ABOUT PROJECT
             </h2>
@@ -1161,7 +1161,7 @@ const ProjectDetail = () => {
           </div>
 
           {/* First image */}
-          <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 mt-16 sm:mt-24">
+          <div className="max-w-container mx-auto px-4 sm:px-6 mt-16 sm:mt-24">
             <img
               src={pictureBookCharacters}
               alt="Picture book spread showing Sunčica and Zelenko superhero characters"
@@ -1171,14 +1171,14 @@ const ProjectDetail = () => {
           </div>
 
           {/* Story description */}
-          <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center mt-16 sm:mt-24">
+          <div className="max-w-container mx-auto px-4 sm:px-6 text-center mt-16 sm:mt-24">
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
               The story follows two little superheroes, Sunčica and Zelenko, who guide children through an adventure that encourages curiosity, learning through play, and creative exploration. Designed specifically for early childhood, the book supports independent thinking and helps children build an early connection with food, local heritage, and sustainability.
             </p>
           </div>
 
           {/* Kitchen scene image */}
-          <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 mt-16 sm:mt-24">
+          <div className="max-w-container mx-auto px-4 sm:px-6 mt-16 sm:mt-24">
             <img
               src={pictureBookKitchen}
               alt="Picture book spread showing kitchen baking scene with interactive activities"
@@ -1188,14 +1188,14 @@ const ProjectDetail = () => {
           </div>
 
           {/* Educational content description */}
-          <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-16 text-center mt-16 sm:mt-24">
+          <div className="max-w-container mx-auto px-4 sm:px-6 text-center mt-16 sm:mt-24">
             <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
               By combining educational content with a warm narrative and expressive illustrations, the project creates a meaningful learning experience tailored to young children.
             </p>
           </div>
 
           {/* Pumpkin field image */}
-          <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16 mt-16 sm:mt-24">
+          <div className="max-w-container mx-auto px-4 sm:px-6 mt-16 sm:mt-24">
             <img
               src={pictureBookPumpkin}
               alt="Picture book spread showing pumpkin field and maze activity"
@@ -1209,7 +1209,7 @@ const ProjectDetail = () => {
       {/* StravaUI Project Content */}
       {project.id === "stravaui" && (
   <section className="-mt-8 sm:-mt-12">
-    <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-16">
+    <div className="max-w-container mx-auto px-4 sm:px-6">
       <img src={StravaUI_01} className="w-full h-auto" />
       <img src={StravaUI_02} className="w-full h-auto" />
       <img src={StravaUI_03} className="w-full h-auto" />

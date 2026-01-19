@@ -2,7 +2,7 @@ const About = () => {
   return (
     <section id="about" className="py-16 sm:py-24 md:py-32 bg-black text-white">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-container mx-auto">
           <h2 className="text-4xl sm:text-5xl md:text-7xl font-light mb-8 sm:mb-12 md:mb-16 tracking-tight">
             About
           </h2>
