@@ -15,7 +15,9 @@ const About = () => {
               with educational character.
             </p>
             <div className="pt-8">
-              <p className="font-normal mb-4">On this page, you'll find:</p>
+              <h3 className="font-normal mb-4 text-base sm:text-lg md:text-xl">
+              On this page, you&apos;ll find:
+            </h3>
               <ul className="space-y-3 pl-6">
                 <li className="flex items-start">
                   <span className="mr-4">◦</span>

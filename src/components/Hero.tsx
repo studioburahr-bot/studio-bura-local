@@ -8,7 +8,7 @@ const Hero = () => {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center pt-16 sm:pt-20 px-4 sm:px-6">
   <h1 className="sr-only">
-    Studio Bura | Design Studio in Zagreb, Croatia
+    Studio Bura | Design Studio in Zagreb, Croatiagit
   </h1>
      <div className="container mx-auto px-4 sm:px-6">
         <div className="aspect-[16/9] bg-secondary rounded-sm overflow-hidden">
