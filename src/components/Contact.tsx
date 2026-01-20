@@ -18,7 +18,7 @@ const Contact = () => {
             {/* Right - Contact Info */}
             <div>
               <h2 className="text-4xl sm:text-5xl md:text-7xl font-light mb-6 sm:mb-8 tracking-tight">
-                Contact Studio Bura
+                Contact
               </h2>
               <div className="space-y-3 sm:space-y-4 text-sm sm:text-base md:text-lg font-light leading-relaxed">
                 <p>
