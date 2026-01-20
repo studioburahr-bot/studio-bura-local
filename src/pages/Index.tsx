@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background animate-fade-in">
+    <div className="min-h-screen bg-background animate-page-turn-left" style={{ perspective: "1000px" }}>
       <Navigation />
       <Hero />
       <About />

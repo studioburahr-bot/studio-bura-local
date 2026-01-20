@@ -104,6 +104,12 @@ export default {
             opacity: "0",
             transform: "translateX(60px) rotateY(-15deg)",
           },
+          },
+        "page-turn-left": {
+          "0%": {
+            opacity: "0",
+            transform: "translateX(-60px) rotateY(15deg)",
+          },
           "100%": {
             opacity: "1",
             transform: "translateX(0) rotateY(0deg)",
@@ -125,6 +131,7 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         "flipIn": "flipIn 0.5s ease-in-out",
         "page-turn": "page-turn 0.5s ease-out forwards",
+        "page-turn-left": "page-turn-left 0.5s ease-out forwards",
         "fade-in": "fade-in 0.4s ease-out forwards",
       },
     },
