@@ -5,7 +5,7 @@ const Projects = () => {
   return (
     <section id="projects" className="py-16 sm:py-24 md:py-32"> 
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
-        <h2 className="text-4xl sm:text-5xl md:text-7xl font-light mb-12 sm:mb-16 md:mb-24 tracking-tight">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-light mb-12 sm:mb-16 md:mb-24 tracking-tight">
           Selected Projects
         </h2>
 
@@ -20,7 +20,7 @@ const Projects = () => {
                 {project.image ? (
                   <img
                     src={project.image}
-                    alt={`${project.title} – ${project.category} project by Studio Bura`}
+                    alt={`${project.title} project by Studio Bura`}
                     className="w-full h-auto max-w-full group-hover:scale-105 transition-transform duration-700"
                     loading="lazy"
                   />
@@ -31,7 +31,7 @@ const Projects = () => {
 
               <div className="space-y-1 sm:space-y-2">
                 <h3 className="text-xl sm:text-2xl font-light">
-                  {project.title} – {project.category}
+                  {project.title}
               </h3>
                 <div className="text-xs sm:text-sm text-muted-foreground">
                   <span>{project.category}</span>

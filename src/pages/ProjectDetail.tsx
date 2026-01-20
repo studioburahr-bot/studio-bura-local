@@ -124,8 +124,7 @@ const ProjectDetail = () => {
             {project.subtitle}
           </h1>
 
-          {/* Project Info (hidden for MatchPoint) */}
-          {projectId !== "matchpoint" && (
+          {/* Project Info */}
             <div className="space-y-1 text-sm sm:text-base text-muted-foreground">
               {project.info.map((item, index) => (
                 <p key={index}>
@@ -133,10 +132,9 @@ const ProjectDetail = () => {
                 </p>
               ))}
             </div>
-          )}
 
-          {/* Tagline (hidden for MatchPoint) */}
-          {project.tagline && projectId !== "matchpoint" && (
+          {/* Tagline */}
+          {project.tagline && (
             <p className="mt-8 text-sm opacity-70 text-muted-foreground">
               {project.tagline}
             </p>
