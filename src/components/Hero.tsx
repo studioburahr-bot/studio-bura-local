@@ -7,7 +7,10 @@ import neurodesignCity from "@/assets/neurodesign-city.jpg?webp";
 const Hero = () => {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center pt-16 sm:pt-20 px-4 sm:px-6">
-      <div className="container mx-auto px-4 sm:px-6">
+  <h1 className="sr-only">
+    Studio Bura | Design Studio in Zagreb, Croatia
+  </h1>
+     <div className="container mx-auto px-4 sm:px-6">
         <div className="aspect-[16/9] bg-secondary rounded-sm overflow-hidden">
           <img
             src={heroImage}
@@ -22,9 +25,9 @@ const Hero = () => {
           BURA is a design studio focused on spatial and digital solutions, guided by the belief that design is more than aesthetics — it is a tool for activating the senses, connecting with emotions, and creating meaningful experiences.
         </p>
 
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-light mt-16 sm:mt-20 md:mt-24 tracking-tight text-foreground">
+        <p className="text-3xl sm:text-4xl md:text-5xl font-light mt-16 sm:mt-20 md:mt-24 tracking-tight text-foreground">
           From physical environments to digital.
-        </h2>
+        </p>
         <p className="text-base sm:text-lg md:text-xl font-light mt-4 sm:mt-6 tracking-tight text-foreground/80 max-w-hero">
           With an architecture background, we translate the same human-centered principles from physical environments into digital spaces, applying UX thinking to shape intuitive and meaningful user journeys.
         </p>
@@ -56,10 +59,8 @@ const Hero = () => {
 
         <div className="mt-16 sm:mt-20 md:mt-24 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-foreground leading-none">
-            Neurodesign
-          </h2>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-foreground leading-none">
-            & Play
+            <span className="block leading-none">Neurodesign</span>
+            <span className="block leading-none">&amp; Play</span>
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-8 sm:mt-12 max-w-hero mx-auto">

@@ -10,7 +10,7 @@ const Contact = () => {
             {/* Left - Contact Photo */}
             <img
               src={contactPhoto}
-              alt="Dora Ernoić - Studio Bura founder"
+              alt="Dora Ernoić - founder of Studio Bura design studio in Zagreb, Croatia"
               className="w-full aspect-[3/4] object-cover rounded-lg"
               loading="lazy"
             />
@@ -18,7 +18,7 @@ const Contact = () => {
             {/* Right - Contact Info */}
             <div>
               <h2 className="text-4xl sm:text-5xl md:text-7xl font-light mb-6 sm:mb-8 tracking-tight">
-                Contact
+                Contact Studio Bura
               </h2>
               <div className="space-y-3 sm:space-y-4 text-sm sm:text-base md:text-lg font-light leading-relaxed">
                 <p>
@@ -35,10 +35,15 @@ const Contact = () => {
                 </p>
 
                 {/* Location & Phone */}
-                <div className="pt-6 sm:pt-8 space-y-1 text-base sm:text-lg">
-                  <p>Zagreb, Croatia</p>
-                  <p>+385 98 582 307</p>
-                </div>
+                <address className="pt-6 sm:pt-8 space-y-1 text-base sm:text-lg not-italic">
+                 <p>Zagreb, Croatia</p>
+                 <p>
+                   <a href="tel:+38598582307" className="hover:opacity-60 transition-opacity">
+                     +385 98 582 307
+                   </a>
+                 </p>
+                </address>
+
 
                 {/* Contact Links */}
                 <div className="pt-4 sm:pt-6 space-y-4 sm:space-y-6">
