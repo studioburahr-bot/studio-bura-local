@@ -22,13 +22,13 @@ const Contact = () => {
               </h2>
               <div className="space-y-3 sm:space-y-4 text-sm sm:text-base md:text-lg font-light leading-relaxed">
                 <p>
-                  My name is Dora Ernoić, founder of Studio Bura. I work at the intersection of architecture, industrial design, and user experience, using design as a tool to solve spatial, functional, and experiential challenges.
+                  My name is Dora Ernoić, founder of Studio Bura. I work at the intersection of digital product design, spatial design, and user experience, using design as a tool to solve complex spatial, functional, and experiential challenges.
                 </p>
                 <p>
-                  With a background in architecture and industrial design, I approach each project through human-centered thinking, combining spatial logic with an understanding of behavior, perception, and use.
+                  With a background in architecture and industrial design, I approach each project through human-centered and product-driven thinking, combining spatial logic with an understanding of behavior, perception, and real-world use. This perspective shapes how I design digital products, interfaces, and services, as well as physical environments.
                 </p>
                 <p>
-                  I develop intuitive environments and interactions — from wayfinding and user flows to installations and immersive visualizations that help people understand a space before it even exists.
+                  I develop intuitive environments and interactions — from user journeys, flows, and UX/UI concepts for web and mobile platforms to spatial systems, installations, and immersive visualizations that help people understand and navigate an experience before it even exists.
                 </p>
                 <p>
                   In my free time, you can catch me running or cooking, exploring either new places or new food.

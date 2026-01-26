@@ -8,11 +8,7 @@ const About = () => {
           </h2>
           <div className="space-y-6 sm:space-y-8 text-base sm:text-lg md:text-xl font-light leading-relaxed">
             <p>
-              At BURA, design is a problem-solving process grounded in observation, research, and human behavior, turning complex contexts into meaningful solutions.
-            </p>
-            <p>
-              Our projects range from interior solutions and digital design concepts to workshops
-              with educational character.
+              At BURA, design is a problem-solving and decision-making process grounded in observation, research, and human behavior — transforming complex contexts into clear, usable, and meaningful solutions.
             </p>
             <div className="pt-8">
               <h3 className="font-normal mb-4 text-base sm:text-lg md:text-xl">
@@ -21,15 +17,15 @@ const About = () => {
               <ul className="space-y-3 pl-6">
                 <li className="flex items-start">
                   <span className="mr-4">◦</span>
-                  <span>Projects and case studies</span>
+                  <span>Selected projects and case studies</span>
                 </li>
                 <li className="flex items-start">
                   <span className="mr-4">◦</span>
-                  <span>Insights into neurodesign and sensory design</span>
+                  <span>Insights into neurodesign, sensory, and experience design</span>
                 </li>
                 <li className="flex items-start">
                   <span className="mr-4">◦</span>
-                  <span>News about our workshops and events</span>
+                  <span>Updates on workshops, talks, and events</span>
                 </li>
               </ul>
             </div>

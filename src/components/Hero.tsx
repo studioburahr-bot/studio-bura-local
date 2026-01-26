@@ -22,14 +22,14 @@ const Hero = () => {
           Between people and space, there is experience.
         </h1>
         <p className="text-base sm:text-lg md:text-xl font-light mt-4 sm:mt-6 tracking-tight text-foreground/80 max-w-hero">
-          BURA is a design studio focused on spatial and digital solutions, guided by the belief that design is more than aesthetics — it is a tool for activating the senses, connecting with emotions, and creating meaningful experiences.
+          BURA is a design studio shaping experiences across physical and digital systems, using design as a tool to activate the senses, connect with emotions, and create meaningful, usable experiences through spatial logic, human behavior, and interaction design.
         </p>
 
         <p className="text-3xl sm:text-4xl md:text-5xl font-light mt-16 sm:mt-20 md:mt-24 tracking-tight text-foreground">
           From physical environments to digital.
         </p>
         <p className="text-base sm:text-lg md:text-xl font-light mt-4 sm:mt-6 tracking-tight text-foreground/80 max-w-hero">
-          With an architecture background, we translate the same human-centered principles from physical environments into digital spaces, applying UX thinking to shape intuitive and meaningful user journeys.
+          We translate human-centered principles from physical environments into digital products and interfaces, using spatial logic and UX thinking to design clear user journeys, interaction flows, and decision-making structures.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-8 sm:mt-12">
@@ -54,7 +54,7 @@ const Hero = () => {
         </div>
 
         <p className="text-base sm:text-lg md:text-xl font-light mt-8 sm:mt-12 tracking-tight text-foreground/80 max-w-hero">
-          Traces of daily life shape the character of every environment — books on a shelf, marks on the floor, a favourite chair, or the way a room smells. Each of these holds emotional data about our routines, values, and the way we experience life.
+          Traces of daily life — a favourite chair, worn paths, subtle sensory cues — reveal how people live, move, and interact. We translate these observations into systems, interfaces, and experiences that respond to real behavior across physical and digital contexts.
         </p>
 
         <div className="mt-16 sm:mt-20 md:mt-24 text-center">
@@ -86,7 +86,7 @@ const Hero = () => {
             Neuroscience in design explores methodologies for analysing human activities, considering them as the starting point for design — understanding human behavior from spatial experience to digital interaction.
           </p>
           <p className="text-base sm:text-lg md:text-xl font-light mt-4 tracking-tight text-foreground/80 max-w-hero mx-auto mb-16 sm:mb-20 md:mb-24">
-            When talking about Neurodesign & Play, our work focuses on designing spaces and products that grow with the child — built around play, adaptability, and sensory integration principles to support learning, well-being, and overall development.
+            In projects focused on Neurodesign & Play, we design adaptive environments and products built around play, sensory integration, and growth. These principles guide the creation of experiences that evolve with the user, supporting learning, well-being, and engagement across physical and digital contexts.
           </p>
         </div>
       </div>
