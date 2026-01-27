@@ -6,6 +6,7 @@ import childrensRoomMain from "@/assets/projects/childrens-room-main.png?webp";
 import childrensRoom2Main from "@/assets/projects/childrens-room2-main.png?webp";
 import pictureBookMain from "@/assets/projects/picture-book-main.png?webp";
 import StravaUI_main2 from "@/assets/projects/StravaUI_main2.webp";
+import yolks_main from "@/assets/projects/yolks_main.png";
 
 export interface ProjectInfo {
   label: string;
@@ -110,17 +111,17 @@ export const projects: Project[] = [
     gallery: [],
   },
   {
-    id: "picture-book",
-    title: "Educational picture book",
-    subtitle: "Digital illustration and storytelling",
-    category: "Illustration",
-    year: "2025",
-    image: pictureBookMain,
+    id: "yolks",
+    title: "Yolks",
+    subtitle: "Web product design",
+    category: "Web product case study",
+    year: "2026",
+    image: yolks_main,
     info: [
-      { label: "Year", value: "2025" },
-      { label: "Type", value: "Educational children's picture book for Varaždin County" },
+      { label: "Year", value: "2026" },
+      { label: "Type", value: "Web app" },
     ],
-    tagline: "Kako je to došlo na moj tanjur?/How did it get to my plate?",
+    tagline: "Neurodesign | Child development | Activity guidance",
     gallery: [],
   },
   {
@@ -136,7 +137,22 @@ export const projects: Project[] = [
     ],
     tagline: "Brand identity | layout | UX/UI design",
     gallery: [],
-    },
+  },
+  {
+    id: "picture-book",
+    title: "Educational picture book",
+    subtitle: "Digital illustration and storytelling",
+    category: "Illustration",
+    year: "2025",
+    image: pictureBookMain,
+    info: [
+      { label: "Year", value: "2025" },
+      { label: "Type", value: "Educational children's picture book for Varaždin County" },
+    ],
+    tagline: "Kako je to došlo na moj tanjur?/How did it get to my plate?",
+    gallery: [],
+  },
+
 ];
 
 export const getProjectById = (id: string): Project | undefined => {

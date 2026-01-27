@@ -79,6 +79,12 @@ import flowLogo from "@/assets/projects/flow-logo.png?webp";
 import flowLogoGrid from "@/assets/projects/flow-logo-grid.png?webp";
 import flowTypography2 from "@/assets/projects/flow-typography2.png?webp";
 import flowFinal from "@/assets/projects/flow-final.png?webp";
+// Yolks project assets
+import yolks_01 from "@/assets/projects/yolks_01.webp?webp";
+import yolks_02 from "@/assets/projects/yolks_02.webp?webp";
+import yolks_03 from "@/assets/projects/yolks_03.webp?webp";
+import yolks_04 from "@/assets/projects/yolks_04.webp?webp";
+
 
 const ProjectDetail = () => {
   const { projectId } = useParams<{ projectId: string }>();
@@ -143,7 +149,7 @@ const ProjectDetail = () => {
       </section>
 
       {/* Single Image - 5:4 aspect ratio (hidden for MatchPoint, Flow and StravUI) */}
-      {project.image && project.id !== "matchpoint" && project.id !== "flow" && project.id !== "stravaui" && (
+      {project.image && project.id !== "matchpoint" && project.id !== "flow" && project.id !== "stravaui" && project.id !== "yolks" && (
         <section className="pb-0">
           <div className="max-w-container mx-auto px-4 sm:px-6">
             <div className="aspect-[5/4] overflow-hidden">
@@ -1204,7 +1210,7 @@ const ProjectDetail = () => {
         </section>
       )}
 
-      {/* StravaUI Project Content */}
+      {/* Strava feature Content */}
       {project.id === "stravaui" && (
   <section className="-mt-8 sm:-mt-12">
     <div className="max-w-container mx-auto px-4 sm:px-6">
@@ -1214,6 +1220,18 @@ const ProjectDetail = () => {
       <img src={StravaUI_04} className="w-full h-auto" />
       <img src={StravaUI_05} className="w-full h-auto" />
       <img src={StravaUI_06} className="w-full h-auto" />
+    </div>
+  </section>
+)}
+
+{/* Yolks Content */}
+      {project.id === "yolks" && (
+  <section className="-mt-8 sm:-mt-12">
+    <div className="max-w-container mx-auto px-4 sm:px-6">
+      <img src={yolks_01} className="w-full h-auto" />
+      <img src={yolks_02} className="w-full h-auto" />
+      <img src={yolks_03} className="w-full h-auto" />
+      <img src={yolks_04} className="w-full h-auto" />
     </div>
   </section>
 )}
