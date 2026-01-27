@@ -80,6 +80,7 @@ import flowLogoGrid from "@/assets/projects/flow-logo-grid.png?webp";
 import flowTypography2 from "@/assets/projects/flow-typography2.png?webp";
 import flowFinal from "@/assets/projects/flow-final.png?webp";
 // Yolks project assets
+import { Eyes } from "@/components/Eyes";
 import yolks_01 from "@/assets/projects/yolks_01.webp?webp";
 import yolks_02 from "@/assets/projects/yolks_02.webp?webp";
 import yolks_03 from "@/assets/projects/yolks_03.webp?webp";
@@ -1228,6 +1229,10 @@ const ProjectDetail = () => {
       {project.id === "yolks" && (
   <section className="-mt-8 sm:-mt-12">
     <div className="max-w-container mx-auto px-4 sm:px-6">
+      {/* Eyes Component with Container */}
+            <div className="w-full max-w-[2000px] bg-[#D7D7D7] py-16 flex justify-center">
+              <Eyes />
+            </div>
       <img src={yolks_01} className="w-full h-auto" />
       <img src={yolks_02} className="w-full h-auto" />
       <img src={yolks_03} className="w-full h-auto" />
