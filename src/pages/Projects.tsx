@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 
 const ProjectsPage = () => {
   return (
-    <div className="min-h-screen bg-background animate-page-turn" style={{ perspective: "1000px" }}>
+    <div className="min-h-screen bg-background animate-fade-in">
       <Navigation />
       <div className="pt-20">
         <ProjectsSection />
