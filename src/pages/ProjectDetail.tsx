@@ -3,6 +3,7 @@ import { ArrowLeft } from "lucide-react";
 import { getProjectById } from "@/data/projects";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import FigmaPrototypeDevice from "@/components/FigmaPrototypeDevice";
 // CHO7 project assets
 import cho7Floorplan from "@/assets/projects/cho7-floorplan.png?webp";
 import cho7Moodboard from "@/assets/projects/cho7-moodboard.png?webp";
@@ -34,6 +35,7 @@ import MP3 from "@/assets/projects/MP_3.webp";
 import MP4 from "@/assets/projects/MP_4.webp";
 import MP5 from "@/assets/projects/MP_5.webp";
 import MP6 from "@/assets/projects/MP_6.webp";
+import MP7 from "@/assets/projects/MP_7.webp";
 // StravaUI project assets
 import StravaUI_01 from "@/assets/projects/StravaUI_01.webp";
 import StravaUI_02 from "@/assets/projects/StravaUI_02.webp";
@@ -914,6 +916,14 @@ const ProjectDetail = () => {
       <img src={MP4} className="w-full h-auto" />
       <img src={MP5} className="w-full h-auto" />
       <img src={MP6} className="w-full h-auto" />
+      <div className="w-full bg-[#191919] py-16 sm:py-20 flex justify-center">
+        <FigmaPrototypeDevice
+          embedSrc="https://embed.figma.com/proto/ZavejYTUWAdyafT2j8iHkk/MP-wireframes?node-id=199-2106&p=f&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=54%3A522&embed-host=share"
+          figmaUrl="https://www.figma.com/proto/ZavejYTUWAdyafT2j8iHkk/MP-wireframes"
+          title="MatchPoint Figma prototype"
+        />
+      </div>
+      <img src={MP7} className="w-full h-auto" />
     </div>
   </section>
 )}
