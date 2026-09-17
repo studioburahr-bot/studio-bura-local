@@ -1,8 +1,11 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, Navigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import { getProjectById } from "@/data/projects";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+import {
+  PROJECT_COLLECTIONS,
+  getProjectById,
+  getProjectPath,
+  isProjectCollection,
+} from "@/data/projects";
 import FigmaPrototypeDevice from "@/components/FigmaPrototypeDevice";
 // CHO7 project assets
 import cho7Floorplan from "@/assets/projects/cho7-floorplan.png?webp";
@@ -63,10 +66,6 @@ import childrensRoom2Nature from "@/assets/projects/childrens-room2-nature.png?w
 import childrensRoom2Climbing from "@/assets/projects/childrens-room2-climbing.png?webp";
 import childrensRoom2Wall from "@/assets/projects/childrens-room2-wall.png?webp";
 import childrensRoom2Storage from "@/assets/projects/childrens-room2-storage.png?webp";
-// Picture book project assets
-import pictureBookCharacters from "@/assets/projects/picture-book-characters.png?webp";
-import pictureBookKitchen from "@/assets/projects/picture-book-kitchen.jpg?webp";
-import pictureBookPumpkin from "@/assets/projects/picture-book-pumpkin.jpg?webp";
 import flowYoga2 from "@/assets/projects/flow-yoga-2.png?webp";
 import flowYoga3 from "@/assets/projects/flow-yoga-3.png?webp";
 import flowYoga4 from "@/assets/projects/flow-yoga-4.png?webp";
@@ -94,42 +93,42 @@ import yolks_06 from "@/assets/projects/Yolks_06.webp?webp";
 
 
 const ProjectDetail = () => {
-  const { projectId } = useParams<{ projectId: string }>();
+  const { collection, projectId } = useParams<{ collection: string; projectId: string }>();
   const project = projectId ? getProjectById(projectId) : undefined;
 
-  if (!project) {
+  if (!project || !isProjectCollection(collection)) {
     return (
-      <div className="min-h-screen bg-background animate-fade-in">
-        <Navigation />
-        <div className="pt-32 pb-16 container mx-auto px-4 sm:px-6 text-center">
-          <h1 className="text-4xl font-light mb-8">Project Not Found</h1>
-          <Link
-            to="/projects"
-            className="text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2"
-          >
-            <ArrowLeft size={20} />
-            Back to Projects
-          </Link>
-        </div>
-        <Footer />
+      <div className="pt-32 pb-16 container mx-auto px-4 sm:px-6 text-center">
+        <h1 className="text-4xl font-light mb-8">Project Not Found</h1>
+        <Link
+          to="/projects"
+          className="text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2"
+        >
+          <ArrowLeft size={20} />
+          Back to Projects
+        </Link>
       </div>
     );
   }
 
-  return (
-    <div className="min-h-screen bg-background animate-fade-in">
-      <Navigation />
+  if (project.collection !== collection) {
+    return <Navigate to={getProjectPath(project)} replace />;
+  }
 
+  const collectionTitle = PROJECT_COLLECTIONS[project.collection].title;
+
+  return (
+    <>
       {/* Hero Section */}
       <section className="pt-24 sm:pt-32 pb-12 sm:pb-16">
         <div className="container mx-auto px-4 sm:px-6">
           {/* Back Link */}
           <Link
-            to="/projects"
+            to={`/projects/${project.collection}`}
             className="inline-flex items-center gap-2 mb-12 sm:mb-16 text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft size={20} />
-            Back to Projects
+            Back to {collectionTitle}
           </Link>
 
           {/* Project Title */}
@@ -1163,68 +1162,6 @@ const ProjectDetail = () => {
         </section>
       )}
 
-      {/* Picture Book Detail Content */}
-      {projectId === "picture-book" && (
-        <section className="py-12 sm:py-16">
-          {/* ABOUT PROJECT */}
-          <div className="max-w-container mx-auto px-4 sm:px-6 text-center">
-            <h2 className="text-lg sm:text-xl font-light mb-6 sm:mb-8 tracking-wide text-foreground">
-              ABOUT PROJECT
-            </h2>
-            <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
-              "How Did It Get to My Plate?" is an educational children's picture book created for preschool-aged children and published by Varaždin County.
-            </p>
-            <p className="text-sm sm:text-base leading-relaxed text-muted-foreground mt-4">
-              The project was developed with the goal of introducing the youngest residents of Varaždin County to traditional local products that hold European protection status. Through storytelling, illustration, and playful activities, the book presents complex topics such as food origin and production in a simple, engaging, and age-appropriate way.
-            </p>
-          </div>
-
-          {/* First image */}
-          <div className="max-w-container mx-auto px-4 sm:px-6 mt-16 sm:mt-24">
-            <img
-              src={pictureBookCharacters}
-              alt="Picture book spread showing Sunčica and Zelenko superhero characters"
-              className="w-full h-auto"
-              loading="lazy"
-            />
-          </div>
-
-          {/* Story description */}
-          <div className="max-w-container mx-auto px-4 sm:px-6 text-center mt-16 sm:mt-24">
-            <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
-              The story follows two little superheroes, Sunčica and Zelenko, who guide children through an adventure that encourages curiosity, learning through play, and creative exploration. Designed specifically for early childhood, the book supports independent thinking and helps children build an early connection with food, local heritage, and sustainability.
-            </p>
-          </div>
-
-          {/* Kitchen scene image */}
-          <div className="max-w-container mx-auto px-4 sm:px-6 mt-16 sm:mt-24">
-            <img
-              src={pictureBookKitchen}
-              alt="Picture book spread showing kitchen baking scene with interactive activities"
-              className="w-full h-auto"
-              loading="lazy"
-            />
-          </div>
-
-          {/* Educational content description */}
-          <div className="max-w-container mx-auto px-4 sm:px-6 text-center mt-16 sm:mt-24">
-            <p className="text-sm sm:text-base leading-relaxed text-muted-foreground">
-              By combining educational content with a warm narrative and expressive illustrations, the project creates a meaningful learning experience tailored to young children.
-            </p>
-          </div>
-
-          {/* Pumpkin field image */}
-          <div className="max-w-container mx-auto px-4 sm:px-6 mt-16 sm:mt-24">
-            <img
-              src={pictureBookPumpkin}
-              alt="Picture book spread showing pumpkin field and maze activity"
-              className="w-full h-auto"
-              loading="lazy"
-            />
-          </div>
-        </section>
-      )}
-
       {/* Strava feature Content */}
       {project.id === "stravaui" && (
   <section className="-mt-8 sm:-mt-12">
@@ -1259,9 +1196,7 @@ const ProjectDetail = () => {
 
       {/* Blank space */}
       <div className="py-24 sm:py-32" />
-
-      <Footer />
-    </div>
+    </>
   );
 };
 

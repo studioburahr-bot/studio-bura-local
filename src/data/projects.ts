@@ -4,9 +4,18 @@ import matchpointMain from "@/assets/projects/matchpoint-main.jpg?webp";
 import flowMain from "@/assets/projects/flow-main.png?webp";
 import childrensRoomMain from "@/assets/projects/childrens-room-main.png?webp";
 import childrensRoom2Main from "@/assets/projects/childrens-room2-main.png?webp";
-import pictureBookMain from "@/assets/projects/picture-book-main.png?webp";
 import StravaUI_main2 from "@/assets/projects/StravaUI_main2.webp";
 import yolks_main from "@/assets/projects/yolks_main.png";
+
+export type ProjectCollection = "digital" | "interior";
+
+export const PROJECT_COLLECTIONS: Record<
+  ProjectCollection,
+  { slug: ProjectCollection; title: string }
+> = {
+  digital: { slug: "digital", title: "Digital Design" },
+  interior: { slug: "interior", title: "Interior Design" },
+};
 
 export interface ProjectInfo {
   label: string;
@@ -18,6 +27,7 @@ export interface Project {
   title: string;
   subtitle: string;
   category: string;
+  collection: ProjectCollection;
   year?: string;
   image?: string;
   info: ProjectInfo[];
@@ -31,6 +41,7 @@ export const projects: Project[] = [
     title: "Yolks",
     subtitle: "Web product design",
     category: "Web product case study",
+    collection: "digital",
     year: "2026",
     image: yolks_main,
     info: [
@@ -45,6 +56,7 @@ export const projects: Project[] = [
     title: "Flow",
     subtitle: "Logo design & landing page",
     category: "Web & visual design project",
+    collection: "digital",
     year: "2025",
     image: flowMain,
     info: [
@@ -59,6 +71,7 @@ export const projects: Project[] = [
     title: "MatchPoint",
     subtitle: "UX/UI case study",
     category: "UX/UI case study",
+    collection: "digital",
     year: "2024",
     image: matchpointMain,
     info: [
@@ -69,10 +82,11 @@ export const projects: Project[] = [
     gallery: [],
   },
   {
-   id: "stravaui",
+    id: "stravaui",
     title: "Strava - Feature concept",
     subtitle: "Product feature concept",
     category: "Human behaviour case study",
+    collection: "digital",
     year: "2025",
     image: StravaUI_main2,
     info: [
@@ -83,10 +97,11 @@ export const projects: Project[] = [
     gallery: [],
   },
   {
-   id: "cho7",
+    id: "cho7",
     title: "CH07",
     subtitle: "Conceptual interior design of a residential space",
     category: "Interior design",
+    collection: "interior",
     year: "2025",
     image: cho7Main,
     info: [
@@ -97,10 +112,11 @@ export const projects: Project[] = [
     gallery: [],
   },
   {
-   id: "mr90",
+    id: "mr90",
     title: "MR90",
     subtitle: "Conceptual interior design of a residential space",
     category: "Interior design",
+    collection: "interior",
     year: "2025",
     image: mr90Main,
     info: [
@@ -111,10 +127,11 @@ export const projects: Project[] = [
     gallery: [],
   },
   {
-   id: "childrens-room",
+    id: "childrens-room",
     title: "Children's room",
     subtitle: "Interior design",
     category: "Interior design",
+    collection: "interior",
     year: "2025",
     image: childrensRoomMain,
     info: [
@@ -129,6 +146,7 @@ export const projects: Project[] = [
     title: "Children's room",
     subtitle: "Interior design",
     category: "Interior design",
+    collection: "interior",
     year: "2025",
     image: childrensRoom2Main,
     info: [
@@ -138,23 +156,24 @@ export const projects: Project[] = [
     tagline: "Nature-inspired neurodesign space",
     gallery: [],
   },
-  {
-    id: "picture-book",
-    title: "Educational picture book",
-    subtitle: "Digital illustration and storytelling",
-    category: "Illustration",
-    year: "2025",
-    image: pictureBookMain,
-    info: [
-      { label: "Year", value: "2025" },
-      { label: "Type", value: "Educational children's picture book for Varaždin County" },
-    ],
-    tagline: "Kako je to došlo na moj tanjur?/How did it get to my plate?",
-    gallery: [],
-  },
-
 ];
+
+export const isProjectCollection = (
+  value: string | undefined,
+): value is ProjectCollection => {
+  return value === "digital" || value === "interior";
+};
+
+export const getProjectsByCollection = (
+  collection: ProjectCollection,
+): Project[] => {
+  return projects.filter((project) => project.collection === collection);
+};
 
 export const getProjectById = (id: string): Project | undefined => {
   return projects.find((project) => project.id === id);
+};
+
+export const getProjectPath = (project: Project): string => {
+  return `/projects/${project.collection}/${project.id}`;
 };
