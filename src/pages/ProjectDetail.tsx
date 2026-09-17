@@ -83,12 +83,12 @@ import flowTypography2 from "@/assets/projects/flow-typography2.png?webp";
 import flowFinal from "@/assets/projects/flow-final.png?webp";
 // Yolks project assets
 import { Eyes } from "@/components/Eyes";
-import yolks_01 from "@/assets/projects/yolks_01.webp?webp";
-import yolks_02 from "@/assets/projects/yolks_02.webp?webp";
-import yolks_03 from "@/assets/projects/yolks_03.webp?webp";
-import yolks_04 from "@/assets/projects/yolks_04.webp?webp";
-import yolks_05 from "@/assets/projects/yolks_05.webp?webp";
-import yolks_06 from "@/assets/projects/yolks_06.webp?webp";
+import yolks_01 from "@/assets/projects/Yolks_01.webp?webp";
+import yolks_02 from "@/assets/projects/Yolks_02.webp?webp";
+import yolks_03 from "@/assets/projects/Yolks_03.webp?webp";
+import yolks_04 from "@/assets/projects/Yolks_04.webp?webp";
+import yolks_05 from "@/assets/projects/Yolks_05.webp?webp";
+import yolks_06 from "@/assets/projects/Yolks_06.webp?webp";
 
 
 
