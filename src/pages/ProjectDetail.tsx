@@ -1244,7 +1244,7 @@ const ProjectDetail = () => {
   <section className="-mt-8 sm:-mt-12">
     <div className="max-w-container mx-auto px-4 sm:px-6">
       {/* Eyes Component with Container */}
-            <div className="w-full max-w-[2000px] bg-[#D7D7D7] py-16 flex justify-center">
+            <div className="w-full max-w-[2000px] bg-[#E0E0E0] py-16 flex justify-center">
               <Eyes />
             </div>
       <img src={yolks_01} className="w-full h-auto" />
