@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const location = useLocation();
-  const navigate = useNavigate();
-  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,24 +13,6 @@ const Navigation = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const scrollToSection = (id: string) => {
-    if (!isHomePage) {
-      navigate("/");
-      setTimeout(() => {
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 100);
-    } else {
-      const element = document.getElementById(id);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-    setIsMobileMenuOpen(false);
-  };
 
   return (
     <>
@@ -56,30 +35,18 @@ const Navigation = () => {
 
             {/* Desktop navigation links */}
             <div className="hidden lg:flex items-center gap-4 sm:gap-6 md:gap-8">
-              <button
-                onClick={() => scrollToSection("home")}
+              <Link
+                to="/"
                 className="text-xs sm:text-sm font-light tracking-wider hover:opacity-60 transition-opacity"
               >
                 Welcome
-              </button>
-              <button
-                onClick={() => scrollToSection("about")}
-                className="text-xs sm:text-sm font-light tracking-wider hover:opacity-60 transition-opacity"
-              >
-                About
-              </button>
+              </Link>
               <Link
                 to="/projects"
                 className="text-xs sm:text-sm font-light tracking-wider hover:opacity-60 transition-opacity"
               >
                 Projects
               </Link>
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="text-xs sm:text-sm font-light tracking-wider hover:opacity-60 transition-opacity"
-              >
-                Contact
-              </button>
             </div>
 
             {/* Centered logo */}
@@ -112,18 +79,13 @@ const Navigation = () => {
 
           {/* Menu items centered */}
           <div className="flex flex-col items-center gap-6 text-black pt-16 w-full">
-            <button
-              onClick={() => scrollToSection("home")}
+            <Link
+              to="/"
               className="text-2xl font-light tracking-wider hover:opacity-60 transition-opacity"
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               Welcome
-            </button>
-            <button
-              onClick={() => scrollToSection("about")}
-              className="text-2xl font-light tracking-wider hover:opacity-60 transition-opacity"
-            >
-              About
-            </button>
+            </Link>
             <Link
               to="/projects"
               className="text-2xl font-light tracking-wider hover:opacity-60 transition-opacity"
@@ -131,12 +93,6 @@ const Navigation = () => {
             >
               Projects
             </Link>
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="text-2xl font-light tracking-wider hover:opacity-60 transition-opacity"
-            >
-              Contact
-            </button>
           </div>
         </div>
       )}
