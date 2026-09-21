@@ -26,7 +26,7 @@ const Projects = ({ items = projects, title = "Selected Projects", backTo }: Pro
           {title}
         </h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-16 md:gap-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-y-12 sm:gap-y-16 md:gap-y-24 md:gap-x-8">
           {items.map((project) => (
             <Link
               key={project.id}
