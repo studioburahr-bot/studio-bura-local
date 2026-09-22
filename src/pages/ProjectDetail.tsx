@@ -142,7 +142,7 @@ const ProjectDetail = () => {
       </section>
 
       {/* Single Image - 5:4 aspect ratio (hidden for MatchPoint, Risk dashboard and StravUI) */}
-      {project.image && project.id !== "matchpoint" && project.id !== "risk-dashboard" && project.id !== "stravaui" && project.id !== "yolks" && (
+      {project.image && project.id !== "matchpoint" && project.id !== "risk-triage-tool" && project.id !== "stravaui" && project.id !== "yolks" && (
         <section className="pb-0">
           <div className="max-w-container mx-auto px-4 sm:px-6">
             <div className="aspect-[5/4] overflow-hidden">
@@ -158,7 +158,7 @@ const ProjectDetail = () => {
       )}
 
       {/* Risk dashboard Content */}
-      {project.id === "risk-dashboard" && (
+      {project.id === "risk-triage-tool" && (
         <section className="-mt-8 sm:-mt-12">
           <div className="max-w-container mx-auto px-4 sm:px-6">
             <img src={Risk_Dash_1} className="w-full h-auto" />
