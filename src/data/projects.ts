@@ -1,10 +1,10 @@
 import cho7Main from "@/assets/projects/cho7-main.png?webp";
 import mr90Main from "@/assets/projects/mr90-main.png?webp";
-import matchpointMain from "@/assets/projects/matchpoint-main.png?webp";
+import matchpointMain from "@/assets/projects/matchpoint-main.jpg?webp";
 import Risk_Dash_main from "@/assets/projects/Risk_Dash_main.png";
 import childrensRoomMain from "@/assets/projects/childrens-room-main.png?webp";
 import childrensRoom2Main from "@/assets/projects/childrens-room2-main.png?webp";
-import StravaUI_main from "@/assets/projects/StravaUI_main.png?webp";
+import StravaUI_main2 from "@/assets/projects/StravaUI_main2.webp";
 import yolks_main from "@/assets/projects/yolks_main.png";
 
 export type ProjectCollection = "digital" | "interior";
@@ -52,16 +52,16 @@ export const projects: Project[] = [
     gallery: [],
   },
   {
-    id: "risk-dashboard",
-    title: "Retail store risk triage tool",
-    subtitle: "Retail store risk triage tool",
+    id: "risk triage tool",
+    title: "Retail build risk triage",
+    subtitle: "Retail build risk triage",
     category: "B2B product design",
     collection: "digital",
     year: "2026",
     image: Risk_Dash_main,
     info: [
       { label: "Year", value: "2026" },
-      { label: "Type", value: "B2B product design" },
+      { label: "Type", value: "B2B product design case study" },
     ],
     gallery: [],
   },
@@ -87,7 +87,7 @@ export const projects: Project[] = [
     category: "Human behaviour case study",
     collection: "digital",
     year: "2025",
-    image: StravaUI_main,
+    image: StravaUI_main2,
     info: [
       { label: "Year", value: "2025" },
       { label: "Type", value: "Run Flow - Decision-minimized in-run guidance" },
