@@ -50,6 +50,11 @@ import StravaUI_06 from "@/assets/projects/StravaUI_06.webp";
 import Risk_Dash_1 from "@/assets/projects/Risk_Dash_1.webp";
 import Risk_Dash_2 from "@/assets/projects/Risk_Dash_2.webp";
 import Risk_Dash_3 from "@/assets/projects/Risk_Dash_3.webp";
+// E-commerce design system assets
+import NordicPaws_1 from "@/assets/projects/NordicPaws_1.webp";
+import NordicPaws_2 from "@/assets/projects/NordicPaws_2.webp";
+import NordicPaws_3 from "@/assets/projects/NordicPaws_3.webp";
+import NordicPaws_4 from "@/assets/projects/NordicPaws_4.webp";
 // Children's room project assets
 import childrensRoomMain from "@/assets/projects/childrens-room-main.png?webp";
 import childrensRoomZones from "@/assets/projects/childrens-room-zones.jpg?webp";
@@ -142,7 +147,7 @@ const ProjectDetail = () => {
       </section>
 
       {/* Single Image - 5:4 aspect ratio (hidden for MatchPoint, Risk dashboard and StravUI) */}
-      {project.image && project.id !== "matchpoint" && project.id !== "risk-triage-tool" && project.id !== "stravaui" && project.id !== "yolks" && (
+      {project.image && project.id !== "matchpoint" && project.id !== "risk-triage-tool" && project.id !== "e-commerce-design-system" && project.id !== "stravaui" && project.id !== "yolks" && (
         <section className="pb-0">
           <div className="max-w-container mx-auto px-4 sm:px-6">
             <div className="aspect-[5/4] overflow-hidden">
@@ -164,6 +169,18 @@ const ProjectDetail = () => {
             <img src={Risk_Dash_1} className="w-full h-auto" />
             <img src={Risk_Dash_2} className="w-full h-auto" />
             <img src={Risk_Dash_3} className="w-full h-auto" />
+          </div>
+        </section>
+      )}
+
+      {/* E-commerce design system Content */}
+      {project.id === "e-commerce-design-system" && (
+        <section className="-mt-8 sm:-mt-12">
+          <div className="max-w-container mx-auto px-4 sm:px-6">
+            <img src={NordicPaws_1} className="w-full h-auto" />
+            <img src={NordicPaws_2} className="w-full h-auto" />
+            <img src={NordicPaws_3} className="w-full h-auto" />
+            <img src={NordicPaws_4} className="w-full h-auto" />
           </div>
         </section>
       )}

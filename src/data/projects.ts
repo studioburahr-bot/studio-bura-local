@@ -2,6 +2,7 @@ import cho7Main from "@/assets/projects/cho7-main.png?webp";
 import mr90Main from "@/assets/projects/mr90-main.png?webp";
 import matchpointMain from "@/assets/projects/matchpoint-main.png?webp";
 import Risk_Dash_main from "@/assets/projects/Risk_Dash_main.png";
+import NordicPaws_main from "@/assets/projects/NordicPaws_main.png";
 import childrensRoomMain from "@/assets/projects/childrens-room-main.png?webp";
 import childrensRoom2Main from "@/assets/projects/childrens-room2-main.png?webp";
 import StravaUI_main from "@/assets/projects/StravaUI_main.png?webp";
@@ -62,6 +63,20 @@ export const projects: Project[] = [
     info: [
       { label: "Year", value: "2026" },
       { label: "Type", value: "B2B product design case study" },
+    ],
+    gallery: [],
+  },
+  {
+    id: "e-commerce-design-system",
+    title: "E-commerce design system",
+    subtitle: "E-commerce design system",
+    category: "B2C product design case study",
+    collection: "digital",
+    year: "2026",
+    image: NordicPaws_main,
+    info: [
+      { label: "Year", value: "2026" },
+      { label: "Type", value: "B2C product design case study" },
     ],
     gallery: [],
   },
