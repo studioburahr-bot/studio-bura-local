@@ -34,6 +34,15 @@ export interface Project {
   info: ProjectInfo[];
   tagline?: string;
   gallery: string[];
+  prototype?: {
+    src: string;
+    title: string;
+    aspectRatio: string;
+    align?: "center" | "right";
+    frame?: "screen" | "none";
+    cropX?: number;
+    cropY?: number;
+  };
 }
 
 export const projects: Project[] = [
@@ -79,6 +88,13 @@ export const projects: Project[] = [
       { label: "Type", value: "B2C product design case study" },
     ],
     gallery: [],
+    prototype: {
+      src: "https://embed.figma.com/proto/J9icfPMBsmmUjowFwNm00y/NP_TT_Dora_Ernoic?page-id=24842%3A12164&node-id=28748-10457&starting-point-node-id=28748%3A10457&embed-host=share&hide-ui=1&hotspot-hints=false&scaling=fit-width&content-scaling=fixed&footer=false&device-frame=false",
+      title: "Nordic Paws – interactive prototype",
+      aspectRatio: "1440 / 900",
+      align: "right",
+      frame: "screen",
+    },
   },
   {
     id: "matchpoint",

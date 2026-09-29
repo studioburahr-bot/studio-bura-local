@@ -7,6 +7,7 @@ import {
   isProjectCollection,
 } from "@/data/projects";
 import FigmaPrototypeDevice from "@/components/FigmaPrototypeDevice";
+import FigmaEmbed from "@/components/FigmaEmbed";
 // CHO7 project assets
 import cho7Floorplan from "@/assets/projects/cho7-floorplan.png?webp";
 import cho7Moodboard from "@/assets/projects/cho7-moodboard.png?webp";
@@ -181,6 +182,17 @@ const ProjectDetail = () => {
             <img src={NordicPaws_2} className="w-full h-auto" />
             <img src={NordicPaws_3} className="w-full h-auto" />
             <img src={NordicPaws_4} className="w-full h-auto" />
+            {project.prototype && (
+              <FigmaEmbed
+                src={project.prototype.src}
+                title={project.prototype.title}
+                aspectRatio={project.prototype.aspectRatio}
+                align={project.prototype.align}
+                frame={project.prototype.frame}
+                cropX={project.prototype.cropX}
+                cropY={project.prototype.cropY}
+              />
+            )}
           </div>
         </section>
       )}
