@@ -170,6 +170,12 @@ const ProjectDetail = () => {
             <img src={Risk_Dash_1} className="w-full h-auto" />
             <img src={Risk_Dash_2} className="w-full h-auto" />
             <img src={Risk_Dash_3} className="w-full h-auto" />
+            <Link
+              to="/projects/digital/risk-triage-tool/prototype"
+              className="inline-flex items-center gap-2 mt-8 sm:mt-12 px-6 py-3 border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors"
+            >
+              Try the prototype →
+            </Link>
           </div>
         </section>
       )}

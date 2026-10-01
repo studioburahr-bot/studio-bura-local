@@ -1,0 +1,79 @@
+/* Fonts and tokens for the risk-dashboard prototype only.
+   This file is imported by the lazy-loaded prototype page, so it never loads on the rest of the site.
+   Every token is scoped to .risk-proto; nothing here touches global styles. */
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap");
+
+.risk-proto {
+  /* Neutrals (cool) */
+  --rp-bg: #f5f6f8;
+  --rp-surface: #ffffff;
+  --rp-border: #e7e8ec;
+  --rp-divider: #eff0f2;
+  --rp-line: #d5d7dc;
+  --rp-border-strong: #c9ccd3; /* secondary buttons, text field */
+  --rp-text: #111114;
+  --rp-text-2: #374151;
+  --rp-text-3: #4b5563;
+  --rp-muted: #6b7280;
+  --rp-faint: #b4b9c2;
+
+  /* Status: vivid colour only for loop state */
+  --rp-done: #2e7d5b;
+  --rp-done-text: #24603f;
+  --rp-done-bg: #e6f2ec;
+  --rp-atrisk: #b7791f;
+  --rp-atrisk-text: #8c5c13;
+  --rp-atrisk-bg: #fbf3e2;
+  --rp-atrisk-border: #ebd9b4;
+  --rp-blocked: #c0392b;
+  --rp-blocked-text: #a93224;
+  --rp-blocked-bg: #fbeae8;
+  --rp-waiting-text: #4b5563;
+  --rp-waiting-bg: #eff0f2;
+
+  /* AI rail only */
+  --rp-ai: #4b4fa6;
+  --rp-ai-hover: #363a85;
+
+  /* Primary button (only the rail's Nudge) */
+  --rp-primary: #111114;
+  --rp-primary-hover: #2a2a31;
+
+  /* Neutral on purpose: indigo is reserved for the AI rail */
+  --rp-focus: #111114;
+
+  min-height: 100vh;
+  background: var(--rp-bg);
+  color: var(--rp-text);
+  font-family: "Manrope", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.risk-proto .rp-mono {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+/* Chain connector lines: vertical on small screens, horizontal from 1024px (Tailwind's lg) */
+.risk-proto .rp-line {
+  background: var(--rp-line);
+}
+.risk-proto .rp-line--dashed {
+  background: repeating-linear-gradient(180deg, var(--rp-line) 0 5px, transparent 5px 9px);
+}
+@media (min-width: 1024px) {
+  .risk-proto .rp-line--dashed {
+    background: repeating-linear-gradient(90deg, var(--rp-line) 0 5px, transparent 5px 9px);
+  }
+}
+
+/* Visible focus for every interactive element inside the prototype */
+.risk-proto :focus-visible {
+  outline: 2px solid var(--rp-focus);
+  outline-offset: 2px;
+}
+
+/* Panels that only receive focus from code (so screen readers land on new content)
+   are not controls, so they get no ring */
+.risk-proto [tabindex="-1"]:focus {
+  outline: none;
+}

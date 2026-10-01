@@ -10,6 +10,10 @@ import ProjectCollection from "./pages/ProjectCollection";
 import ProjectDetail from "./pages/ProjectDetail";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
+import { lazy, Suspense } from "react";
+
+// Risk dashboard prototype: lazy-loaded so its code, CSS and fonts only download on that route
+const RiskPrototype = lazy(() => import("./prototypes/risk-dashboard/RiskPrototype"));
 
 const queryClient = new QueryClient();
 
@@ -31,6 +35,14 @@ const App = () => (
             <Route path=":collection" element={<ProjectCollection />} />
             <Route path=":collection/:projectId" element={<ProjectDetail />} />
           </Route>
+          <Route
+            path="/projects/digital/risk-triage-tool/prototype/*"
+            element={
+              <Suspense fallback={null}>
+                <RiskPrototype />
+              </Suspense>
+            }
+          />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
