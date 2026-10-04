@@ -4,6 +4,7 @@ import { Lock, Send } from "lucide-react";
 import { details as copy, nudge as nudgeCopy, shell, steps, STATUS_LABEL } from "./data";
 import type { Action, State } from "./state";
 import type { RailFocus } from "./components/RiskRail";
+import SparkIcon from "./components/SparkIcon";
 import StatusPill from "./components/StatusPill";
 import { secondaryButton } from "./components/buttons";
 
@@ -14,6 +15,14 @@ interface Props {
 
 const eyebrow = "text-[11px] font-bold uppercase tracking-[.11em] text-[color:var(--rp-muted)]";
 const card = "rounded-2xl border border-[color:var(--rp-border)] bg-[var(--rp-surface)]";
+
+// Marks what is AI judgement. Facts from setup and sources (chain, evidence, history) stay unmarked.
+const AiLabel = ({ children }: { children: string }) => (
+  <span className="inline-flex items-center gap-[6px] text-[12px] font-bold tracking-[.02em] text-[color:var(--rp-ai)]">
+    <SparkIcon size={13} />
+    {children}
+  </span>
+);
 
 const Arrow = ({ dashed }: { dashed?: boolean }) => (
   <svg width="20" height="11" viewBox="0 0 20 11" fill="none" aria-hidden="true" className="shrink-0">
@@ -130,6 +139,9 @@ const Details = ({ state, dispatch }: Props) => {
         <div className="mb-[14px] flex flex-wrap items-center gap-3">
           <StatusPill status="atrisk" />
           <span className="text-[12px] font-medium text-[color:var(--rp-muted)]">{copy.hero.meta}</span>
+          <span className="sm:ml-auto">
+            <AiLabel>{copy.hero.aiLabel}</AiLabel>
+          </span>
         </div>
         <h1
           ref={headingRef}
@@ -174,9 +186,12 @@ const Details = ({ state, dispatch }: Props) => {
 
       {/* What happens next */}
       <section aria-labelledby="rp-next-heading">
-        <h2 id="rp-next-heading" className={`mb-[14px] ${eyebrow}`}>
-          {copy.next.heading}
-        </h2>
+        <div className="mb-[14px] flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
+          <h2 id="rp-next-heading" className={eyebrow}>
+            {copy.next.heading}
+          </h2>
+          <AiLabel>{copy.next.aiLabel}</AiLabel>
+        </div>
         <div className="grid gap-4 sm:grid-cols-2">
           {copy.next.cards.map((c) => (
             <article key={c.tag} className={`${card} px-6 py-[22px]`}>

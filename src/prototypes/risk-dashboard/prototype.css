@@ -66,8 +66,14 @@
   }
 }
 
-/* Visible focus for every interactive element inside the prototype */
+/* Focus rings: keyboard navigation only.
+   RiskPrototype sets data-input="keyboard" when Tab is pressed and "pointer" on any click or touch.
+   This matters because focus moved by code (e.g. back from Details) would otherwise show a ring
+   to mouse and touch users too. */
 .risk-proto :focus-visible {
+  outline: none;
+}
+.risk-proto[data-input="keyboard"] :focus-visible {
   outline: 2px solid var(--rp-focus);
   outline-offset: 2px;
 }

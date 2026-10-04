@@ -183,6 +183,7 @@ export const details = {
   breadcrumbCurrent: "Paint at risk",
   ref: "IMP-2214 · Store 041",
   hero: {
+    aiLabel: "Assessed by AI",
     meta: "Carpentry team · not confirmed",
     title: "Paint for tomorrow isn't confirmed yet",
     body: "Paint is booked for Jun 14 and needs 24h to dry before racking can start on Jun 15. Nobody has confirmed it's going ahead.",
@@ -191,6 +192,7 @@ export const details = {
   },
   next: {
     heading: "What happens next",
+    aiLabel: "Projected by AI",
     cards: [
       {
         tag: "If paint is done tomorrow",
@@ -211,7 +213,7 @@ export const details = {
     facts: [
       { label: "Upstream", text: "Assembly is done (closed Jun 11, read from AssemblyHub). Nothing stops paint from starting." },
       { label: "Gate", text: "24h dry time after paint, before racking can start." },
-      { label: "Freezes", text: "Racking (Jun 15) and Signage (Jun 16) can't move until paint is done." },
+      { label: "Freezes", text: "Racking (Jun 15) and Signage (Jun 16) are waiting on paint." },
       { label: "Cost to launch", text: "One day's slip uses up Jun 17, the only buffer. Two days miss the locked Jun 18 launch." },
     ],
   },
@@ -226,7 +228,6 @@ export const details = {
       { tone: "done", text: "Assembly closed Jun 11.", source: "AssemblyHub · system-read" },
       { tone: "neutral", text: "24h dry time required between paint and racking.", source: "Chain setup" },
       { tone: "neutral", text: "Launch date Jun 18 announced to customers.", source: "Launch · locked" },
-      { tone: "neutral", text: "Signage delivery moved from Jun 13 to Jun 14, confirmed.", source: "Sign supplier · external" },
     ],
   },
   history: {

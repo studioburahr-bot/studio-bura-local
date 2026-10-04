@@ -55,7 +55,7 @@ const NudgePanel = ({ state, dispatch, panelRef, textareaRef, editButtonRef }: P
             const end = e.currentTarget.value.length;
             e.currentTarget.setSelectionRange(end, end);
           }}
-          className="min-h-[170px] rounded-[10px] border-[color:var(--rp-border-strong)] bg-[var(--rp-surface)] px-4 py-3 text-[15px] leading-relaxed text-[color:var(--rp-text)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--rp-focus)] focus-visible:ring-0 focus-visible:ring-offset-0"
+          className="min-h-[170px] rounded-[10px] border-[color:var(--rp-border-strong)] bg-[var(--rp-surface)] px-4 py-3 text-[15px] leading-relaxed text-[color:var(--rp-text)] focus:border-[color:var(--rp-text)] focus-visible:ring-0 focus-visible:ring-offset-0"
         />
       ) : (
         <p className="whitespace-pre-line rounded-[10px] border border-[color:var(--rp-border)] bg-[var(--rp-surface)] px-4 py-3 text-[15px] font-medium leading-relaxed text-[color:var(--rp-text)]">
