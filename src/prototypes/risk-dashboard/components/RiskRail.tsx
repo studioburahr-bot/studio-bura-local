@@ -86,7 +86,7 @@ const RiskRail = ({ state, dispatch }: Props) => {
       }
     >
       <div className="px-4 pb-6 pt-5 sm:px-7">
-        <div className="grid grid-cols-1 items-center gap-x-4 gap-y-3 rounded-[6px] border border-[color:var(--rp-border)] px-4 py-5 sm:px-[22px] lg:grid-cols-[minmax(0,1fr)_auto]">
+        <div className="grid grid-cols-1 items-center gap-x-4 gap-y-3 rounded-[6px] border border-[color:var(--rp-border)] px-4 py-5 max-[480px]:border-0 max-[480px]:p-0 sm:px-[22px] lg:grid-cols-[minmax(0,1fr)_auto]">
           <div className="min-w-0">
             <p className="text-pretty text-[19px] font-bold tracking-[-.02em] text-[color:var(--rp-text)]">
               {risk.headline}

@@ -5,6 +5,7 @@ import { nudge as nudgeCopy, shell } from "./data";
 import { createInitialState, reducer, simulatedTime } from "./state";
 import { textButton } from "./components/buttons";
 import Sidebar from "./components/Sidebar";
+import { useIsPhone } from "./components/useIsPhone";
 import Dashboard from "./Dashboard";
 import Details from "./Details";
 import "./prototype.css";
@@ -16,6 +17,7 @@ const RiskPrototype = () => {
   const [state, dispatch] = useReducer(reducer, undefined, createInitialState);
   const navigate = useNavigate();
   const rootRef = useRef<HTMLDivElement>(null);
+  const isPhone = useIsPhone();
 
   // Track how the person is navigating, so focus rings show for keyboard users only (see prototype.css)
   useEffect(() => {
@@ -58,20 +60,25 @@ const RiskPrototype = () => {
       <header className="flex flex-wrap items-center justify-between gap-x-6 border-b border-[color:var(--rp-border)] bg-[var(--rp-surface)] px-4">
         <Link
           to={shell.caseStudyPath}
+          aria-label={isPhone ? shell.backLabel : undefined}
           className={`${textButton} order-1 -ml-[10px] text-[13px] text-[color:var(--rp-muted)] hover:text-[color:var(--rp-text)]`}
         >
-          {shell.back}
+          {isPhone ? shell.backShort : shell.back}
         </Link>
-        <span className="order-3 w-full pb-2 text-[12px] font-medium text-[color:var(--rp-muted)] sm:order-2 sm:ml-auto sm:w-auto sm:pb-0">
-          {shell.label}
-        </span>
+        {/* 480px and below: the strip is one row; this label moves to the footer */}
+        {!isPhone && (
+          <span className="order-3 w-full pb-2 text-[12px] font-medium text-[color:var(--rp-muted)] sm:order-2 sm:ml-auto sm:w-auto sm:pb-0">
+            {shell.label}
+          </span>
+        )}
         <button
           type="button"
           onClick={reset}
+          aria-label={isPhone ? nudgeCopy.reset : undefined}
           className={`${textButton} order-2 -mr-[10px] gap-[6px] text-[12px] text-[color:var(--rp-text-2)] hover:text-[color:var(--rp-text)] sm:order-3`}
         >
           <RotateCcw size={13} strokeWidth={2} aria-hidden="true" />
-          {nudgeCopy.reset}
+          {isPhone ? nudgeCopy.resetShort : nudgeCopy.reset}
         </button>
       </header>
 
@@ -92,7 +99,10 @@ const RiskPrototype = () => {
               <Route path="*" element={<Navigate to={shell.dashboardPath} replace />} />
             </Routes>
           </main>
-          <footer className="px-4 pb-6 text-[12px] font-medium text-[color:var(--rp-muted)] sm:px-11">{shell.footer}</footer>
+          <footer className="px-4 pb-6 text-[12px] font-medium text-[color:var(--rp-muted)] sm:px-11">
+            {isPhone && <p className="mb-1">{shell.label}</p>}
+            <p>{shell.footer}</p>
+          </footer>
         </div>
       </div>
     </div>

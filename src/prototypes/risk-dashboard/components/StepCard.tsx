@@ -77,8 +77,45 @@ const NoteBox = ({ step }: { step: ChainStep }) => {
   return <div className={box}>{note.text}</div>;
 };
 
-const StepCard = ({ step }: { step: ChainStep }) => {
+// Phones only: Done and Waiting steps shrink to a row — title, status, the one state line and the date —
+// so the At risk card (Paint) and the late-but-confirmed step (Signage) can be seen close together.
+const CompactNote = ({ step }: { step: ChainStep }) => {
+  const line = "mt-[2px] text-pretty text-[13px] font-medium text-[color:var(--rp-muted)]";
+  const note = step.note;
+  if (note.kind === "system") return <p className={`${line} rp-mono`}>{note.system}</p>;
+  if (note.kind === "reschedule") {
+    // Late but confirmed: neutral grey, never the at-risk colour
+    return (
+      <p className={`${line} tabular-nums`}>
+        {note.label} <s>{note.was}</s>
+        <span aria-hidden="true"> → </span>
+        <span className="sr-only"> moved to </span>
+        <span className="font-semibold text-[color:var(--rp-text-3)]">{note.now}</span>
+        <span className="block">{note.confirmation}</span>
+      </p>
+    );
+  }
+  return <p className={line}>{note.text}</p>;
+};
+
+const CompactStep = ({ step }: { step: ChainStep }) => (
+  <article aria-label={step.name} className={`rounded-[6px] border px-3 py-[10px] ${CARD_STYLES[step.status].card}`}>
+    <div className="flex items-center justify-between gap-3">
+      <h3 className="text-[16px] font-semibold tracking-[-.01em] text-[color:var(--rp-text-3)]">{step.name}</h3>
+      <StatusChip status={step.status} />
+    </div>
+    <CompactNote step={step} />
+    <p className="mt-[2px] text-[13px] tabular-nums">
+      <span className="font-semibold text-[color:var(--rp-text-3)]">{step.when.label}</span>{" "}
+      <span className="font-medium text-[color:var(--rp-muted)]">{step.when.date}</span>
+    </p>
+  </article>
+);
+
+const StepCard = ({ step, compact = false }: { step: ChainStep; compact?: boolean }) => {
   const s = CARD_STYLES[step.status];
+
+  if (compact) return <CompactStep step={step} />;
 
   return (
     <article aria-label={step.name} className={`flex h-full flex-col gap-4 rounded-[6px] border p-5 ${s.card}`}>

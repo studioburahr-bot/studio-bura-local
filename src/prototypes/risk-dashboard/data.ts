@@ -40,6 +40,8 @@ export const shell = {
   dashboardPath: "/projects/digital/risk-triage-tool/prototype",
   detailsPath: "/projects/digital/risk-triage-tool/prototype/details",
   back: "← Back to case study",
+  backShort: "← Case study", // 480px and below
+  backLabel: "Back to case study", // read by screen readers when the short text is shown
   label: "Interactive prototype · actions are simulated",
   footer: "Data shown is illustrative and does not reflect real client figures.",
   // App sidebar. Only Builds is real; Setup and Activity are shown for context and go nowhere.
@@ -138,7 +140,8 @@ export type DismissReason = (typeof DISMISS_REASONS)[number];
 export const nudge = {
   aiLabel: "Drafted by AI · you decide",
   toLabel: "To",
-  recipient: "Carpentry team · morning shift",
+  // \u00A0 is a non-breaking space: "morning shift" must never split across two lines
+  recipient: "Carpentry team · morning\u00A0shift",
   draft:
     "Hi team — can you confirm paint on the back wall is going ahead tomorrow, Jun 14? Racking starts Jun 15 after the 24h dry time, and the Jun 18 launch date is locked, so a slip would use up our only buffer day. A quick yes, or a heads-up if anything is in the way, is all I need. Thanks!",
   editorLabel: "Edit the drafted message",
@@ -156,7 +159,7 @@ export const nudge = {
   undoMs: 5000,
   sent: {
     status: "Nudged · awaiting reply",
-    sentAt: (time: string) => `Sent ${time} to Carpentry team · morning shift`,
+    sentAt: (time: string) => `Sent ${time} to Carpentry team · morning\u00A0shift`,
     stillAtRisk: "Paint stays at risk until the team confirms.",
     viewMessage: "View message",
     hideMessage: "Hide message",
@@ -166,16 +169,20 @@ export const nudge = {
   dismissed: {
     status: "Recommendation dismissed",
     stillAtRisk: "Paint still shows as at risk in the chain.",
-    reasonPrompt: "Add a reason (optional)",
+    reasonPrompt: "Pick a reason (optional)", // label above the chips before a reason is picked
+    reasonRecorded: (reason: string) => `Reason recorded: ${reason}`, // replaces the chips once one is picked
+    change: "Change", // brings the chips back
+    reasonChange: "Change reason", // label above the chips when changing; also the Change button's full name
   },
   reset: "Reset prototype",
+  resetShort: "Reset", // 480px and below
   // Read out by screen readers (aria-live)
   announce: {
     sending: "Sending nudge…",
     sent: "Nudge sent to Carpentry team, morning shift. Paint is still at risk until they confirm.",
     undoSend: "Nudge cancelled. The draft is open again.",
     dismissed: "Risk dismissed. You can add a reason or undo.",
-    reason: (reason: string) => `Reason added: ${reason}.`,
+    reason: (reason: string) => `Reason recorded: ${reason}.`,
     undoDismiss: "Dismiss undone. The risk is back in the list.",
     reset: "Prototype reset.",
   },
@@ -242,7 +249,7 @@ export const details = {
       { date: "Jun 13", text: "No paint confirmation logged for tomorrow.", tone: "atrisk" },
     ],
     // Added live from what the coordinator did in the prototype
-    nudged: (time: string) => `You nudged Carpentry team · morning shift at ${time}.`,
+    nudged: (time: string) => `You nudged Carpentry team · morning\u00A0shift at ${time}.`,
     dismissed: (reason: string | null) => `You dismissed this risk${reason ? ` · ${reason}` : ""}.`,
   },
 };

@@ -169,7 +169,8 @@ const Details = ({ state, dispatch }: Props) => {
           // "Builds" is plain text; the build name is the way back to the dashboard
           <nav aria-label="Breadcrumb">
             <ol className="flex flex-wrap items-center gap-x-2">
-              <li className="flex items-center gap-2">
+              {/* 480px and below: just one back link with the build name */}
+              <li className="flex items-center gap-2 max-[480px]:hidden">
                 {shell.nav.builds} <Slash />
               </li>
               <li className="flex items-center gap-2">
@@ -178,11 +179,16 @@ const Details = ({ state, dispatch }: Props) => {
                   state={{ railFocus: "details" satisfies RailFocus }}
                   className="inline-flex items-center rounded-[4px] text-[color:var(--rp-text-3)] hover:text-[color:var(--rp-blue)] max-lg:min-h-[44px] [@media(pointer:coarse)]:min-h-[44px]"
                 >
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" className="mr-1 hidden max-[480px]:block">
+                    <path d="M8.5 3L4.5 7l4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                   {build.title}
                 </Link>{" "}
-                <Slash />
+                <span className="max-[480px]:hidden">
+                  <Slash />
+                </span>
               </li>
-              <li aria-current="page" className="font-semibold text-[color:var(--rp-text)]">
+              <li aria-current="page" className="font-semibold text-[color:var(--rp-text)] max-[480px]:hidden">
                 {copy.breadcrumbCurrent}
               </li>
             </ol>

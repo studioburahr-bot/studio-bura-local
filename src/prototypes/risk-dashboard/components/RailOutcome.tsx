@@ -1,4 +1,4 @@
-import { useState, type Dispatch, type RefObject } from "react";
+import { useEffect, useRef, useState, type Dispatch, type RefObject } from "react";
 import { cn } from "@/lib/utils";
 import { nudge as copy, DISMISS_REASONS } from "../data";
 import type { Action, NudgeState } from "../state";
@@ -26,6 +26,23 @@ const CheckIcon = () => (
 // What the AI panel shows after Send or Dismiss. Each state has a visible outcome and (where allowed) Undo.
 const RailOutcome = ({ nudge, dispatch, outcomeRef }: Props) => {
   const [showMessage, setShowMessage] = useState(false);
+
+  // Dismissed: the reason chips show until a reason is picked, then collapse to one "Reason recorded" line.
+  // "Change" brings them back. (Which reason was picked lives in the shared state; this is only open/closed.)
+  const [choosing, setChoosing] = useState(false);
+  const reason = nudge.kind === "dismissed" ? nudge.reason : null;
+  const showChips = nudge.kind === "dismissed" && (!reason || choosing);
+  const changeRef = useRef<HTMLButtonElement>(null);
+  const selectedChipRef = useRef<HTMLButtonElement>(null);
+
+  // The control just used disappears in both directions, so move focus to what replaced it
+  const prevShowChips = useRef(showChips);
+  useEffect(() => {
+    if (prevShowChips.current === showChips) return;
+    prevShowChips.current = showChips;
+    if (showChips) selectedChipRef.current?.focus(); // "Change" pressed: land on the marked chip
+    else changeRef.current?.focus(); // reason recorded: land on "Change"
+  }, [showChips]);
 
   if (nudge.kind === "sent") {
     const edited = nudge.message !== copy.draft;
@@ -69,39 +86,66 @@ const RailOutcome = ({ nudge, dispatch, outcomeRef }: Props) => {
     );
   }
 
+  // Label above the chips: an invitation the first time, "Change reason" when re-choosing
+  const reasonLabel = reason ? copy.dismissed.reasonChange : copy.dismissed.reasonPrompt;
+
   return (
     <div ref={outcomeRef} tabIndex={-1} className={box}>
       <div className="flex min-w-0 flex-1 basis-[240px] flex-col items-start gap-[2px]">
-        <span className={title}>
-          {nudge.reason ? `${copy.dismissed.status} · ${nudge.reason}` : copy.dismissed.status}
-        </span>
+        {/* The title stays plain; a picked reason is shown once, in the "Reason recorded" line below */}
+        <span className={title}>{copy.dismissed.status}</span>
         <span className={line}>{copy.dismissed.stillAtRisk}</span>
-        <div role="group" aria-label={copy.dismissed.reasonPrompt} className="mt-[10px] flex flex-col gap-2">
-          <span className="text-[12px] font-medium text-[color:var(--rp-muted)]">{copy.dismissed.reasonPrompt}</span>
-          <div className="flex flex-wrap gap-2">
-            {DISMISS_REASONS.map((reason) => {
-              const selected = nudge.reason === reason;
-              return (
-                <button
-                  key={reason}
-                  type="button"
-                  aria-pressed={selected}
-                  onClick={() => dispatch({ type: "SET_REASON", reason })}
-                  className={cn(
-                    secondaryButton,
-                    "gap-[6px] text-[13px]",
-                    selected &&
-                      "border-[color:var(--rp-blue)] bg-[var(--rp-blue-tint)] text-[color:var(--rp-blue-active)] enabled:hover:border-[color:var(--rp-blue)]",
-                  )}
-                >
-                  {selected && <CheckIcon />}
-                  {reason}
-                </button>
-              );
-            })}
+
+        {showChips ? (
+          <div role="group" aria-label={reasonLabel} className="mt-[10px] flex flex-col gap-2">
+            <span className="text-[12px] font-medium text-[color:var(--rp-muted)]">{reasonLabel}</span>
+            <div className="flex flex-wrap gap-2">
+              {DISMISS_REASONS.map((option) => {
+                const selected = reason === option;
+                return (
+                  <button
+                    key={option}
+                    ref={selected ? selectedChipRef : undefined}
+                    type="button"
+                    aria-pressed={selected}
+                    onClick={() => {
+                      dispatch({ type: "SET_REASON", reason: option });
+                      setChoosing(false); // also when the same reason is picked again
+                    }}
+                    className={cn(
+                      secondaryButton,
+                      "gap-[6px] text-[13px]",
+                      selected &&
+                        "border-[color:var(--rp-blue)] bg-[var(--rp-blue-tint)] text-[color:var(--rp-blue-active)] enabled:hover:border-[color:var(--rp-blue)]",
+                    )}
+                  >
+                    {selected && <CheckIcon />}
+                    {option}
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        ) : (
+          // A reason is on record: one line instead of the chips, with a way to change it
+          <div className="mt-1 flex flex-wrap items-center gap-x-1">
+            <span className="flex items-center gap-[6px] text-[13px] font-semibold text-[color:var(--rp-text-2)]">
+              <CheckIcon />
+              {copy.dismissed.reasonRecorded(reason ?? "")}
+            </span>
+            <button
+              ref={changeRef}
+              type="button"
+              aria-label={copy.dismissed.reasonChange}
+              onClick={() => setChoosing(true)}
+              className={`${linkButton} text-[13px]`}
+            >
+              {copy.dismissed.change}
+            </button>
+          </div>
+        )}
       </div>
+      {/* Undo reverts the whole dismissal, not just the reason */}
       <button type="button" onClick={() => dispatch({ type: "UNDO" })} className={linkButton}>
         {copy.actions.undo}
       </button>
