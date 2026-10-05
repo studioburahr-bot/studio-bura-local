@@ -1,31 +1,22 @@
-import { Fragment } from "react";
-import { chainCopy, connectors, steps } from "../data";
+import { chainCopy, steps } from "../data";
+import ProgressLine from "./ProgressLine";
 import StepCard from "./StepCard";
-import ChainConnector from "./ChainConnector";
 
-// Desktop (lg, 1024px+): one row, cards and connectors in alternating grid columns.
-// Below that: one column, cards stacked with connectors pointing down.
-const DESKTOP_COLUMNS =
-  "lg:grid-cols-[minmax(0,1fr)_56px_minmax(0,1fr)_108px_minmax(0,1fr)_56px_minmax(0,1fr)]";
-
+// Progress line and cards share one 4-column grid (24px gap), which is what keeps each node centred over its card.
 const DependencyChain = () => (
   <section
     aria-labelledby="rp-chain-heading"
-    className="rounded-2xl border border-[color:var(--rp-border)] bg-[var(--rp-surface)] px-4 pb-[30px] pt-[26px] sm:px-7"
+    className="rounded-[8px] border border-[color:var(--rp-border)] bg-[var(--rp-surface)] px-4 pb-[30px] pt-[26px] sm:px-7"
   >
-    <h2
-      id="rp-chain-heading"
-      className="mb-[22px] text-[11px] font-bold uppercase tracking-[.11em] text-[color:var(--rp-muted)]"
-    >
+    <h2 id="rp-chain-heading" className="rp-label mb-[22px]">
       {chainCopy.heading}
     </h2>
 
-    <div className={`flex flex-col lg:grid lg:items-stretch ${DESKTOP_COLUMNS}`}>
-      {steps.map((step, i) => (
-        <Fragment key={step.id}>
-          <StepCard step={step} />
-          {connectors[i] && <ChainConnector connector={connectors[i]} />}
-        </Fragment>
+    <ProgressLine />
+
+    <div className="grid items-stretch gap-6 lg:grid-cols-4">
+      {steps.map((step) => (
+        <StepCard key={step.id} step={step} />
       ))}
     </div>
   </section>

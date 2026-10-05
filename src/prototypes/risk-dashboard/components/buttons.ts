@@ -1,11 +1,21 @@
-// Button styles shared across the prototype. All targets are at least 44px tall.
+// Button and label styles shared across the prototype. Rectangular (6px radius), at least 44px tall for touch.
 const base =
-  "inline-flex min-h-[44px] items-center justify-center rounded-full transition-colors disabled:cursor-not-allowed disabled:opacity-50";
+  "inline-flex min-h-[44px] items-center justify-center rounded-[6px] text-[14px] transition-colors disabled:cursor-not-allowed disabled:opacity-50";
 
-// The single primary (black) button. Only used in the AI rail.
-export const primaryButton = `${base} border border-[color:var(--rp-primary)] bg-[var(--rp-primary)] px-[26px] text-[14px] font-bold tracking-[-.01em] text-white enabled:hover:border-[color:var(--rp-primary-hover)] enabled:hover:bg-[var(--rp-primary-hover)] enabled:active:bg-black`;
+// Blue primary: Nudge, Send
+export const primaryButton = `${base} border border-[color:var(--rp-blue)] bg-[var(--rp-blue)] px-[26px] font-bold text-white enabled:hover:border-[color:var(--rp-blue-hover)] enabled:hover:bg-[var(--rp-blue-hover)] enabled:active:bg-[var(--rp-blue-active)]`;
 
-export const secondaryButton = `${base} border border-[color:var(--rp-border-strong)] bg-[var(--rp-surface)] px-[22px] text-[13px] font-semibold text-[color:var(--rp-text)] enabled:hover:border-[color:var(--rp-text)]`;
+// Outlined: Edit, reason chips
+export const secondaryButton = `${base} border border-[color:var(--rp-border-strong)] bg-[var(--rp-surface)] px-4 font-semibold text-[color:var(--rp-text)] enabled:hover:border-[color:var(--rp-faint)]`;
 
-// Text-only button (Details, Cancel). Still 44px tall for touch.
-export const textButton = `${base} px-2 text-[13px] font-semibold`;
+// Text-only, no colour of its own (callers add one)
+export const textButton = `${base} px-[10px] font-semibold`;
+
+// Blue text link-button: Details, Undo, View message
+export const linkButton = `${textButton} text-[color:var(--rp-blue)] hover:bg-[var(--rp-blue-tint)]`;
+
+// Grey text button: Dismiss risk, Cancel
+export const quietButton = `${textButton} text-[color:var(--rp-text-3)] enabled:hover:bg-[var(--rp-blue-tint)] enabled:hover:text-[color:var(--rp-text)]`;
+
+// The navy uppercase label that marks AI-authored content (used inside AiBlock strips and on the draft)
+export const aiLabel = "rp-label !text-[color:var(--rp-navy)]";

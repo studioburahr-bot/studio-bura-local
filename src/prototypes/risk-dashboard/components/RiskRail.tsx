@@ -4,8 +4,8 @@ import { rail, shell } from "../data";
 import type { Action, State } from "../state";
 import NudgePanel from "./NudgePanel";
 import RailOutcome from "./RailOutcome";
-import SparkIcon from "./SparkIcon";
-import { primaryButton, textButton } from "./buttons";
+import AiBlock from "./AiBlock";
+import { aiLabel, linkButton, primaryButton, quietButton } from "./buttons";
 
 interface Props {
   state: State;
@@ -15,7 +15,8 @@ interface Props {
 // Where to put focus when arriving back from the Details view
 export type RailFocus = "details" | "draft";
 
-// The AI rail: the only place the indigo accent is used, and home of the only primary button.
+// The AI assessment panel: the single ranked risk, with Details, Dismiss risk and the blue Nudge button.
+// The draft, Nudged and Dismissed states open inside the same box.
 // Timers for Sending / Undo live in RiskPrototype, so they keep running while Details is open.
 const RiskRail = ({ state, dispatch }: Props) => {
   const { risk } = rail;
@@ -66,38 +67,25 @@ const RiskRail = ({ state, dispatch }: Props) => {
   }, [nudge.kind, editing, canUndo]);
 
   const draftOpen = nudge.kind === "drafting" || nudge.kind === "sending";
-  const dismissed = nudge.kind === "dismissed";
 
   return (
-    <section
+    <AiBlock
       ref={railRef}
-      aria-labelledby="rp-rail-heading"
-      className="rounded-2xl border border-[color:var(--rp-border)] bg-[var(--rp-surface)] px-4 pb-7 pt-[26px] sm:px-7"
+      labelledBy="rp-rail-heading"
+      strip={
+        <>
+          <h2 id="rp-rail-heading" className={aiLabel}>
+            {rail.aiLabel}
+          </h2>
+          <span className="flex-1" />
+          <span className="text-[12px] font-medium text-[color:var(--rp-muted)]">{rail.meta}</span>
+        </>
+      }
     >
-      <div className="mb-5 flex flex-wrap items-center gap-x-3 gap-y-1">
-        <SparkIcon />
-        <h2
-          id="rp-rail-heading"
-          className="text-[11px] font-bold uppercase tracking-[.11em] text-[color:var(--rp-ai)]"
-        >
-          {rail.heading}
-        </h2>
-        <span aria-hidden="true" className="hidden h-px flex-1 bg-[var(--rp-divider)] sm:block" />
-        <span className="text-[12px] font-medium text-[color:var(--rp-muted)]">{rail.meta}</span>
-      </div>
-
-      <ol className="flex flex-col gap-3">
-        <li className="grid grid-cols-[28px_minmax(0,1fr)] items-center gap-x-4 gap-y-4 rounded-[14px] border border-[color:var(--rp-border)] bg-[var(--rp-surface)] px-4 py-[18px] sm:grid-cols-[28px_minmax(0,1fr)_auto] sm:px-5">
-          <span className="rp-mono self-start pt-1 text-[12px] font-medium text-[color:var(--rp-ai)]">
-            {risk.rank}
-          </span>
-
+      <div className="px-4 pb-6 pt-5 sm:px-7">
+        <div className="grid grid-cols-1 items-center gap-x-4 gap-y-3 rounded-[6px] border border-[color:var(--rp-border)] px-4 py-5 sm:px-[22px] lg:grid-cols-[minmax(0,1fr)_auto]">
           <div className="min-w-0">
-            <p
-              className={`text-pretty text-[18px] font-bold tracking-[-.02em] ${
-                dismissed ? "text-[color:var(--rp-muted)]" : "text-[color:var(--rp-text)]"
-              }`}
-            >
+            <p className="text-pretty text-[19px] font-bold tracking-[-.02em] text-[color:var(--rp-text)]">
               {risk.headline}
             </p>
             <p className="mt-[6px] text-pretty text-[13px] font-medium text-[color:var(--rp-muted)]">
@@ -105,28 +93,20 @@ const RiskRail = ({ state, dispatch }: Props) => {
             </p>
           </div>
 
-          <div className="col-span-2 flex flex-wrap items-center justify-end gap-x-4 gap-y-2 sm:col-span-1 sm:pl-[10px]">
-            <Link
-              ref={detailsLinkRef}
-              to={shell.detailsPath}
-              className={`${textButton} text-[color:var(--rp-ai)] hover:text-[color:var(--rp-ai-hover)]`}
-            >
+          <div className="flex flex-wrap items-center justify-end gap-2 lg:pl-4">
+            <Link ref={detailsLinkRef} to={shell.detailsPath} className={linkButton}>
               {rail.actions.details}
             </Link>
             {nudge.kind === "idle" && (
               <>
-                <button
-                  type="button"
-                  onClick={() => dispatch({ type: "DISMISS" })}
-                  className={`${textButton} text-[color:var(--rp-muted)] hover:text-[color:var(--rp-text)]`}
-                >
+                <button type="button" onClick={() => dispatch({ type: "DISMISS" })} className={quietButton}>
                   {rail.actions.dismiss}
                 </button>
                 <button
                   ref={nudgeButtonRef}
                   type="button"
                   onClick={() => dispatch({ type: "OPEN_DRAFT" })}
-                  className={`${primaryButton} max-[480px]:flex-1`}
+                  className={primaryButton}
                 >
                   {rail.actions.nudge}
                 </button>
@@ -134,9 +114,9 @@ const RiskRail = ({ state, dispatch }: Props) => {
             )}
           </div>
 
-          {/* Draft or outcome: full width on mobile, under the headline from sm up */}
+          {/* Draft or outcome, under the headline */}
           {draftOpen && (
-            <div className="col-span-full sm:col-span-2 sm:col-start-2">
+            <div className="col-span-full border-t border-[color:var(--rp-border)] pt-4">
               <NudgePanel
                 state={state}
                 dispatch={dispatch}
@@ -147,13 +127,13 @@ const RiskRail = ({ state, dispatch }: Props) => {
             </div>
           )}
           {(nudge.kind === "sent" || nudge.kind === "dismissed") && (
-            <div className="col-span-full sm:col-span-2 sm:col-start-2">
+            <div className="col-span-full">
               <RailOutcome nudge={nudge} dispatch={dispatch} outcomeRef={outcomeRef} />
             </div>
           )}
-        </li>
-      </ol>
-    </section>
+        </div>
+      </div>
+    </AiBlock>
   );
 };
 

@@ -4,9 +4,8 @@ import { Lock, Send } from "lucide-react";
 import { details as copy, nudge as nudgeCopy, shell, steps, STATUS_LABEL } from "./data";
 import type { Action, State } from "./state";
 import type { RailFocus } from "./components/RiskRail";
-import SparkIcon from "./components/SparkIcon";
-import StatusPill from "./components/StatusPill";
-import { secondaryButton } from "./components/buttons";
+import StatusChip from "./components/StatusChip";
+import { aiLabel, secondaryButton } from "./components/buttons";
 
 interface Props {
   state: State;
@@ -17,12 +16,7 @@ const eyebrow = "text-[11px] font-bold uppercase tracking-[.11em] text-[color:va
 const card = "rounded-2xl border border-[color:var(--rp-border)] bg-[var(--rp-surface)]";
 
 // Marks what is AI judgement. Facts from setup and sources (chain, evidence, history) stay unmarked.
-const AiLabel = ({ children }: { children: string }) => (
-  <span className="inline-flex items-center gap-[6px] text-[12px] font-bold tracking-[.02em] text-[color:var(--rp-ai)]">
-    <SparkIcon size={13} />
-    {children}
-  </span>
-);
+const AiLabel = ({ children }: { children: string }) => <span className={aiLabel}>{children}</span>;
 
 const Arrow = ({ dashed }: { dashed?: boolean }) => (
   <svg width="20" height="11" viewBox="0 0 20 11" fill="none" aria-hidden="true" className="shrink-0">
@@ -137,7 +131,7 @@ const Details = ({ state, dispatch }: Props) => {
       {/* Status + summary */}
       <section className={`${card} px-4 py-[26px] sm:px-7`}>
         <div className="mb-[14px] flex flex-wrap items-center gap-3">
-          <StatusPill status="atrisk" />
+          <StatusChip status="atrisk" />
           <span className="text-[12px] font-medium text-[color:var(--rp-muted)]">{copy.hero.meta}</span>
           <span className="sm:ml-auto">
             <AiLabel>{copy.hero.aiLabel}</AiLabel>

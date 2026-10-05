@@ -6,7 +6,7 @@
 export type StepStatus = "done" | "atrisk" | "waiting";
 export type SourceKind = "system" | "field" | "onsite" | "supplier";
 
-// The tinted box in the middle of each step card
+// The note box in the middle of each step card
 export type StepNote =
   | { kind: "system"; system: string } // system the status was read from
   | { kind: "text"; text: string }
@@ -42,6 +42,13 @@ export const shell = {
   back: "← Back to case study",
   label: "Interactive prototype · actions are simulated",
   footer: "Data shown is illustrative and does not reflect real client figures.",
+  // App sidebar. Only Builds is real; Setup and Activity are shown for context and go nowhere.
+  nav: {
+    label: "Main",
+    builds: "Builds",
+    inert: ["Setup", "Activity"],
+    inertNote: "not available in this prototype",
+  },
 };
 
 export const build = {
@@ -50,7 +57,7 @@ export const build = {
   implementationId: "IMP-2214",
   title: "Kitchen display rebuild — Range 4",
   today: { label: "Today", value: "Fri, Jun 13" },
-  launch: { label: "Launch", value: "Wed, Jun 18", note: "Locked · announced" },
+  launch: { label: "Launch", value: "Wed, Jun 18", note: "locked" },
   readiness: "Paint needs attention",
 };
 
@@ -116,6 +123,7 @@ export const connectors: Connector[] = [
 
 // AI rail: the single ranked risk. Signage is deliberately not here.
 export const rail = {
+  aiLabel: "AI assessment",
   heading: "What's at risk",
   meta: "Ranked by cost to launch · updated 09:12",
   risk: {
@@ -160,7 +168,7 @@ export const nudge = {
     unedited: "Sent as drafted by AI",
   },
   dismissed: {
-    status: "Dismissed",
+    status: "Recommendation dismissed",
     stillAtRisk: "Paint still shows as at risk in the chain.",
     reasonPrompt: "Add a reason (optional)",
   },

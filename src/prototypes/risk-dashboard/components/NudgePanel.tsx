@@ -2,8 +2,7 @@ import type { Dispatch, KeyboardEvent, RefObject } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { nudge as copy } from "../data";
 import type { Action, State } from "../state";
-import SparkIcon from "./SparkIcon";
-import { primaryButton, secondaryButton, textButton } from "./buttons";
+import { aiLabel, primaryButton, quietButton, secondaryButton } from "./buttons";
 
 interface Props {
   state: State;
@@ -13,7 +12,9 @@ interface Props {
   editButtonRef: RefObject<HTMLButtonElement>;
 }
 
-// The AI-drafted nudge, opened inline in the rail. Nothing is sent until the coordinator presses Send.
+const message = "rounded-[6px] border px-[14px] py-3 text-[15px] font-medium leading-relaxed text-[color:var(--rp-text)]";
+
+// The AI-drafted nudge, opened inline in the AI panel. Nothing is sent until the coordinator presses Send.
 const NudgePanel = ({ state, dispatch, panelRef, textareaRef, editButtonRef }: Props) => {
   const editing = state.nudge.kind === "drafting" && state.nudge.editing;
   const sending = state.nudge.kind === "sending";
@@ -26,20 +27,10 @@ const NudgePanel = ({ state, dispatch, panelRef, textareaRef, editButtonRef }: P
   };
 
   return (
-    <div
-      ref={panelRef}
-      tabIndex={-1}
-      role="group"
-      aria-label={copy.aiLabel}
-      onKeyDown={onKeyDown}
-      className="rounded-xl border border-[color:var(--rp-border)] bg-[var(--rp-bg)] p-4 sm:p-5"
-    >
-      <div className="mb-3 flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
-        <span className="inline-flex items-center gap-2 text-[12px] font-bold tracking-[.02em] text-[color:var(--rp-ai)]">
-          <SparkIcon size={13} />
-          {copy.aiLabel}
-        </span>
-        <span className="text-[12px] font-medium text-[color:var(--rp-muted)]">
+    <div ref={panelRef} tabIndex={-1} role="group" aria-label={copy.aiLabel} onKeyDown={onKeyDown}>
+      <div className="mb-[10px] flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+        <span className={aiLabel}>{copy.aiLabel}</span>
+        <span className="text-[13px] font-medium text-[color:var(--rp-muted)]">
           {copy.toLabel}: <span className="font-semibold text-[color:var(--rp-text-2)]">{copy.recipient}</span>
         </span>
       </div>
@@ -55,15 +46,15 @@ const NudgePanel = ({ state, dispatch, panelRef, textareaRef, editButtonRef }: P
             const end = e.currentTarget.value.length;
             e.currentTarget.setSelectionRange(end, end);
           }}
-          className="min-h-[170px] rounded-[10px] border-[color:var(--rp-border-strong)] bg-[var(--rp-surface)] px-4 py-3 text-[15px] leading-relaxed text-[color:var(--rp-text)] focus:border-[color:var(--rp-text)] focus-visible:ring-0 focus-visible:ring-offset-0"
+          className={`${message} min-h-[170px] border-[color:var(--rp-border-strong)] bg-[var(--rp-surface)] focus:border-[color:var(--rp-blue)] focus-visible:ring-0 focus-visible:ring-offset-0`}
         />
       ) : (
-        <p className="whitespace-pre-line rounded-[10px] border border-[color:var(--rp-border)] bg-[var(--rp-surface)] px-4 py-3 text-[15px] font-medium leading-relaxed text-[color:var(--rp-text)]">
+        <p className={`${message} whitespace-pre-line border-[color:var(--rp-border)] bg-[var(--rp-subtle)]`}>
           {state.draft}
         </p>
       )}
 
-      <div className="mt-4 flex flex-wrap items-center gap-3">
+      <div className="mt-[14px] flex flex-wrap items-center gap-2">
         <button
           ref={editButtonRef}
           type="button"
@@ -75,14 +66,9 @@ const NudgePanel = ({ state, dispatch, panelRef, textareaRef, editButtonRef }: P
           {editing ? copy.actions.doneEditing : copy.actions.edit}
         </button>
 
-        <span className="hidden flex-1 sm:block" />
+        <span className="flex-1" />
 
-        <button
-          type="button"
-          disabled={sending}
-          onClick={() => dispatch({ type: "CLOSE_DRAFT" })}
-          className={`${textButton} text-[color:var(--rp-muted)] enabled:hover:text-[color:var(--rp-text)]`}
-        >
+        <button type="button" disabled={sending} onClick={() => dispatch({ type: "CLOSE_DRAFT" })} className={quietButton}>
           {copy.actions.cancel}
         </button>
         <button
@@ -92,7 +78,7 @@ const NudgePanel = ({ state, dispatch, panelRef, textareaRef, editButtonRef }: P
           aria-disabled={sending}
           aria-busy={sending}
           onClick={() => !sending && dispatch({ type: "SEND" })}
-          className={`${primaryButton} max-[480px]:order-last max-[480px]:w-full aria-disabled:cursor-wait aria-disabled:opacity-70`}
+          className={`${primaryButton} aria-disabled:cursor-wait aria-disabled:opacity-70`}
         >
           {sending ? copy.actions.sending : copy.actions.send}
         </button>
