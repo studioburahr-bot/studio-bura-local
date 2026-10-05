@@ -185,7 +185,7 @@ export const nudge = {
   },
 };
 
-// Details view: why Paint is the one ranked risk. Mirrors the structure of AI risk detail.dc.html.
+// Details view: why Paint is the one ranked risk. Follows Details v1.
 export const details = {
   breadcrumbBack: "What's at risk",
   breadcrumbCurrent: "Paint at risk",
@@ -241,10 +241,11 @@ export const details = {
   history: {
     heading: "History",
     items: [
-      { date: "Jun 11", text: "Assembly closed in AssemblyHub." },
-      { date: "Jun 12", text: "Paint booked for Jun 14 with the carpentry team." },
-      { date: "Jun 13", text: "Sign supplier moved delivery to Jun 14 and confirmed." },
-      { date: "Jun 13", text: "No paint confirmation logged for tomorrow." },
+      // tone picks the dot colour: done = green, atrisk = orange (and bold), neutral = grey
+      { date: "Jun 11", text: "Assembly closed in AssemblyHub.", tone: "done" },
+      { date: "Jun 12", text: "Paint booked for Jun 14 with the carpentry team.", tone: "neutral" },
+      { date: "Jun 13", text: "Sign supplier moved delivery to Jun 14 and confirmed.", tone: "neutral" },
+      { date: "Jun 13", text: "No paint confirmation logged for tomorrow.", tone: "atrisk" },
     ],
     // Added live from what the coordinator did in the prototype
     nudged: (time: string) => `You nudged Carpentry team · morning shift at ${time}.`,

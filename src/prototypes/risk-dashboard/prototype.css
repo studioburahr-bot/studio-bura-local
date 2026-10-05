@@ -16,6 +16,7 @@
   --rp-border: #e3e6eb;
   --rp-border-strong: #d5d9df; /* buttons, AI panel outline */
   --rp-divider: #f0f1f4; /* hairline inside a card */
+  --rp-row: #eef0f3; /* row dividers in lists; also the neutral note background */
   --rp-line: #d5d9df; /* progress line, not yet reached */
   --rp-text: #111827;
   --rp-text-2: #374151;
@@ -52,9 +53,6 @@
   /* Grey: Waiting */
   --rp-waiting-border: #c4c9d1;
   --rp-waiting-bg: #f1f3f6;
-
-  /* Still referenced by the Details view until it is restyled in step 2 */
-  --rp-ai: var(--rp-navy);
 
   --rp-focus: #0e1b33;
 

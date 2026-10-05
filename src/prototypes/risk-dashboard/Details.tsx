@@ -1,93 +1,130 @@
-import { Fragment, useEffect, useRef, type Dispatch } from "react";
+import { useEffect, useRef, type Dispatch } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Lock, Send } from "lucide-react";
-import { details as copy, nudge as nudgeCopy, shell, steps, STATUS_LABEL } from "./data";
+import { build, connectors, details as copy, shell, steps, STATUS_LABEL } from "./data";
 import type { Action, State } from "./state";
+import AiBlock from "./components/AiBlock";
+import PageHeader from "./components/PageHeader";
+import RailOutcome from "./components/RailOutcome";
 import type { RailFocus } from "./components/RiskRail";
 import StatusChip from "./components/StatusChip";
-import { aiLabel, secondaryButton } from "./components/buttons";
+import { aiLabel, primaryButton, secondaryButton } from "./components/buttons";
+import { GateChip, LaunchNode, ProgressNode } from "./components/progressParts";
+import { GATE_POSITION, segmentClass } from "./components/statusStyles";
 
 interface Props {
   state: State;
   dispatch: Dispatch<Action>;
 }
 
-const eyebrow = "text-[11px] font-bold uppercase tracking-[.11em] text-[color:var(--rp-muted)]";
-const card = "rounded-2xl border border-[color:var(--rp-border)] bg-[var(--rp-surface)]";
+const card = "rounded-[8px] border border-[color:var(--rp-border)] bg-[var(--rp-surface)]";
+const listHeading = "rp-label border-b border-[color:var(--rp-border)] px-4 py-[14px] sm:px-7";
 
-// Marks what is AI judgement. Facts from setup and sources (chain, evidence, history) stay unmarked.
-const AiLabel = ({ children }: { children: string }) => <span className={aiLabel}>{children}</span>;
-
-const Arrow = ({ dashed }: { dashed?: boolean }) => (
-  <svg width="20" height="11" viewBox="0 0 20 11" fill="none" aria-hidden="true" className="shrink-0">
-    <path d="M0 5.5h14" stroke="var(--rp-line)" strokeWidth="1.6" strokeDasharray={dashed ? "3 3" : undefined} />
-    <path d="M13 1l5 4.5-5 4.5z" fill="var(--rp-line)" />
-  </svg>
+const Slash = () => (
+  <span aria-hidden="true" className="text-[color:var(--rp-sep)]">
+    /
+  </span>
 );
 
-// Compact version of the chain: Paint highlighted, the dry gate on the edge after it, launch at the end.
-// Each arrow is grouped with the step it points to, so a line break never leaves an arrow hanging.
-const ChainStrip = () => {
-  const pill = "flex items-center gap-2 rounded-xl border bg-[var(--rp-surface)] px-3 py-[10px] text-[14px] font-bold";
-  const date = "text-[12px] font-medium tabular-nums text-[color:var(--rp-muted)]";
+const DOT = {
+  atrisk: "bg-[var(--rp-atrisk)]",
+  done: "bg-[var(--rp-done)]",
+  neutral: "bg-[var(--rp-faint)]",
+  hollow: "border-2 border-[color:var(--rp-faint)]",
+  action: "bg-[var(--rp-text-2)]",
+};
+
+// The chain with Paint highlighted, the dry-time gate after it and the locked launch at the end.
+// Setup facts, not AI — so no navy marking.
+const ChainPosition = () => {
+  const label = "text-center max-lg:text-left";
   return (
-    <ol aria-label={copy.chain.heading} className="flex flex-wrap items-center gap-x-[6px] gap-y-3">
+    <ol className="grid gap-x-6 gap-y-3 lg:grid-cols-5">
       {steps.map((step, i) => {
-        const afterGate = steps[i - 1]?.id === "paint";
+        const connector = connectors[i];
+        const gate = connector?.kind === "gate" ? connector : null;
+        const atRisk = step.status === "atrisk";
         return (
-          <li key={step.id} className="flex items-center gap-[6px]">
-            {i > 0 && !afterGate && <Arrow />}
-            {afterGate && (
-              <>
-                <Arrow dashed />
-                <span className="rp-mono rounded-full bg-[var(--rp-waiting-bg)] px-[10px] py-1 text-[12px] font-medium text-[color:var(--rp-text-2)]">
-                  {copy.chain.gate}
-                </span>
-                <Arrow dashed />
-              </>
-            )}
-            <span
-              className={`${pill} ${
-                step.status === "atrisk"
-                  ? "border-[color:var(--rp-atrisk)] text-[color:var(--rp-atrisk-text)]"
-                  : "border-[color:var(--rp-border)] text-[color:var(--rp-text)]"
-              }`}
-            >
-              {step.name}
-              <span className={date}>{step.when.date.replace("· ", "")}</span>
-              <span className="sr-only">, {STATUS_LABEL[step.status]}</span>
-            </span>
+          <li key={step.id} className="flex items-center gap-3 lg:flex-col">
+            <div aria-hidden="true" className="relative flex h-9 items-center justify-center lg:w-full">
+              {/* Last step connects on to Launch */}
+              <span className={`max-lg:hidden ${segmentClass(step.status, !!gate)}`} />
+              <ProgressNode status={step.status} />
+              {gate && (
+                <GateChip duration={gate.duration} caption={gate.caption} className={`max-lg:hidden ${GATE_POSITION}`} />
+              )}
+            </div>
+            <div className={label}>
+              <div
+                className={
+                  atRisk
+                    ? "text-[16px] font-extrabold text-[color:var(--rp-atrisk-text)]"
+                    : "text-[15px] font-semibold text-[color:var(--rp-text-3)]"
+                }
+              >
+                {step.name}
+                <span className="sr-only">, {STATUS_LABEL[step.status]}</span>
+              </div>
+              <div
+                className={`mt-[2px] text-[12px] tabular-nums ${
+                  atRisk ? "font-semibold text-[color:var(--rp-text-2)]" : "font-medium text-[color:var(--rp-muted)]"
+                }`}
+              >
+                {step.when.date.replace("· ", "")}
+                {gate && (
+                  <span className="lg:sr-only">
+                    {" "}
+                    · then {gate.duration} {gate.caption.toLowerCase()}
+                  </span>
+                )}
+              </div>
+            </div>
           </li>
         );
       })}
-      <li className="flex items-center gap-[6px]">
-        <Arrow />
-        <span className={`${pill} border-[color:var(--rp-border)] text-[color:var(--rp-text)]`}>
-          <Lock size={13} strokeWidth={2} aria-hidden="true" />
-          {copy.chain.launch.name}
-          <span className={date}>{copy.chain.launch.date}</span>
-        </span>
+      <li className="flex items-center gap-3 lg:flex-col">
+        <div aria-hidden="true" className="relative flex h-9 items-center justify-center lg:w-full">
+          <LaunchNode />
+        </div>
+        <div className={label}>
+          <div className="text-[15px] font-bold text-[color:var(--rp-text)]">{copy.chain.launch.name}</div>
+          <div className="mt-[2px] text-[12px] font-medium tabular-nums text-[color:var(--rp-muted)]">
+            {copy.chain.launch.date} · {build.launch.note}
+          </div>
+        </div>
       </li>
     </ol>
   );
 };
 
-const EVIDENCE_DOT = {
-  atrisk: <circle cx="6" cy="6" r="4.2" fill="none" stroke="var(--rp-atrisk)" strokeWidth="1.8" />,
-  done: <circle cx="6" cy="6" r="4.6" fill="var(--rp-done)" />,
-  neutral: <circle cx="6" cy="6" r="4.6" fill="var(--rp-faint)" />,
-};
-
-// Why this step: the full reasoning behind the one ranked risk on the dashboard
+// Why this step: the full reasoning behind the one ranked risk on the dashboard.
+// AI-authored blocks (the assessment and "What happens next") carry the navy marking; chain, evidence and history are facts.
 const Details = ({ state, dispatch }: Props) => {
   const navigate = useNavigate();
-  const headingRef = useRef<HTMLHeadingElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const statusRef = useRef<HTMLElement>(null);
+  const actionRef = useRef<HTMLButtonElement>(null);
+  const outcomeRef = useRef<HTMLDivElement>(null);
   const { nudge } = state;
 
-  // New view: move focus to its heading so screen readers start here
+  // New view: move focus to its title so screen readers start here
   useEffect(() => {
-    headingRef.current?.focus();
+    titleRef.current?.focus();
   }, []);
+
+  // After Undo (or when Undo times out) the control that had focus disappears:
+  // move focus to what replaced it, but only if focus was in this block.
+  const canUndo = nudge.kind === "sent" && nudge.canUndo;
+  const isFirstRender = useRef(true);
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    const active = document.activeElement;
+    if (active && active !== document.body && !statusRef.current?.contains(active)) return;
+    if (nudge.kind === "sent" || nudge.kind === "dismissed") outcomeRef.current?.focus();
+    else actionRef.current?.focus();
+  }, [nudge.kind, canUndo]);
 
   const backTo = (railFocus: RailFocus) => navigate(shell.dashboardPath, { state: { railFocus } });
 
@@ -103,155 +140,195 @@ const Details = ({ state, dispatch }: Props) => {
       : nudge.kind === "dismissed"
         ? [copy.history.dismissed(nudge.reason)]
         : [];
+  const history = [...copy.history.items, ...liveHistory.map((text) => ({ date: "Jun 13", text, tone: "action" }))];
 
   return (
-    <div className="mx-auto flex w-full max-w-[1060px] flex-col gap-[22px] px-4 pb-16 pt-6 sm:px-9 sm:pt-9">
-      {/* Breadcrumb */}
-      <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-[10px] gap-y-1 text-[13px] font-medium">
-        <Link
-          to={shell.dashboardPath}
-          state={{ railFocus: "details" satisfies RailFocus }}
-          className="inline-flex min-h-[44px] items-center gap-[7px] text-[color:var(--rp-muted)] hover:text-[color:var(--rp-text)]"
-        >
-          <svg width="7" height="12" viewBox="0 0 9 15" fill="none" aria-hidden="true">
-            <path d="M7.4 1.4L1.6 7.5l5.8 6.1" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          {copy.breadcrumbBack}
-        </Link>
-        <span aria-hidden="true" className="text-[color:var(--rp-line)]">
-          /
-        </span>
-        <span aria-current="page" className="font-semibold text-[color:var(--rp-text)]">
-          {copy.breadcrumbCurrent}
-        </span>
-        <span className="flex-1" />
-        <span className="rp-mono text-[11px] text-[color:var(--rp-muted)]">{copy.ref}</span>
-      </nav>
-
-      {/* Status + summary */}
-      <section className={`${card} px-4 py-[26px] sm:px-7`}>
-        <div className="mb-[14px] flex flex-wrap items-center gap-3">
-          <StatusChip status="atrisk" />
-          <span className="text-[12px] font-medium text-[color:var(--rp-muted)]">{copy.hero.meta}</span>
-          <span className="sm:ml-auto">
-            <AiLabel>{copy.hero.aiLabel}</AiLabel>
-          </span>
-        </div>
-        <h1
-          ref={headingRef}
-          tabIndex={-1}
-          className="text-[22px] font-medium tracking-[-.02em] text-[color:var(--rp-text)]"
-        >
-          {copy.hero.title}
-        </h1>
-        <p className="mt-[10px] max-w-[62ch] text-pretty text-[16px] font-medium leading-normal text-[color:var(--rp-muted)]">
-          {copy.hero.body}
-        </p>
-
-        <div className="mt-[22px] flex flex-wrap items-center gap-3">
-          {nudge.kind === "idle" && (
-            <button type="button" onClick={openDraft} className={secondaryButton}>
-              {copy.hero.nudge}
-            </button>
-          )}
-          {(nudge.kind === "drafting" || nudge.kind === "sending") && (
-            <button type="button" onClick={() => backTo("draft")} className={secondaryButton}>
-              {copy.hero.backToDraft}
-            </button>
-          )}
-          {nudge.kind === "sent" && (
-            <>
-              <span className="inline-flex items-center gap-[7px] rounded-full bg-[var(--rp-waiting-bg)] py-[5px] pl-[10px] pr-[12px] text-[12px] font-bold tracking-[.02em] text-[color:var(--rp-text-2)]">
-                <Send size={12} strokeWidth={2} aria-hidden="true" />
-                {nudgeCopy.sent.status}
-              </span>
-              <span className="text-[13px] font-medium tabular-nums text-[color:var(--rp-muted)]">
-                {nudgeCopy.sent.sentAt(nudge.at)}
-              </span>
-            </>
-          )}
-          {nudge.kind === "dismissed" && (
-            <span className="inline-flex items-center rounded-full bg-[var(--rp-waiting-bg)] px-3 py-[5px] text-[12px] font-bold tracking-[.02em] text-[color:var(--rp-text-2)]">
-              {nudge.reason ? `${nudgeCopy.dismissed.status} · ${nudge.reason}` : nudgeCopy.dismissed.status}
+    <div className="flex flex-col gap-6">
+      <PageHeader
+        titleRef={titleRef}
+        title={copy.breadcrumbCurrent}
+        eyebrow={
+          // "Builds" is plain text; the build name is the way back to the dashboard
+          <nav aria-label="Breadcrumb">
+            <ol className="flex flex-wrap items-center gap-x-2">
+              <li className="flex items-center gap-2">
+                {shell.nav.builds} <Slash />
+              </li>
+              <li className="flex items-center gap-2">
+                <Link
+                  to={shell.dashboardPath}
+                  state={{ railFocus: "details" satisfies RailFocus }}
+                  className="inline-flex items-center rounded-[4px] text-[color:var(--rp-text-3)] hover:text-[color:var(--rp-blue)] [@media(pointer:coarse)]:min-h-[44px]"
+                >
+                  {build.title}
+                </Link>{" "}
+                <Slash />
+              </li>
+              <li aria-current="page" className="font-semibold text-[color:var(--rp-text)]">
+                {copy.breadcrumbCurrent}
+              </li>
+            </ol>
+          </nav>
+        }
+        sub={
+          <p className="mt-[6px] flex gap-2 text-[13px] font-medium text-[color:var(--rp-muted)]">
+            <span className="rp-mono text-[12px]">{build.implementationId}</span>
+            <span aria-hidden="true" className="text-[color:var(--rp-sep)]">
+              ·
             </span>
-          )}
-        </div>
-      </section>
+            <span>{copy.ref.split(" · ")[1]}</span>
+          </p>
+        }
+      />
 
-      {/* What happens next */}
-      <section aria-labelledby="rp-next-heading">
-        <div className="mb-[14px] flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
-          <h2 id="rp-next-heading" className={eyebrow}>
-            {copy.next.heading}
+      {/* Status block: the AI's assessment, and what the coordinator did about it */}
+      <AiBlock
+        ref={statusRef}
+        labelledBy="rp-status-heading"
+        strip={<span className={aiLabel}>{copy.hero.aiLabel}</span>}
+      >
+        <div className="flex flex-col gap-[14px] px-4 pb-7 pt-6 sm:px-7">
+          {/* Stays "At risk" whatever the coordinator does: nudging or dismissing doesn't confirm the paint */}
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <StatusChip status="atrisk" />
+            <span className="text-[13px] font-medium text-[color:var(--rp-text-3)]">{copy.hero.meta}</span>
+          </div>
+          <h2
+            id="rp-status-heading"
+            className="mt-1 text-[26px] font-extrabold leading-[1.2] tracking-[-.025em] text-[color:var(--rp-text)]"
+          >
+            {copy.hero.title}
           </h2>
-          <AiLabel>{copy.next.aiLabel}</AiLabel>
+          <p className="max-w-[680px] text-pretty text-[16px] font-medium leading-[1.55] text-[color:var(--rp-text-3)]">
+            {copy.hero.body}
+          </p>
+
+          <div className="mt-[6px]">
+            {nudge.kind === "idle" && (
+              <button ref={actionRef} type="button" onClick={openDraft} className={`${primaryButton} !px-[22px]`}>
+                {copy.hero.nudge}
+              </button>
+            )}
+            {(nudge.kind === "drafting" || nudge.kind === "sending") && (
+              <button ref={actionRef} type="button" onClick={() => backTo("draft")} className={secondaryButton}>
+                {copy.hero.backToDraft}
+              </button>
+            )}
+            {/* Same block as on the dashboard: Undo, reason chips and View message behave identically */}
+            {(nudge.kind === "sent" || nudge.kind === "dismissed") && (
+              <RailOutcome nudge={nudge} dispatch={dispatch} outcomeRef={outcomeRef} />
+            )}
+          </div>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2">
-          {copy.next.cards.map((c) => (
-            <article key={c.tag} className={`${card} px-6 py-[22px]`}>
-              <div className="inline-flex items-center rounded-full bg-[var(--rp-waiting-bg)] px-[11px] py-[5px] text-[11px] font-bold uppercase tracking-[.05em] text-[color:var(--rp-text-3)]">
+      </AiBlock>
+
+      {/* What happens next: also AI */}
+      <AiBlock
+        labelledBy="rp-next-heading"
+        strip={
+          <>
+            <h2 id="rp-next-heading" className="rp-label !text-[color:var(--rp-text-2)]">
+              {copy.next.heading}
+            </h2>
+            <span className="flex-1" />
+            <span className={aiLabel}>{copy.next.aiLabel}</span>
+          </>
+        }
+      >
+        <div className="grid sm:grid-cols-2">
+          {copy.next.cards.map((c, i) => (
+            <div
+              key={c.tag}
+              className={`flex flex-col items-start gap-[10px] px-4 pb-[26px] pt-[22px] sm:px-7 ${
+                i === 0 ? "border-[color:var(--rp-border)] max-sm:border-b sm:border-r" : ""
+              }`}
+            >
+              <span className="rounded-[4px] border border-[color:var(--rp-border)] bg-[var(--rp-waiting-bg)] px-2 py-1 text-[11px] font-bold uppercase tracking-[.09em] text-[color:var(--rp-text-2)]">
                 {c.tag}
-              </div>
-              <h3 className="mt-[14px] text-[20px] font-bold tracking-[-.022em] text-[color:var(--rp-text)]">{c.title}</h3>
-              <p className="mt-2 text-pretty text-[14px] font-medium leading-normal text-[color:var(--rp-muted)]">{c.body}</p>
-            </article>
+              </span>
+              <h3 className="mt-1 text-[20px] font-bold tracking-[-.02em] text-[color:var(--rp-text)]">{c.title}</h3>
+              <p className="text-pretty text-[14px] font-medium leading-[1.55] text-[color:var(--rp-text-3)]">{c.body}</p>
+            </div>
           ))}
         </div>
-      </section>
+      </AiBlock>
 
-      {/* Where it sits in the chain: upstream, the gate, what it freezes, cost to launch */}
-      <section aria-labelledby="rp-chain-detail-heading" className={`${card} px-4 pb-[30px] pt-7 sm:px-[30px]`}>
-        <h2 id="rp-chain-detail-heading" className="text-[21px] font-bold tracking-[-.024em] text-[color:var(--rp-text)]">
+      {/* Where it sits in the chain */}
+      <section aria-labelledby="rp-chain-detail-heading" className={`${card} px-4 pb-7 pt-[26px] sm:px-7`}>
+        <h2
+          id="rp-chain-detail-heading"
+          className="mb-[26px] text-[20px] font-bold tracking-[-.02em] text-[color:var(--rp-text)]"
+        >
           {copy.chain.heading}
         </h2>
-        <div className="mb-6 mt-[22px]">
-          <ChainStrip />
-        </div>
-        <dl className="grid gap-x-6 gap-y-3 sm:grid-cols-[140px_minmax(0,1fr)]">
-          {copy.chain.facts.map((f) => (
-            <Fragment key={f.label}>
-              <dt className="text-[12px] font-bold uppercase tracking-[.06em] text-[color:var(--rp-muted)] sm:pt-[3px]">
-                {f.label}
-              </dt>
-              <dd className="max-sm:mb-2 text-pretty text-[15px] font-medium leading-normal text-[color:var(--rp-text-2)]">
-                {f.text}
-              </dd>
-            </Fragment>
-          ))}
+        <ChainPosition />
+        <dl className="mt-7 border-t border-[color:var(--rp-border)]">
+          {copy.chain.facts.map((f, i) => {
+            const last = i === copy.chain.facts.length - 1;
+            return (
+              <div
+                key={f.label}
+                className={`grid gap-x-4 py-[14px] sm:grid-cols-[200px_minmax(0,1fr)] ${
+                  last ? "pb-0" : "border-b border-[color:var(--rp-row)]"
+                }`}
+              >
+                <dt className="rp-label !tracking-[.09em] leading-[22px]">{f.label}</dt>
+                <dd
+                  className={`text-pretty text-[15px] leading-[22px] text-[color:var(--rp-text)] ${
+                    last ? "font-semibold" : "font-medium"
+                  }`}
+                >
+                  {f.text}
+                </dd>
+              </div>
+            );
+          })}
         </dl>
       </section>
 
-      {/* The decoy: late, but not the risk. Neutral on purpose — never the at-risk colour. */}
+      {/* The decoy: late, but not the risk. Neutral grey on purpose — never the at-risk colour. */}
       <section
         aria-labelledby="rp-not-flagged-heading"
-        className="rounded-2xl border border-[color:var(--rp-border)] bg-[var(--rp-waiting-bg)] px-4 py-5 sm:px-6"
+        className="flex items-start gap-[14px] rounded-[8px] border border-[color:var(--rp-border)] bg-[var(--rp-row)] px-4 py-5 sm:px-7"
       >
-        <h2 id="rp-not-flagged-heading" className="text-[15px] font-bold text-[color:var(--rp-text)]">
-          {copy.notFlagged.heading}
-        </h2>
-        <p className="mt-1 max-w-[76ch] text-pretty text-[15px] font-medium leading-normal text-[color:var(--rp-text-3)]">
-          {copy.notFlagged.body}
-        </p>
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true" className="mt-[2px] shrink-0">
+          <circle cx="9" cy="9" r="7.3" stroke="var(--rp-muted)" strokeWidth="1.4" />
+          <path d="M9 8v4.5" stroke="var(--rp-muted)" strokeWidth="1.5" strokeLinecap="round" />
+          <circle cx="9" cy="5.5" r=".9" fill="var(--rp-muted)" />
+        </svg>
+        <div>
+          <h2 id="rp-not-flagged-heading" className="mb-1 text-[15px] font-bold text-[color:var(--rp-text)]">
+            {copy.notFlagged.heading}
+          </h2>
+          <p className="max-w-[760px] text-pretty text-[14px] font-medium leading-[1.55] text-[color:var(--rp-text-3)]">
+            {copy.notFlagged.body}
+          </p>
+        </div>
       </section>
 
-      <div aria-hidden="true" className="mt-[6px] h-px bg-[var(--rp-border)]" />
-
       {/* Evidence: observable facts only */}
-      <section aria-labelledby="rp-evidence-heading">
-        <h2 id="rp-evidence-heading" className={`mb-[14px] ${eyebrow}`}>
+      <section aria-labelledby="rp-evidence-heading" className={`${card} overflow-hidden`}>
+        <h2 id="rp-evidence-heading" className={listHeading}>
           {copy.evidence.heading}
         </h2>
-        <ul className={`${card} divide-y divide-[color:var(--rp-divider)] overflow-hidden`}>
+        <ul>
           {copy.evidence.items.map((item) => (
             <li
               key={item.text}
-              className="grid grid-cols-[22px_minmax(0,1fr)] items-baseline gap-x-[14px] gap-y-1 px-4 py-[18px] sm:grid-cols-[22px_minmax(0,1fr)_auto] sm:px-[22px]"
+              className="grid grid-cols-[10px_minmax(0,1fr)] items-center gap-x-4 gap-y-[2px] border-b border-[color:var(--rp-row)] px-4 py-[15px] last:border-b-0 sm:grid-cols-[10px_minmax(0,1fr)_auto] sm:px-7"
             >
-              <svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true" className="mt-[5px]">
-                {EVIDENCE_DOT[item.tone as keyof typeof EVIDENCE_DOT]}
-              </svg>
-              <span className="text-pretty text-[15px] font-semibold text-[color:var(--rp-text)]">{item.text}</span>
-              <span className="col-start-2 text-[12px] font-medium text-[color:var(--rp-muted)] sm:col-start-3 sm:whitespace-nowrap">
+              <span
+                aria-hidden="true"
+                className={`h-[10px] w-[10px] rounded-full ${DOT[item.tone === "neutral" ? "hollow" : (item.tone as "atrisk" | "done")]}`}
+              />
+              <span
+                className={`text-pretty text-[15px] text-[color:var(--rp-text)] ${
+                  item.tone === "atrisk" ? "font-bold" : "font-medium"
+                }`}
+              >
+                {item.text}
+              </span>
+              <span className="col-start-2 text-[13px] font-medium text-[color:var(--rp-muted)] sm:col-start-3 sm:text-right">
                 {item.source}
               </span>
             </li>
@@ -260,24 +337,25 @@ const Details = ({ state, dispatch }: Props) => {
       </section>
 
       {/* History */}
-      <section aria-labelledby="rp-history-heading">
-        <h2 id="rp-history-heading" className={`mb-[14px] ${eyebrow}`}>
+      <section aria-labelledby="rp-history-heading" className={`${card} overflow-hidden`}>
+        <h2 id="rp-history-heading" className={listHeading}>
           {copy.history.heading}
         </h2>
-        <ol className="flex flex-col gap-3">
-          {[...copy.history.items, ...liveHistory.map((text) => ({ date: "Jun 13", text }))].map((item, i, all) => {
-            const latest = i === all.length - 1;
+        <ol>
+          {history.map((item) => {
+            const strong = item.tone === "atrisk";
             return (
-              <li key={item.text} className="grid grid-cols-[62px_10px_minmax(0,1fr)] items-baseline gap-x-[14px]">
-                <span className={`rp-mono text-[12px] ${latest ? "text-[color:var(--rp-text-2)]" : "text-[color:var(--rp-muted)]"}`}>
+              <li
+                key={item.text}
+                className="grid grid-cols-[64px_10px_minmax(0,1fr)] items-center gap-x-4 border-b border-[color:var(--rp-row)] px-4 py-[13px] last:border-b-0 sm:px-7"
+              >
+                <span className={`rp-mono text-[13px] ${strong ? "text-[color:var(--rp-text-2)]" : "text-[color:var(--rp-muted)]"}`}>
                   {item.date}
                 </span>
-                <svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true" className="mt-[5px]">
-                  <circle cx="5" cy="5" r="3.4" fill="var(--rp-border-strong)" />
-                </svg>
+                <span aria-hidden="true" className={`h-2 w-2 rounded-full ${DOT[item.tone as keyof typeof DOT]}`} />
                 <span
                   className={`text-pretty text-[14px] ${
-                    latest ? "font-semibold text-[color:var(--rp-text-2)]" : "font-medium text-[color:var(--rp-muted)]"
+                    strong ? "font-bold text-[color:var(--rp-text)]" : "font-medium text-[color:var(--rp-text-3)]"
                   }`}
                 >
                   {item.text}

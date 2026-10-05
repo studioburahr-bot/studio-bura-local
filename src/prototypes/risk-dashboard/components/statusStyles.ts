@@ -36,3 +36,15 @@ export const CARD_STYLES: Record<
     meta: "font-medium text-[color:var(--rp-muted)]",
   },
 };
+
+// Segment from one node to the next: green once the step is done, dashed for a time gate, grey otherwise.
+// Drawn from the column's centre across the 24px grid gap to the next column's centre.
+export const segmentClass = (status: StepStatus, isGate: boolean) =>
+  `absolute left-1/2 top-1/2 -mt-px w-[calc(100%+24px)] ${
+    isGate
+      ? "border-t-2 border-dashed border-[color:var(--rp-faint)]"
+      : `h-[2px] ${status === "done" ? "bg-[var(--rp-done)]" : "bg-[var(--rp-line)]"}`
+  }`;
+
+// Where the gate chip sits: halfway along that segment
+export const GATE_POSITION = "absolute left-[calc(100%+12px)] top-1/2 z-[1] -translate-x-1/2 -translate-y-1/2";
