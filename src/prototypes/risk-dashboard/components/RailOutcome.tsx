@@ -34,7 +34,7 @@ const RailOutcome = ({ nudge, dispatch, outcomeRef }: Props) => {
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" className="mt-[3px] shrink-0">
           <path d="M14 2L7 9M14 2l-4.5 12-2.5-5-5-2.5L14 2z" stroke="var(--rp-blue)" strokeWidth="1.4" strokeLinejoin="round" strokeLinecap="round" />
         </svg>
-        <div className="flex min-w-0 flex-1 basis-[240px] flex-col items-start gap-[2px]">
+        <div className="flex min-w-0 flex-1 basis-[180px] flex-col items-start gap-[2px]">
           <span className={title}>{copy.sent.status}</span>
           <span className={`${line} tabular-nums`}>{copy.sent.sentAt(nudge.at)}</span>
           <span className="mt-1 text-[13px] font-semibold text-[color:var(--rp-text-2)]">{copy.sent.stillAtRisk}</span>

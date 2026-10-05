@@ -23,7 +23,7 @@ const PageHeader = ({ eyebrow, title, sub, titleRef }: Props) => (
       <h1
         ref={titleRef}
         tabIndex={-1}
-        className="text-[28px] font-bold leading-[1.15] tracking-[-.025em] text-[color:var(--rp-text)]"
+        className="text-[24px] font-bold leading-[1.15] tracking-[-.025em] text-[color:var(--rp-text)] sm:text-[28px]"
       >
         {title}
       </h1>

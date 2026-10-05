@@ -1,8 +1,13 @@
-import { chainCopy, steps } from "../data";
+import { Fragment } from "react";
+import { chainCopy, connectors, steps } from "../data";
 import ProgressLine from "./ProgressLine";
+import { GateChip, ProgressNode } from "./progressParts";
 import StepCard from "./StepCard";
+import { routeClass } from "./statusStyles";
 
-// Progress line and cards share one 4-column grid (24px gap), which is what keeps each node centred over its card.
+// From 1024px: progress line and cards share one 4-column grid (24px gap), which keeps each node centred over its card.
+// Below 1024px: a vertical route — cards stacked, with the line and one node per step running down the left,
+// and the "+24h dry time" label on the dashed segment between Paint and Racking.
 const DependencyChain = () => (
   <section
     aria-labelledby="rp-chain-heading"
@@ -14,10 +19,45 @@ const DependencyChain = () => (
 
     <ProgressLine />
 
-    <div className="grid items-stretch gap-6 lg:grid-cols-4">
-      {steps.map((step) => (
-        <StepCard key={step.id} step={step} />
-      ))}
+    <div className="grid items-stretch lg:grid-cols-4 lg:gap-6">
+      {steps.map((step, i) => {
+        const before = connectors[i - 1]; // segment coming into this step
+        const after = connectors[i]; // segment leaving it
+        const gate = after?.kind === "gate" ? after : null;
+        return (
+          <Fragment key={step.id}>
+            <div className="relative max-lg:pl-10">
+              {/* Route (below 1024px only): line in, node, line out. The line runs at x = 14px. */}
+              <span aria-hidden="true" data-route className="lg:hidden">
+                {before && (
+                  <span className={`absolute left-[13px] top-0 h-5 ${routeClass(steps[i - 1].status, before.kind === "gate")}`} />
+                )}
+                <span className="absolute left-0 top-5 flex w-7 justify-center">
+                  <ProgressNode status={step.status} />
+                </span>
+                {after && (
+                  <span className={`absolute bottom-0 left-[13px] top-12 ${routeClass(step.status, !!gate)}`} />
+                )}
+              </span>
+              <StepCard step={step} />
+            </div>
+
+            {/* Gap between two cards (below 1024px only), carrying the line and, for a time gate, its label */}
+            {after && (
+              <div aria-hidden="true" className={`relative lg:hidden ${gate ? "h-14" : "h-4"}`}>
+                <span className={`absolute inset-y-0 left-[13px] ${routeClass(step.status, !!gate)}`} />
+                {gate && (
+                  <GateChip
+                    duration={gate.duration}
+                    caption={gate.caption}
+                    className="absolute left-0 top-1/2 -translate-y-1/2"
+                  />
+                )}
+              </div>
+            )}
+          </Fragment>
+        );
+      })}
     </div>
   </section>
 );

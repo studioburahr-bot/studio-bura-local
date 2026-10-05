@@ -81,7 +81,7 @@ const RiskPrototype = () => {
       </div>
 
       {/* App frame */}
-      <div className="flex flex-1">
+      <div className="flex flex-1 flex-col lg:flex-row">
         <Sidebar />
         <div className="flex min-w-0 flex-1 flex-col">
           <main className="w-full max-w-[1308px] flex-1 px-4 pb-14 pt-6 sm:px-11 sm:pt-9">

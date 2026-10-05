@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { shell } from "../data";
 
-const item = "flex items-center gap-[11px] rounded-[6px] px-3 py-[10px] text-[14px]";
+const item =
+  "flex items-center gap-[11px] rounded-[6px] px-3 py-[10px] text-[14px] max-lg:min-h-[44px] max-lg:gap-2 max-lg:px-[10px] max-lg:py-0";
 
 const BuildsIcon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -26,20 +27,21 @@ const INERT_ICONS = [
   </svg>,
 ];
 
-// Dark navy app sidebar. Builds is the only real destination (the dashboard).
+// Dark navy app navigation: a 220px sidebar from 1024px up, a slim bar across the top below that.
+// Builds is the only real destination (the dashboard).
 // Setup and Activity are plain text: not links, not focusable, and announced as unavailable.
 const Sidebar = () => (
-  <aside className="rp-sidebar hidden w-[220px] shrink-0 flex-col gap-7 bg-[var(--rp-navy)] px-[14px] py-[22px] lg:flex">
+  <aside className="rp-sidebar flex shrink-0 items-center gap-3 bg-[var(--rp-navy)] px-4 py-1 lg:w-[220px] lg:flex-col lg:items-stretch lg:gap-7 lg:px-[14px] lg:py-[22px]">
     {/* Decorative mark only — the tool deliberately has no product name */}
-    <div className="px-[10px]">
-      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+    <div className="lg:px-[10px]">
+      <svg width="30" height="30" className="max-lg:h-[26px] max-lg:w-[26px]" viewBox="0 0 30 30" fill="none" aria-hidden="true">
         <rect x="1" y="1" width="28" height="28" rx="7" stroke="#fff" strokeWidth="2" />
         <path d="M9 10h12M9 15h8M9 20h12" stroke="#fff" strokeWidth="2" strokeLinecap="round" />
       </svg>
     </div>
 
     <nav aria-label={shell.nav.label}>
-      <ul className="flex flex-col gap-[2px]">
+      <ul className="flex gap-[2px] lg:flex-col">
         <li>
           <Link
             to={shell.dashboardPath}
@@ -52,7 +54,8 @@ const Sidebar = () => (
         </li>
         {shell.nav.inert.map((label, i) => (
           <li key={label} className={`${item} cursor-default font-semibold text-[color:var(--rp-nav-text)]`}>
-            {INERT_ICONS[i]}
+            {/* Icons are dropped on phones so the bar stays on one row */}
+            <span className="max-sm:hidden">{INERT_ICONS[i]}</span>
             {label}
             <span className="sr-only">, {shell.nav.inertNote}</span>
           </li>

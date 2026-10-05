@@ -53,12 +53,10 @@ export const shell = {
 
 export const build = {
   org: "Nordhaus Interiors · Store 041, Bramfeld",
-  implementationLabel: "Implementation",
   implementationId: "IMP-2214",
   title: "Kitchen display rebuild — Range 4",
   today: { label: "Today", value: "Fri, Jun 13" },
   launch: { label: "Launch", value: "Wed, Jun 18", note: "locked" },
-  readiness: "Paint needs attention",
 };
 
 export const chainCopy = {
@@ -121,13 +119,11 @@ export const connectors: Connector[] = [
   { kind: "plain" },
 ];
 
-// AI rail: the single ranked risk. Signage is deliberately not here.
+// AI assessment panel: the single ranked risk. Signage is deliberately not here.
 export const rail = {
   aiLabel: "AI assessment",
-  heading: "What's at risk",
   meta: "Ranked by cost to launch · updated 09:12",
   risk: {
-    rank: "01",
     stepId: "paint",
     headline: "Nudge paint for tomorrow — if it slips, the Jun 18 launch loses its only buffer day.",
     evidence: ["Not confirmed for tomorrow", "24h dry gate before racking", "Launch date locked"],
@@ -187,7 +183,6 @@ export const nudge = {
 
 // Details view: why Paint is the one ranked risk. Follows Details v1.
 export const details = {
-  breadcrumbBack: "What's at risk",
   breadcrumbCurrent: "Paint at risk",
   ref: "IMP-2214 · Store 041",
   hero: {
@@ -216,7 +211,6 @@ export const details = {
   },
   chain: {
     heading: "Where it sits in the chain",
-    gate: "+24h dry",
     launch: { name: "Launch", date: "Jun 18" },
     facts: [
       { label: "Upstream", text: "Assembly is done (closed Jun 11, read from AssemblyHub). Nothing stops paint from starting." },

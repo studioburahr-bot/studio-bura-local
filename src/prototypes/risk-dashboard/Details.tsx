@@ -1,4 +1,4 @@
-import { useEffect, useRef, type Dispatch } from "react";
+import { Fragment, useEffect, useRef, type Dispatch } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { build, connectors, details as copy, shell, steps, STATUS_LABEL } from "./data";
 import type { Action, State } from "./state";
@@ -9,7 +9,7 @@ import type { RailFocus } from "./components/RiskRail";
 import StatusChip from "./components/StatusChip";
 import { aiLabel, primaryButton, secondaryButton } from "./components/buttons";
 import { GateChip, LaunchNode, ProgressNode } from "./components/progressParts";
-import { GATE_POSITION, segmentClass } from "./components/statusStyles";
+import { GATE_POSITION, routeClass, segmentClass } from "./components/statusStyles";
 
 interface Props {
   state: State;
@@ -35,54 +35,72 @@ const DOT = {
 
 // The chain with Paint highlighted, the dry-time gate after it and the locked launch at the end.
 // Setup facts, not AI — so no navy marking.
+// From 1024px: five columns with the line running across. Below: a vertical route with the line on the left.
 const ChainPosition = () => {
-  const label = "text-center max-lg:text-left";
+  const row = "relative flex items-center gap-3 max-lg:py-1 lg:flex-col";
+  const nodeBox = "relative flex h-9 w-7 shrink-0 items-center justify-center lg:w-full";
+  const label = "text-left lg:text-center";
   return (
-    <ol className="grid gap-x-6 gap-y-3 lg:grid-cols-5">
+    <ol className="grid lg:grid-cols-5 lg:gap-6">
       {steps.map((step, i) => {
+        const before = connectors[i - 1];
         const connector = connectors[i];
         const gate = connector?.kind === "gate" ? connector : null;
         const atRisk = step.status === "atrisk";
         return (
-          <li key={step.id} className="flex items-center gap-3 lg:flex-col">
-            <div aria-hidden="true" className="relative flex h-9 items-center justify-center lg:w-full">
-              {/* Last step connects on to Launch */}
-              <span className={`max-lg:hidden ${segmentClass(step.status, !!gate)}`} />
-              <ProgressNode status={step.status} />
-              {gate && (
-                <GateChip duration={gate.duration} caption={gate.caption} className={`max-lg:hidden ${GATE_POSITION}`} />
-              )}
-            </div>
-            <div className={label}>
-              <div
-                className={
-                  atRisk
-                    ? "text-[16px] font-extrabold text-[color:var(--rp-atrisk-text)]"
-                    : "text-[15px] font-semibold text-[color:var(--rp-text-3)]"
-                }
-              >
-                {step.name}
-                <span className="sr-only">, {STATUS_LABEL[step.status]}</span>
-              </div>
-              <div
-                className={`mt-[2px] text-[12px] tabular-nums ${
-                  atRisk ? "font-semibold text-[color:var(--rp-text-2)]" : "font-medium text-[color:var(--rp-muted)]"
-                }`}
-              >
-                {step.when.date.replace("· ", "")}
+          <Fragment key={step.id}>
+            <li className={row}>
+              <div aria-hidden="true" className={nodeBox}>
+                {/* Desktop: segment across to the next node (the last step connects on to Launch) */}
+                <span className={`max-lg:hidden ${segmentClass(step.status, !!gate)}`} />
+                {/* Route: line in from above and out below, at x = 14px */}
+                {before && (
+                  <span className={`absolute -top-1 left-[13px] h-[calc(50%+4px)] lg:hidden ${routeClass(steps[i - 1].status, before.kind === "gate")}`} />
+                )}
+                <span className={`absolute -bottom-1 left-[13px] h-[calc(50%+4px)] lg:hidden ${routeClass(step.status, !!gate)}`} />
+                <ProgressNode status={step.status} />
                 {gate && (
-                  <span className="lg:sr-only">
-                    {" "}
-                    · then {gate.duration} {gate.caption.toLowerCase()}
-                  </span>
+                  <GateChip duration={gate.duration} caption={gate.caption} className={`max-lg:hidden ${GATE_POSITION}`} />
                 )}
               </div>
-            </div>
-          </li>
+              <div className={label}>
+                <div
+                  className={
+                    atRisk
+                      ? "text-[16px] font-extrabold text-[color:var(--rp-atrisk-text)]"
+                      : "text-[15px] font-semibold text-[color:var(--rp-text-3)]"
+                  }
+                >
+                  {step.name}
+                  <span className="sr-only">, {STATUS_LABEL[step.status]}</span>
+                </div>
+                <div
+                  className={`mt-[2px] text-[12px] tabular-nums ${
+                    atRisk ? "font-semibold text-[color:var(--rp-text-2)]" : "font-medium text-[color:var(--rp-muted)]"
+                  }`}
+                >
+                  {step.when.date.replace("· ", "")}
+                  {gate && (
+                    <span className="sr-only">
+                      , then {gate.duration} {gate.caption}
+                    </span>
+                  )}
+                </div>
+              </div>
+            </li>
+            {/* Route only: the gap to the next step, with the gate label on the dashed segment */}
+            <li aria-hidden="true" className={`relative lg:hidden ${gate ? "h-12" : "h-2"}`}>
+              <span className={`absolute inset-y-0 left-[13px] ${routeClass(step.status, !!gate)}`} />
+              {gate && (
+                <GateChip duration={gate.duration} caption={gate.caption} className="absolute left-0 top-1/2 -translate-y-1/2" />
+              )}
+            </li>
+          </Fragment>
         );
       })}
-      <li className="flex items-center gap-3 lg:flex-col">
-        <div aria-hidden="true" className="relative flex h-9 items-center justify-center lg:w-full">
+      <li className={row}>
+        <div aria-hidden="true" className={nodeBox}>
+          <span className={`absolute -top-1 left-[13px] h-[calc(50%+4px)] lg:hidden ${routeClass("waiting", false)}`} />
           <LaunchNode />
         </div>
         <div className={label}>
@@ -158,7 +176,7 @@ const Details = ({ state, dispatch }: Props) => {
                 <Link
                   to={shell.dashboardPath}
                   state={{ railFocus: "details" satisfies RailFocus }}
-                  className="inline-flex items-center rounded-[4px] text-[color:var(--rp-text-3)] hover:text-[color:var(--rp-blue)] [@media(pointer:coarse)]:min-h-[44px]"
+                  className="inline-flex items-center rounded-[4px] text-[color:var(--rp-text-3)] hover:text-[color:var(--rp-blue)] max-lg:min-h-[44px] [@media(pointer:coarse)]:min-h-[44px]"
                 >
                   {build.title}
                 </Link>{" "}

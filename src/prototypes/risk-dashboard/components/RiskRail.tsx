@@ -1,5 +1,5 @@
 import { useEffect, useRef, type Dispatch } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { rail, shell } from "../data";
 import type { Action, State } from "../state";
 import NudgePanel from "./NudgePanel";
@@ -22,6 +22,7 @@ const RiskRail = ({ state, dispatch }: Props) => {
   const { risk } = rail;
   const { nudge } = state;
   const location = useLocation();
+  const navigate = useNavigate();
 
   const railRef = useRef<HTMLElement>(null);
   const detailsLinkRef = useRef<HTMLAnchorElement>(null);
@@ -36,6 +37,8 @@ const RiskRail = ({ state, dispatch }: Props) => {
     const focus = (location.state as { railFocus?: RailFocus } | null)?.railFocus;
     if (focus === "details") detailsLinkRef.current?.focus();
     if (focus === "draft") panelRef.current?.focus();
+    // Use the note once, then clear it, so a page refresh doesn't move focus again
+    if (focus) navigate(location.pathname, { replace: true, state: null });
     // Only on arrival
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -106,7 +109,7 @@ const RiskRail = ({ state, dispatch }: Props) => {
                   ref={nudgeButtonRef}
                   type="button"
                   onClick={() => dispatch({ type: "OPEN_DRAFT" })}
-                  className={primaryButton}
+                  className={`${primaryButton} max-[480px]:w-full`}
                 >
                   {rail.actions.nudge}
                 </button>

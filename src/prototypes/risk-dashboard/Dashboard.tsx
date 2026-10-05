@@ -25,8 +25,13 @@ const Dashboard = ({ state, dispatch }: { state: State; dispatch: Dispatch<Actio
         }
         title={build.title}
       />
-      <DependencyChain />
-      <RiskRail state={state} dispatch={dispatch} />
+      {/* 480px and below: the AI assessment comes first — the answer before the evidence */}
+      <div className="max-[480px]:order-3">
+        <DependencyChain />
+      </div>
+      <div className="max-[480px]:order-2">
+        <RiskRail state={state} dispatch={dispatch} />
+      </div>
     </div>
   );
 };

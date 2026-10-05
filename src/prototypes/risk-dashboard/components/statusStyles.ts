@@ -48,3 +48,9 @@ export const segmentClass = (status: StepStatus, isGate: boolean) =>
 
 // Where the gate chip sits: halfway along that segment
 export const GATE_POSITION = "absolute left-[calc(100%+12px)] top-1/2 z-[1] -translate-x-1/2 -translate-y-1/2";
+
+// Same segment, drawn vertically for the route layout below 1024px
+export const routeClass = (status: StepStatus, isGate: boolean) =>
+  isGate
+    ? "border-l-2 border-dashed border-[color:var(--rp-faint)]"
+    : `w-[2px] ${status === "done" ? "bg-[var(--rp-done)]" : "bg-[var(--rp-line)]"}`;
