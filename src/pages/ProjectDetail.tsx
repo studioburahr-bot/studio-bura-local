@@ -8,6 +8,8 @@ import {
 } from "@/data/projects";
 import FigmaPrototypeDevice from "@/components/FigmaPrototypeDevice";
 import FigmaEmbed from "@/components/FigmaEmbed";
+import RiskHeroAnimation from "@/components/RiskHeroAnimation";
+import ForkliftAnimation from "@/components/ForkliftAnimation";
 // CHO7 project assets
 import cho7Floorplan from "@/assets/projects/cho7-floorplan.png?webp";
 import cho7Moodboard from "@/assets/projects/cho7-moodboard.png?webp";
@@ -171,8 +173,10 @@ const ProjectDetail = () => {
         <section className="-mt-8 sm:-mt-12">
           <div className="max-w-container mx-auto px-4 sm:px-6">
             <img src={Risk_Dash_hero_title} className="w-full h-auto" />
+            <RiskHeroAnimation />
             <img src={Risk_Dash_1} className="w-full h-auto" />
             <img src={Risk_Dash_2} className="w-full h-auto" />
+            <ForkliftAnimation />
             <img src={Risk_Dash_3} className="w-full h-auto" />
             <img src={Risk_Dash_4} className="w-full h-auto" />
             <img src={Risk_Dash_5} className="w-full h-auto" />

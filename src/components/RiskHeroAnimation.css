@@ -1,0 +1,51 @@
+/* Styles for RiskHeroAnimation.tsx.
+
+   The first block is the CSS from src/assets/projects/Hero_animation.dc.html, unchanged apart from
+   the "rt-hero" prefix on every class, id and keyframe name, so nothing can clash with the rest of
+   the site. Timing, colours and geometry are exactly the source's. (The page-level rules for
+   html, body and links were not carried over.) */
+
+.rt-hero .rt-hero-block { transform-box: fill-box; transform-origin: center; }
+.rt-hero #rt-hero-block-1, .rt-hero #rt-hero-block-2, .rt-hero .rt-hero-fill { fill: rgba(29, 95, 209, 0.2); }
+.rt-hero .rt-hero-outline { fill: none; stroke: rgba(29, 95, 209, 0); stroke-width: 3; stroke-dasharray: 14 10.88; }
+.rt-hero line { stroke: rgba(29, 95, 209, 0.45); stroke-width: 4; stroke-dasharray: 108 108; stroke-dashoffset: 0; }
+.rt-hero #rt-hero-block-1 { animation: rt-hero-open-edge .6s cubic-bezier(.2, .8, .2, 1) 0s both, rt-hero-blue .3s 2.28s forwards, rt-hero-unblue .5s 3s forwards; }
+.rt-hero #rt-hero-block-2 { animation: rt-hero-open .6s .35s both, rt-hero-blue .3s 2.55s forwards, rt-hero-grow .7s cubic-bezier(.34, 1.3, .64, 1) 3.8s forwards; }
+.rt-hero #rt-hero-block-3 { animation: rt-hero-open .6s .7s both; }
+.rt-hero #rt-hero-block-4 { animation: rt-hero-open .6s 1.05s both; }
+.rt-hero #rt-hero-block-5 { animation: rt-hero-open-edge .6s cubic-bezier(.2, .8, .2, 1) 1.4s both; }
+.rt-hero #rt-hero-block-3 .rt-hero-fill { animation: rt-hero-blue .3s 2s forwards, rt-hero-unblue .5s 3s forwards, rt-hero-empty .6s 3.8s forwards; }
+.rt-hero #rt-hero-block-4 .rt-hero-fill { animation: rt-hero-blue .3s 2.42s forwards, rt-hero-unblue .5s 3s forwards, rt-hero-empty .6s 3.95s forwards; }
+.rt-hero #rt-hero-block-5 .rt-hero-fill { animation: rt-hero-blue .3s 2.12s forwards, rt-hero-unblue .5s 3s forwards, rt-hero-empty .6s 4.1s forwards; }
+.rt-hero #rt-hero-block-3 .rt-hero-outline { animation: rt-hero-outline .6s 3.8s forwards; }
+.rt-hero #rt-hero-block-4 .rt-hero-outline { animation: rt-hero-outline .6s 3.95s forwards; }
+.rt-hero #rt-hero-block-5 .rt-hero-outline { animation: rt-hero-outline .6s 4.1s forwards; }
+.rt-hero #rt-hero-link-1 { animation: rt-hero-draw .45s cubic-bezier(.4, 0, .2, 1) .2s both, rt-hero-link-blue .3s 2.35s forwards, rt-hero-link-fade .5s 3.8s forwards; }
+.rt-hero #rt-hero-link-2 { animation: rt-hero-draw .45s cubic-bezier(.4, 0, .2, 1) .55s both, rt-hero-link-blue .3s 2.05s forwards, rt-hero-link-dash .6s 3.9s forwards; }
+.rt-hero #rt-hero-link-3 { animation: rt-hero-draw .45s cubic-bezier(.4, 0, .2, 1) .9s both, rt-hero-link-blue .3s 2.5s forwards, rt-hero-link-dash .6s 4.05s forwards; }
+.rt-hero #rt-hero-link-4 { animation: rt-hero-draw .45s cubic-bezier(.4, 0, .2, 1) 1.25s both, rt-hero-link-blue .3s 2.2s forwards, rt-hero-link-dash .6s 4.2s forwards; }
+@keyframes rt-hero-open { 0% { opacity: 0; transform: scale(.6); animation-timing-function: cubic-bezier(.2, .7, .3, 1); } 65% { opacity: 1; transform: scale(1.04); animation-timing-function: ease-in-out; } 100% { opacity: 1; transform: scale(1); } }
+@keyframes rt-hero-open-edge { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: scale(1); } }
+@keyframes rt-hero-grow { from { transform: scale(1); } to { transform: scale(1.2); } }
+@keyframes rt-hero-blue { from { fill: rgba(29, 95, 209, 0.2); } to { fill: #1D5FD1; } }
+@keyframes rt-hero-unblue { from { fill: #1D5FD1; } to { fill: rgba(29, 95, 209, 0.2); } }
+@keyframes rt-hero-navy { from { fill: #1D5FD1; } to { fill: #0E1B33; } }
+@keyframes rt-hero-empty { from { fill: rgba(29, 95, 209, 0.2); } to { fill: rgba(29, 95, 209, 0); } }
+@keyframes rt-hero-outline { from { stroke: rgba(29, 95, 209, 0); } to { stroke: rgba(29, 95, 209, 0.45); } }
+@keyframes rt-hero-draw { from { stroke-dashoffset: 108; } to { stroke-dashoffset: 0; } }
+@keyframes rt-hero-link-blue { from { stroke: rgba(29, 95, 209, 0.45); } to { stroke: #1D5FD1; } }
+@keyframes rt-hero-link-fade { from { stroke: #1D5FD1; } to { stroke: rgba(29, 95, 209, 0.45); } }
+@keyframes rt-hero-link-dash { from { stroke: #1D5FD1; stroke-dasharray: 108 108; stroke-dashoffset: 0; } to { stroke: rgba(29, 95, 209, 0.45); stroke-dasharray: 10 8; stroke-dashoffset: -4; } }
+@media (prefers-reduced-motion: reduce) {
+  .rt-hero * { animation: none !important; }
+  .rt-hero #rt-hero-block-2 { fill: #1D5FD1; transform: scale(1.2); }
+  .rt-hero .rt-hero-fill { fill: none; }
+  .rt-hero .rt-hero-outline { stroke: rgba(29, 95, 209, 0.45); }
+  .rt-hero #rt-hero-link-2, .rt-hero #rt-hero-link-3, .rt-hero #rt-hero-link-4 { stroke-dasharray: 10 8; stroke-dashoffset: -4; }
+}
+
+/* Added for this site, not in the source: the animation only runs while it is on screen.
+   The component sets data-playing; pausing freezes every animation where it is. */
+.rt-hero[data-playing="false"] * {
+  animation-play-state: paused !important;
+}

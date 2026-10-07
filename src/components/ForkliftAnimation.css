@@ -1,0 +1,422 @@
+/* Styles for ForkliftAnimation.tsx.
+
+   The first block is the <style> from "src/assets/projects/Fork lift animation.svg", unchanged apart
+   from the "rt-fork-" prefix on every id and keyframe name, so nothing can clash with the rest of the
+   site. Timing, easing and geometry are exactly the source's: one 4.046812s loop, repeating forever. */
+
+@keyframes rt-fork-kf_box_3_transform_0 {
+  0% {
+    transform: translateX(1046.778px) translateY(191.297px) translateX(0px) translateY(0px);
+  }
+  70.5% {
+    transform: translateX(1046.778px) translateY(191.297px) translateX(0px) translateY(0px);
+  }
+  83.7% {
+    transform: translateX(1046.778px) translateY(191.297px) translateX(391.204px) translateY(0px);
+  }
+  100% {
+    transform: translateX(1046.778px) translateY(191.297px) translateX(391.204px) translateY(0px);
+  }
+}
+#rt-fork-box_3 {
+  transform-origin: 0 0;
+  animation: rt-fork-kf_box_3_transform_0 4.046812s linear infinite;
+}
+@keyframes rt-fork-kf_box_2_2_transform_0 {
+  0% {
+    transform: translateX(1125.481px) translateY(191.297px) translateX(0px) translateY(0px);
+  }
+  70.5% {
+    transform: translateX(1125.481px) translateY(191.297px) translateX(0px) translateY(0px);
+  }
+  83.7% {
+    transform: translateX(1125.481px) translateY(191.297px) translateX(391.204px) translateY(0px);
+  }
+  100% {
+    transform: translateX(1125.481px) translateY(191.297px) translateX(391.204px) translateY(0px);
+  }
+}
+#rt-fork-box_2_2 {
+  transform-origin: 0 0;
+  animation: rt-fork-kf_box_2_2_transform_0 4.046812s linear infinite;
+}
+@keyframes rt-fork-kf_box_1_transform_0 {
+  0% {
+    transform: translateX(1125.481px) translateY(114.908px) translateX(0px) translateY(0px);
+  }
+  70.5% {
+    transform: translateX(1125.481px) translateY(114.908px) translateX(0px) translateY(0px);
+  }
+  83.7% {
+    transform: translateX(1125.481px) translateY(114.908px) translateX(391.204px) translateY(0px);
+  }
+  100% {
+    transform: translateX(1125.481px) translateY(114.908px) translateX(391.204px) translateY(0px);
+  }
+}
+#rt-fork-box_1 {
+  transform-origin: 0 0;
+  animation: rt-fork-kf_box_1_transform_0 4.046812s linear infinite;
+}
+@keyframes rt-fork-kf_box_5_transform_0 {
+  0% {
+    transform: translateX(1046.778px) translateY(-403.611px) translateX(0px) translateY(0px);
+  }
+  79.81% {
+    animation-timing-function: ease-out;
+    transform: translateX(1046.778px) translateY(-403.611px) translateX(0px) translateY(0px);
+  }
+  83.7% {
+    transform: translateX(1046.778px) translateY(-403.611px) translateX(0px) translateY(950.444px);
+  }
+  84.9% {
+    transform: translateX(1046.778px) translateY(-403.611px) translateX(0px) translateY(562.037px);
+  }
+  85.96% {
+    animation-timing-function: ease-out;
+    transform: translateX(1046.778px) translateY(-403.611px) translateX(0px) translateY(545.833px);
+  }
+  87.83% {
+    transform: translateX(1046.778px) translateY(-403.611px) translateX(0px) translateY(594.907px);
+  }
+  89.3% {
+    animation-timing-function: ease-out;
+    transform: translateX(1046.778px) translateY(-403.611px) translateX(0px) translateY(575.463px);
+  }
+  90.51% {
+    transform: translateX(1046.778px) translateY(-403.611px) translateX(0px) translateY(594.907px);
+  }
+  100% {
+    transform: translateX(1046.778px) translateY(-403.611px) translateX(0px) translateY(594.907px);
+  }
+}
+#rt-fork-box_5 {
+  transform-origin: 0 0;
+  animation: rt-fork-kf_box_5_transform_0 4.046812s linear infinite;
+}
+@keyframes rt-fork-kf_box_6_transform_0 {
+  0% {
+    transform: translateX(1125.481px) translateY(-403.611px) translateX(0px) translateY(0px);
+  }
+  84.96% {
+    animation-timing-function: ease-out;
+    transform: translateX(1125.481px) translateY(-403.611px) translateX(0px) translateY(0px);
+  }
+  88.85% {
+    transform: translateX(1125.481px) translateY(-403.611px) translateX(0px) translateY(594.907px);
+  }
+  91.12% {
+    animation-timing-function: ease-out;
+    transform: translateX(1125.481px) translateY(-403.611px) translateX(0px) translateY(545.833px);
+  }
+  92.99% {
+    transform: translateX(1125.481px) translateY(-403.611px) translateX(0px) translateY(594.907px);
+  }
+  94.45% {
+    animation-timing-function: ease-out;
+    transform: translateX(1125.481px) translateY(-403.611px) translateX(0px) translateY(575.463px);
+  }
+  95.66% {
+    transform: translateX(1125.481px) translateY(-403.611px) translateX(0px) translateY(594.907px);
+  }
+  100% {
+    transform: translateX(1125.481px) translateY(-403.611px) translateX(0px) translateY(594.907px);
+  }
+}
+#rt-fork-box_6 {
+  transform-origin: 0 0;
+  animation: rt-fork-kf_box_6_transform_0 4.046812s linear infinite;
+}
+@keyframes rt-fork-kf_box_7_transform_0 {
+  0% {
+    transform: translateX(1125.481px) translateY(-480px) translateX(0px) translateY(0px);
+  }
+  89.3% {
+    animation-timing-function: ease-out;
+    transform: translateX(1125.481px) translateY(-480px) translateX(0px) translateY(0px);
+  }
+  93.19% {
+    transform: translateX(1125.481px) translateY(-480px) translateX(0px) translateY(594.907px);
+  }
+  95.45% {
+    animation-timing-function: ease-out;
+    transform: translateX(1125.481px) translateY(-480px) translateX(0px) translateY(545.833px);
+  }
+  97.32% {
+    transform: translateX(1125.481px) translateY(-480px) translateX(0px) translateY(594.907px);
+  }
+  98.79% {
+    animation-timing-function: linear(0, 0.0409, 0.1461, 0.2911, 0.4545, 0.6187, 0.7708, 0.902, 1.0075, 1.0854, 1.1369, 1.1646, 1.1724, 1.1647, 1.1462, 1.121, 1.0928, 1.0645, 1.0384, 1.016, 0.998, 0.9848, 0.9761, 0.9715, 0.9703, 0.9717, 0.975, 0.9793, 0.9842, 0.9891, 0.9936, 0.9974, 1.0005, 1.0027, 1.0042, 1.0049, 1.0051, 1.0049, 1.0043, 1.0035, 1.0027, 1.0018, 1.0011, 1.0004, 0.9999, 0.9995, 0.9993, 0.9991, 0.9991, 0.9992, 0.9993);
+    transform: translateX(1125.481px) translateY(-480px) translateX(0px) translateY(575.463px);
+  }
+  100% {
+    transform: translateX(1125.481px) translateY(-480px) translateX(0px) translateY(594.907px);
+  }
+}
+#rt-fork-box_7 {
+  transform-origin: 0 0;
+  animation: rt-fork-kf_box_7_transform_0 4.046812s linear infinite;
+}
+@keyframes rt-fork-kf_moving_box_offset_distance_0 {
+  0% {
+    offset-distance: 0%;
+  }
+  1.25% {
+    offset-distance: 20.662%;
+  }
+  2.5% {
+    offset-distance: 28.176%;
+  }
+  3.75% {
+    offset-distance: 31.933%;
+  }
+  5% {
+    offset-distance: 35.689%;
+  }
+  6.25% {
+    offset-distance: 37.568%;
+  }
+  7.5% {
+    offset-distance: 41.324%;
+  }
+  8.75% {
+    offset-distance: 41.324%;
+  }
+  10% {
+    offset-distance: 43.203%;
+  }
+  11.25% {
+    offset-distance: 45.081%;
+  }
+  14.37% {
+    offset-distance: 45.081%;
+  }
+  15% {
+    offset-distance: 45.532%;
+  }
+  16.25% {
+    offset-distance: 46.627%;
+  }
+  17.5% {
+    offset-distance: 48.191%;
+  }
+  18.75% {
+    offset-distance: 50.278%;
+  }
+  20% {
+    offset-distance: 53.009%;
+  }
+  21.25% {
+    offset-distance: 55.749%;
+  }
+  22.5% {
+    offset-distance: 57.846%;
+  }
+  23.75% {
+    offset-distance: 59.386%;
+  }
+  25% {
+    offset-distance: 60.749%;
+  }
+  26.095% {
+    offset-distance: 61.502%;
+  }
+  26.25% {
+    offset-distance: 61.581%;
+  }
+  27.5% {
+    offset-distance: 62.13%;
+  }
+  28.75% {
+    offset-distance: 62.6%;
+  }
+  30% {
+    offset-distance: 62.914%;
+  }
+  31.25% {
+    offset-distance: 63.07%;
+  }
+  32.5% {
+    offset-distance: 63.227%;
+  }
+  33.75% {
+    offset-distance: 63.384%;
+  }
+  43.75% {
+    offset-distance: 63.384%;
+  }
+  45% {
+    offset-distance: 63.624%;
+  }
+  46.25% {
+    offset-distance: 63.863%;
+  }
+  47.5% {
+    offset-distance: 63.983%;
+  }
+  48.75% {
+    offset-distance: 64.223%;
+  }
+  50% {
+    offset-distance: 64.462%;
+  }
+  51.25% {
+    offset-distance: 64.582%;
+  }
+  52.5% {
+    offset-distance: 64.822%;
+  }
+  53.75% {
+    offset-distance: 64.941%;
+  }
+  55% {
+    offset-distance: 65.181%;
+  }
+  56.25% {
+    offset-distance: 65.42%;
+  }
+  57.5% {
+    offset-distance: 65.54%;
+  }
+  58.75% {
+    offset-distance: 65.78%;
+  }
+  60% {
+    offset-distance: 66.019%;
+  }
+  61.25% {
+    offset-distance: 66.139%;
+  }
+  61.791% {
+    offset-distance: 66.259%;
+  }
+  70.501% {
+    offset-distance: 66.259%;
+  }
+  71.25% {
+    offset-distance: 67.665%;
+  }
+  72.5% {
+    offset-distance: 71.882%;
+  }
+  73.75% {
+    offset-distance: 74.694%;
+  }
+  75% {
+    offset-distance: 77.506%;
+  }
+  76.25% {
+    offset-distance: 80.318%;
+  }
+  77.5% {
+    offset-distance: 84.535%;
+  }
+  78.75% {
+    offset-distance: 87.347%;
+  }
+  80% {
+    offset-distance: 90.159%;
+  }
+  81.25% {
+    offset-distance: 94.376%;
+  }
+  82.5% {
+    offset-distance: 97.188%;
+  }
+  83.696% {
+    offset-distance: 100%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
+#rt-fork-moving_box {
+  translate: 812.056px 174.63px;
+  transform-origin: 0 0;
+  transform-box: view-box;
+  offset-path: path('M-522.685 0 C-348.457 0 -174.228 0 0 0 C6.185 -4.827 15.03 -9.987 28.88 -14.815 C37.76 -17.284 46.64 -19.753 55.519 -22.222 C67.942 -24.691 80.365 -27.16 92.788 -29.63 C148.756 -40.193 165.969 -48.696 179.109 -59.259 C186.381 -59.259 193.654 -59.259 200.926 -59.259 C212.037 -59.259 223.148 -59.259 234.259 -59.259 C364.66 -59.259 495.062 -59.259 625.463 -59.259');
+  offset-rotate: 0deg;
+  offset-anchor: 0px 0px;
+  animation: rt-fork-kf_moving_box_offset_distance_0 4.046812s linear infinite;
+}
+@keyframes rt-fork-kf_Lift_transform_0 {
+  0% {
+    animation-timing-function: cubic-bezier(0, 0.762, 0.574, 0.996);
+    transform: translateX(609.741px) translateY(119.537px) translateX(-522.685px) translateY(0px);
+  }
+  14.37% {
+    animation-timing-function: cubic-bezier(0.407, 0.265, 0.165, 0.984);
+    transform: translateX(609.741px) translateY(119.537px) translateX(0px) translateY(0px);
+  }
+  34.81% {
+    animation-timing-function: cubic-bezier(0, 0.762, 0.574, 0.996);
+    transform: translateX(609.741px) translateY(119.537px) translateX(200.926px) translateY(0px);
+  }
+  38.62% {
+    transform: translateX(609.741px) translateY(119.537px) translateX(202.315px) translateY(0px);
+  }
+  41.83% {
+    transform: translateX(609.741px) translateY(119.537px) translateX(165.278px) translateY(0px);
+  }
+  43.5% {
+    transform: translateX(609.741px) translateY(119.537px) translateX(165.278px) translateY(0px);
+  }
+  61.79% {
+    animation-timing-function: cubic-bezier(0.88, 0.332, 1, 1);
+    transform: translateX(609.741px) translateY(119.537px) translateX(199.537px) translateY(0px);
+  }
+  79.81% {
+    transform: translateX(609.741px) translateY(119.537px) translateX(-544.444px) translateY(0px);
+  }
+  100% {
+    transform: translateX(609.741px) translateY(119.537px) translateX(-544.444px) translateY(0px);
+  }
+}
+#rt-fork-Lift {
+  transform-origin: 0 0;
+  animation: rt-fork-kf_Lift_transform_0 4.046812s linear infinite;
+}
+@keyframes rt-fork-kf_fork_bottom_transform_0 {
+  0% {
+    transform: translateX(189.352px) translateY(125.926px) translateX(0px) translateY(0px);
+  }
+  13.87% {
+    transform: translateX(189.352px) translateY(125.926px) translateX(0px) translateY(0px);
+  }
+  26.09% {
+    transform: translateX(189.352px) translateY(125.926px) translateX(0px) translateY(-59.259px);
+  }
+  38.62% {
+    transform: translateX(189.352px) translateY(125.926px) translateX(0px) translateY(-59.259px);
+  }
+  41.83% {
+    transform: translateX(189.352px) translateY(125.926px) translateX(0px) translateY(-103.241px);
+  }
+  61.79% {
+    transform: translateX(189.352px) translateY(125.926px) translateX(0px) translateY(-103.241px);
+  }
+  79.81% {
+    transform: translateX(189.352px) translateY(125.926px) translateX(0px) translateY(0px);
+  }
+  100% {
+    transform: translateX(189.352px) translateY(125.926px) translateX(0px) translateY(0px);
+  }
+}
+#rt-fork-fork_bottom {
+  transform-origin: 0 0;
+  animation: rt-fork-kf_fork_bottom_transform_0 4.046812s linear infinite;
+}
+
+/* Added for this site, not in the source. */
+
+/* Only runs while it is on screen. The component sets data-playing; pausing freezes it where it is. */
+.rt-fork[data-playing="false"] * {
+  animation-play-state: paused !important;
+}
+
+/* Reduced motion: stay paused on the first frame. */
+@media (prefers-reduced-motion: reduce) {
+  .rt-fork * {
+    animation-play-state: paused !important;
+  }
+}
