@@ -181,15 +181,28 @@ const ProjectDetail = () => {
             <ForkliftAnimation />
             <img src={Risk_Dash_3} className="w-full h-auto" />
             <img src={Risk_Dash_4} className="w-full h-auto" />
-            {/* Screen recording of the prototype.
-                Width (the max-w value; mx-auto keeps it centred): 60% of the image column from 768px up,
-                i.e. 1200 of the 2000-wide design. Below that, the full column minus a 16px gutter each side.
-                Space above and below: my-12 is 48px on mobile, sm:my-24 is 96px from 640px up. */}
-            <ScreenRecording
-              src={nudgeFlow}
-              label="Screen recording of the prototype: the coordinator opens the AI-drafted nudge, edits the message, sends it, then opens the details view."
-              className="mx-auto my-12 max-w-[calc(100%-32px)] sm:my-24 md:max-w-[60%]"
-            />
+            {/* Screen recording of the prototype, with a link to try it: one block.
+                Space above and below the block: my-12 is 48px on mobile, sm:my-24 is 96px from 640px up. */}
+            <div className="my-12 sm:my-24">
+              {/* Width (the max-w value; mx-auto keeps it centred): 60% of the image column from 768px up,
+                  i.e. 1200 of the 2000-wide design. Below that, the full column minus a 16px gutter each side. */}
+              <ScreenRecording
+                src={nudgeFlow}
+                label="Screen recording of the prototype: the coordinator opens the AI-drafted nudge, edits the message, sends it, then opens the details view."
+                className="mx-auto max-w-[calc(100%-32px)] md:max-w-[60%]"
+              />
+              {/* Same destination and text colour as the link at the end of the page, but a plain text link:
+                  no border or background, one size step smaller (text-sm), underlined on hover, with a
+                  focus ring for keyboard users. The tap area stays 44px tall. 32px under the video frame. */}
+              <div className="mt-8 flex justify-center">
+                <Link
+                  to="/projects/digital/risk-triage-tool/prototype"
+                  className="inline-flex min-h-[44px] items-center gap-2 px-2 text-sm text-foreground underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground"
+                >
+                  Try the prototype →
+                </Link>
+              </div>
+            </div>
             <img src={Risk_Dash_5} className="w-full h-auto" />
             <Link
               to="/projects/digital/risk-triage-tool/prototype"
