@@ -48,9 +48,12 @@ import StravaUI_04 from "@/assets/projects/StravaUI_04.webp";
 import StravaUI_05 from "@/assets/projects/StravaUI_05.webp";
 import StravaUI_06 from "@/assets/projects/StravaUI_06.webp";
 // Retail store risk triage tool assets
+import Risk_Dash_hero_title from "@/assets/projects/Risk_Dash_hero_title.webp";
 import Risk_Dash_1 from "@/assets/projects/Risk_Dash_1.webp";
 import Risk_Dash_2 from "@/assets/projects/Risk_Dash_2.webp";
 import Risk_Dash_3 from "@/assets/projects/Risk_Dash_3.webp";
+import Risk_Dash_4 from "@/assets/projects/Risk_Dash_4.webp";
+import Risk_Dash_5 from "@/assets/projects/Risk_Dash_5.webp";
 // E-commerce design system assets
 import NordicPaws_1 from "@/assets/projects/NordicPaws_1.webp";
 import NordicPaws_2 from "@/assets/projects/NordicPaws_2.webp";
@@ -167,9 +170,12 @@ const ProjectDetail = () => {
       {project.id === "risk-triage-tool" && (
         <section className="-mt-8 sm:-mt-12">
           <div className="max-w-container mx-auto px-4 sm:px-6">
+            <img src={Risk_Dash_hero_title} className="w-full h-auto" />
             <img src={Risk_Dash_1} className="w-full h-auto" />
             <img src={Risk_Dash_2} className="w-full h-auto" />
             <img src={Risk_Dash_3} className="w-full h-auto" />
+            <img src={Risk_Dash_4} className="w-full h-auto" />
+            <img src={Risk_Dash_5} className="w-full h-auto" />
             <Link
               to="/projects/digital/risk-triage-tool/prototype"
               className="inline-flex items-center gap-2 mt-8 sm:mt-12 px-6 py-3 border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors"
