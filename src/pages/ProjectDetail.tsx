@@ -10,6 +10,7 @@ import FigmaPrototypeDevice from "@/components/FigmaPrototypeDevice";
 import FigmaEmbed from "@/components/FigmaEmbed";
 import RiskHeroAnimation from "@/components/RiskHeroAnimation";
 import ForkliftAnimation from "@/components/ForkliftAnimation";
+import ScreenRecording from "@/components/ScreenRecording";
 // CHO7 project assets
 import cho7Floorplan from "@/assets/projects/cho7-floorplan.png?webp";
 import cho7Moodboard from "@/assets/projects/cho7-moodboard.png?webp";
@@ -56,6 +57,7 @@ import Risk_Dash_2 from "@/assets/projects/Risk_Dash_2.webp";
 import Risk_Dash_3 from "@/assets/projects/Risk_Dash_3.webp";
 import Risk_Dash_4 from "@/assets/projects/Risk_Dash_4.webp";
 import Risk_Dash_5 from "@/assets/projects/Risk_Dash_5.webp";
+import nudgeFlow from "@/assets/projects/nudge-flow.mp4";
 // E-commerce design system assets
 import NordicPaws_1 from "@/assets/projects/NordicPaws_1.webp";
 import NordicPaws_2 from "@/assets/projects/NordicPaws_2.webp";
@@ -179,6 +181,15 @@ const ProjectDetail = () => {
             <ForkliftAnimation />
             <img src={Risk_Dash_3} className="w-full h-auto" />
             <img src={Risk_Dash_4} className="w-full h-auto" />
+            {/* Screen recording of the prototype.
+                Width (the max-w value; mx-auto keeps it centred): 60% of the image column from 768px up,
+                i.e. 1200 of the 2000-wide design. Below that, the full column minus a 16px gutter each side.
+                Space above and below: my-12 is 48px on mobile, sm:my-24 is 96px from 640px up. */}
+            <ScreenRecording
+              src={nudgeFlow}
+              label="Screen recording of the prototype: the coordinator opens the AI-drafted nudge, edits the message, sends it, then opens the details view."
+              className="mx-auto my-12 max-w-[calc(100%-32px)] sm:my-24 md:max-w-[60%]"
+            />
             <img src={Risk_Dash_5} className="w-full h-auto" />
             <Link
               to="/projects/digital/risk-triage-tool/prototype"
