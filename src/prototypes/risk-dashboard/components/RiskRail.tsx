@@ -88,7 +88,16 @@ const RiskRail = ({ state, dispatch }: Props) => {
       <div className="px-4 pb-6 pt-5 sm:px-7">
         <div className="grid grid-cols-1 items-center gap-x-4 gap-y-3 rounded-[6px] border border-[color:var(--rp-border)] px-4 py-5 max-[480px]:border-0 max-[480px]:p-0 sm:px-[22px] lg:grid-cols-[minmax(0,1fr)_auto]">
           <div className="min-w-0">
-            <p className="text-pretty text-[19px] font-bold tracking-[-.02em] text-[color:var(--rp-text)]">
+            {/* Dismissed: the recommendation goes quiet (muted, regular weight) so "Recommendation dismissed"
+                is the strongest text on the card. Size and position don't change. Dashboard only —
+                the Details headline is a fact about the step, still true, and stays as it is. */}
+            <p
+              className={`text-pretty text-[19px] tracking-[-.02em] ${
+                nudge.kind === "dismissed"
+                  ? "font-normal text-[color:var(--rp-muted)]"
+                  : "font-bold text-[color:var(--rp-text)]"
+              }`}
+            >
               {risk.headline}
             </p>
             <p className="mt-[6px] text-pretty text-[13px] font-medium text-[color:var(--rp-muted)]">
