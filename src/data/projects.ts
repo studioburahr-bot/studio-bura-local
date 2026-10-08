@@ -29,7 +29,7 @@ export interface Project {
   subtitle: string;
   category: string;
   collection: ProjectCollection;
-  year?: string;
+  project: string;
   image?: string;
   info: ProjectInfo[];
   tagline?: string;
@@ -67,7 +67,7 @@ export const projects: Project[] = [
     subtitle: "Retail build risk triage",
     category: "B2B product design",
     collection: "digital",
-    Project: "Concept",
+    project: "Concept",
     image: Risk_Dash_main,
     info: [
       { label: "Project", value: "Concept" },
@@ -81,7 +81,7 @@ export const projects: Project[] = [
     subtitle: "E-commerce design system",
     category: "B2C product design",
     collection: "digital",
-    Project: "Nordic Paws · Client work",
+    project: "Nordic Paws · Client work",
     image: NordicPaws_main,
     info: [
       { label: "Project", value: "Nordic Paws · Client work" },
@@ -102,7 +102,7 @@ export const projects: Project[] = [
     subtitle: "Tennis partner matching",
     category: "Mobile product design",
     collection: "digital",
-    Project: "MatchPoint · Concept",
+    project: "MatchPoint · Concept",
     image: matchpointMain,
     info: [
       { label: "Project", value: "MatchPoint · Concept" },
@@ -117,7 +117,7 @@ export const projects: Project[] = [
     subtitle: "Strava in-run coaching",
     category: "Feature design",
     collection: "digital",
-    Project: "Concept · Not affiliated with Strava",
+    project: "Concept · Not affiliated with Strava",
     image: StravaUI_main,
     info: [
       { label: "Project", value: "Concept · Not affiliated with Strava" },
@@ -132,10 +132,10 @@ export const projects: Project[] = [
     subtitle: "Conceptual interior design of a residential space",
     category: "Interior design",
     collection: "interior",
-    year: "2025",
+    project: "2025",
     image: cho7Main,
     info: [
-      { label: "Year", value: "2025" },
+      { label: "Project", value: "2025" },
       { label: "Type", value: "Private apartment" },
     ],
     tagline: "CHO7 - Shell Chair - 1963 - Hans J. Wegner",
@@ -147,10 +147,10 @@ export const projects: Project[] = [
     subtitle: "Conceptual interior design of a residential space",
     category: "Interior design",
     collection: "interior",
-    year: "2025",
+    project: "2025",
     image: mr90Main,
     info: [
-      { label: "Year", value: "2025" },
+      { label: "Project", value: "2025" },
       { label: "Type", value: "Private housing" },
     ],
     tagline: "MR90 - armchair Barcelona - 1929 - Mies van der Rohe",
@@ -162,10 +162,10 @@ export const projects: Project[] = [
     subtitle: "Interior design",
     category: "Interior design",
     collection: "interior",
-    year: "2025",
+    project: "2025",
     image: childrensRoomMain,
     info: [
-      { label: "Year", value: "2025" },
+      { label: "Project", value: "2025" },
       { label: "Type", value: "Private housing" },
     ],
     tagline: "Sensory-oriented children's environment",
@@ -177,10 +177,10 @@ export const projects: Project[] = [
     subtitle: "Interior design",
     category: "Interior design",
     collection: "interior",
-    year: "2025",
+    project: "2025",
     image: childrensRoom2Main,
     info: [
-      { label: "Year", value: "2025" },
+      { label: "Project", value: "2025" },
       { label: "Type", value: "Private housing" },
     ],
     tagline: "Nature-inspired neurodesign space",
