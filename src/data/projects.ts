@@ -2,7 +2,7 @@ import cho7Main from "@/assets/projects/cho7-main.png?webp";
 import mr90Main from "@/assets/projects/mr90-main.png?webp";
 import matchpointMain from "@/assets/projects/matchpoint-main.png?webp";
 import Risk_Dash_main from "@/assets/projects/Risk_Dash_main.webp";
-import NordicPaws_main from "@/assets/projects/NordicPaws_main.png";
+import NordicPaws_main from "@/assets/projects/NordicPaws_main.webp";
 import childrensRoomMain from "@/assets/projects/childrens-room-main.png?webp";
 import childrensRoom2Main from "@/assets/projects/childrens-room2-main.png?webp";
 import StravaUI_main from "@/assets/projects/StravaUI_main.png?webp";
@@ -47,21 +47,6 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: "yolks",
-    title: "Parenting activity guidance",
-    subtitle: "Parenting activity guidance",
-    category: "AI product design",
-    collection: "digital",
-    project: "Yolks · Concept",
-    image: yolks_main,
-    info: [
-      { label: "Project", value: "Yolks · Concept" },
-      { label: "Type", value: "Web app" },
-    ],
-    tagline: "Neurodesign | Child development | Activity guidance",
-    gallery: [],
-  },
-  {
     id: "risk-triage-tool",
     title: "Retail build risk triage",
     subtitle: "Retail build risk triage",
@@ -95,6 +80,21 @@ export const projects: Project[] = [
       align: "right",
       frame: "screen",
     },
+  },
+  {
+    id: "yolks",
+    title: "Parenting activity guidance",
+    subtitle: "Parenting activity guidance",
+    category: "AI product design",
+    collection: "digital",
+    project: "Yolks · Concept",
+    image: yolks_main,
+    info: [
+      { label: "Project", value: "Yolks · Concept" },
+      { label: "Type", value: "Web app" },
+    ],
+    tagline: "Neurodesign | Child development | Activity guidance",
+    gallery: [],
   },
   {
     id: "matchpoint",
