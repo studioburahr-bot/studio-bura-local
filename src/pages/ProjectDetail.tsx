@@ -191,9 +191,9 @@ const ProjectDetail = () => {
                 label="Screen recording of the prototype: the coordinator opens the AI-drafted nudge, edits the message, sends it, then opens the details view."
                 className="mx-auto max-w-[calc(100%-32px)] md:max-w-[60%]"
               />
-              {/* Same destination and text colour as the link at the end of the page, but a plain text link:
-                  no border or background, one size step smaller (text-sm), underlined on hover, with a
-                  focus ring for keyboard users. The tap area stays 44px tall. 32px under the video frame. */}
+              {/* The page's link to the prototype. A plain text link: no border or background, small text
+                  (text-sm), underlined on hover, with a focus ring for keyboard users.
+                  The tap area stays 44px tall. 32px under the video frame. */}
               <div className="mt-8 flex justify-center">
                 <Link
                   to="/projects/digital/risk-triage-tool/prototype"
@@ -204,12 +204,6 @@ const ProjectDetail = () => {
               </div>
             </div>
             <img src={Risk_Dash_5} className="w-full h-auto" />
-            <Link
-              to="/projects/digital/risk-triage-tool/prototype"
-              className="inline-flex items-center gap-2 mt-8 sm:mt-12 px-6 py-3 border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors"
-            >
-              Try the prototype →
-            </Link>
           </div>
         </section>
       )}
