@@ -1,94 +1,123 @@
-import heroImage from "@/assets/hero-image.jpg?webp";
-import mockupImage from "@/assets/mockup2.jpg?webp";
-import heroVideo from "@/assets/projects/cho7-video.mp4";
-import neurodesignChild from "@/assets/neurodesign-child.jpg?webp";
-import neurodesignCity from "@/assets/neurodesign-city.jpg?webp";
+import { Fragment, useEffect, useRef, type CSSProperties } from "react";
+import "./Hero.css";
+
+interface HeadlineWord {
+  text: string;
+  // Position in the stagger (0 to 9), starting offset in px and starting rotation in degrees.
+  // All values are the approved prototype's.
+  i: number;
+  dx: number;
+  dy: number;
+  rot: number;
+}
+
+// The headline: 10 words across 3 lines.
+const HEADLINE: HeadlineWord[][] = [
+  [
+    { text: "Product", i: 0, dx: 2, dy: -3, rot: -2 },
+    { text: "designer", i: 1, dx: -3, dy: 2, rot: 1.5 },
+    { text: "turning", i: 2, dx: 1, dy: -2, rot: -2.5 },
+    { text: "messy", i: 3, dx: -2, dy: 3, rot: 1 },
+  ],
+  [
+    { text: "real-world", i: 4, dx: 3, dy: -1, rot: 3 },
+    { text: "processes", i: 5, dx: -1, dy: 2, rot: -1.5 },
+    { text: "into", i: 6, dx: 2, dy: -3, rot: 2 },
+  ],
+  [
+    { text: "clear", i: 7, dx: -2, dy: 1, rot: -1 },
+    { text: "digital", i: 8, dx: 1, dy: 3, rot: 2.5 },
+    { text: "products.", i: 9, dx: 3, dy: -2, rot: -3 },
+  ],
+];
+
+const LAST_WORD_INDEX = 9;
+
+const wordStyle = (word: HeadlineWord) =>
+  ({
+    "--i": word.i,
+    "--dx": `${word.dx}px`,
+    "--dy": `${word.dy}px`,
+    "--rot": `${word.rot}deg`,
+  }) as CSSProperties;
 
 const Hero = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Starts the motion (Hero.css) by adding "motion-ready" to <html>. As in the prototype: wait for the
+  // fonts (1500ms at most), wait 300ms more, then play only while the tab is visible.
+  // One addition: the page wrapper in Index.tsx runs its own fade-in on load, so the start also waits
+  // for that to finish and the two movements never overlap.
+  useEffect(() => {
+    const root = document.documentElement;
+    let cancelled = false;
+    let fontTimer = 0;
+    let waitTimer = 0;
+    let frame = 0;
+
+    const go = () => {
+      frame = requestAnimationFrame(() => {
+        frame = requestAnimationFrame(() => {
+          if (!cancelled) root.classList.add("motion-ready");
+        });
+      });
+    };
+
+    const whenVisible = () => {
+      if (cancelled) return;
+      if (document.visibilityState === "visible") go();
+      else document.addEventListener("visibilitychange", whenVisible, { once: true });
+    };
+
+    const wrapperFadeDone = () => {
+      const wrapper = sectionRef.current?.closest(".animate-fade-in");
+      const running = wrapper?.getAnimations?.() ?? [];
+      return Promise.all(running.map((animation) => animation.finished.catch(() => undefined)));
+    };
+
+    Promise.race([
+      document.fonts.ready,
+      new Promise((resolve) => {
+        fontTimer = window.setTimeout(resolve, 1500);
+      }),
+    ]).then(() => {
+      if (cancelled) return;
+      waitTimer = window.setTimeout(() => {
+        wrapperFadeDone().then(whenVisible);
+      }, 300);
+    });
+
+    // Leaving the home page resets the gate, so the motion plays again (after the wrapper) on return.
+    return () => {
+      cancelled = true;
+      window.clearTimeout(fontTimer);
+      window.clearTimeout(waitTimer);
+      cancelAnimationFrame(frame);
+      document.removeEventListener("visibilitychange", whenVisible);
+      root.classList.remove("motion-ready");
+    };
+  }, []);
+
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center pt-16 sm:pt-20 px-4 sm:px-6">
-  <h1 className="sr-only">
-    Studio Bura | Design Studio in Zagreb, Croatia
-  </h1>
-     <div className="container mx-auto px-4 sm:px-6">
-        <div className="aspect-[16/9] bg-secondary rounded-sm overflow-hidden">
-          <img
-            src={heroImage}
-            alt="Studio Bura - Design Studio"
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-light mt-8 sm:mt-12 md:mt-16 tracking-tight text-foreground">
-          Between people and space, there is experience.
+    <section ref={sectionRef} id="home" className="pt-28 md:pt-40">
+      <div className="container mx-auto px-4 sm:px-6">
+        <h1 className="text-4xl/[1.125] sm:text-5xl/[1.125] lg:text-6xl/[1.125] font-medium tracking-tight text-foreground">
+          {HEADLINE.map((line, lineIndex) => (
+            <span key={lineIndex} className="lg:block">
+              {line.map((word) => (
+                <Fragment key={word.text}>
+                  <span className="hero-word" style={wordStyle(word)}>
+                    {word.text}
+                  </span>
+                  {word.i === LAST_WORD_INDEX ? null : " "}
+                </Fragment>
+              ))}
+            </span>
+          ))}
         </h1>
-        <p className="text-base sm:text-lg md:text-xl font-light mt-4 sm:mt-6 tracking-tight text-foreground/80 max-w-hero">
-          BURA is a design studio shaping experiences across physical and digital systems, using design as a tool to activate the senses, connect with emotions, and create meaningful, usable experiences through spatial logic, human behavior, and interaction design.
+        <p className="hero-paragraph text-base/[1.45] sm:text-lg/[1.45] md:text-xl/[1.45] font-light mt-4 md:mt-6 tracking-tight text-foreground/80 max-w-hero">
+          I&apos;m Dora. I design B2B tools, e-commerce and AI-assisted products end to end, from research to tested interface. Before screens I designed spaces and physical products, so I start from how people actually work.
         </p>
-
-        <p className="text-3xl sm:text-4xl md:text-5xl font-light mt-16 sm:mt-20 md:mt-24 tracking-tight text-foreground">
-          From physical environments to digital.
-        </p>
-        <p className="text-base sm:text-lg md:text-xl font-light mt-4 sm:mt-6 tracking-tight text-foreground/80 max-w-hero">
-          We translate human-centered principles from physical environments into digital products and interfaces, using spatial logic and UX thinking to design clear user journeys, interaction flows, and decision-making structures.
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-8 sm:mt-12">
-          <div className="aspect-[3/4] bg-secondary rounded-sm overflow-hidden">
-            <img
-              src={mockupImage}
-              alt="Design mockup"
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-          </div>
-          <div className="aspect-[3/4] bg-secondary rounded-sm overflow-hidden">
-            <video
-              src={heroVideo}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </div>
-
-        <p className="text-base sm:text-lg md:text-xl font-light mt-8 sm:mt-12 tracking-tight text-foreground/80 max-w-hero">
-          Traces of daily life — a favourite chair, worn paths, subtle sensory cues — reveal how people live, move, and interact. We translate these observations into systems, interfaces, and experiences that respond to real behavior across physical and digital contexts.
-        </p>
-
-        <div className="mt-16 sm:mt-20 md:mt-24 text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-foreground leading-none">
-            <span className="block leading-none">Neurodesign</span>
-            <span className="block leading-none">&amp; Play</span>
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-8 sm:mt-12 max-w-hero mx-auto">
-            <div className="aspect-[3/4] bg-secondary rounded-sm overflow-hidden">
-              <img
-                src={neurodesignCity}
-                alt="Urban environment - Neurodesign"
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
-            <div className="aspect-[3/4] bg-secondary rounded-sm overflow-hidden">
-              <img
-                src={neurodesignChild}
-                alt="Child playing - Neurodesign & Play"
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
-          </div>
-
-          <p className="text-base sm:text-lg md:text-xl font-light mt-8 sm:mt-12 tracking-tight text-foreground/80 max-w-hero mx-auto">
-            Neuroscience in design explores methodologies for analysing human activities, considering them as the starting point for design — understanding human behavior from spatial experience to digital interaction.
-          </p>
-          <p className="text-base sm:text-lg md:text-xl font-light mt-4 tracking-tight text-foreground/80 max-w-hero mx-auto mb-16 sm:mb-20 md:mb-24">
-            In projects focused on Neurodesign & Play, we design adaptive environments and products built around play, sensory integration, and growth. These principles guide the creation of experiences that evolve with the user, supporting learning, well-being, and engagement across physical and digital contexts.
-          </p>
-        </div>
       </div>
     </section>
   );

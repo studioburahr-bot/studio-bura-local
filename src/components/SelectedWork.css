@@ -1,0 +1,50 @@
+/* Styles for SelectedWork.tsx: the "View case study" circle that follows the cursor over a card image.
+
+   SelectedWork.tsx writes the pointer position into --cursor-x and --cursor-y on the circle.
+   The circle only exists for devices with a real hover and a precise pointer (mouse, trackpad);
+   on touch screens the arrow next to the card title does the same job. */
+
+.selected-work-cursor {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .selected-work-media {
+    cursor: none;
+  }
+
+  .selected-work-cursor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 110px;
+    height: 110px;
+    border-radius: 9999px;
+    background: hsl(var(--foreground));
+    color: hsl(var(--background));
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(calc(var(--cursor-x, 0px) - 50%), calc(var(--cursor-y, 0px) - 50%)) scale(0.6);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+
+  .selected-work-media:hover .selected-work-cursor {
+    opacity: 1;
+    transform: translate(calc(var(--cursor-x, 0px) - 50%), calc(var(--cursor-y, 0px) - 50%)) scale(1);
+  }
+}
+
+/* Reduced motion: the circle still tracks the pointer, but it appears without the fade and scale. */
+@media (prefers-reduced-motion: reduce) {
+  .selected-work-cursor {
+    transition: none;
+  }
+}

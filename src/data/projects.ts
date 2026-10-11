@@ -7,6 +7,9 @@ import childrensRoomMain from "@/assets/projects/childrens-room-main.png?webp";
 import childrensRoom2Main from "@/assets/projects/childrens-room2-main.png?webp";
 import StravaUI_main from "@/assets/projects/StravaUI_main.png?webp";
 import yolks_main from "@/assets/projects/yolks_main.png";
+import riskTriageThumb from "@/assets/projects/risk-triage-thumb.webp";
+import ecommerceThumb from "@/assets/projects/ecommerce-thumb.webp";
+import parentingThumb from "@/assets/projects/parenting-thumb.webp";
 
 export type ProjectCollection = "digital" | "interior";
 
@@ -31,6 +34,9 @@ export interface Project {
   collection: ProjectCollection;
   project: string;
   image?: string;
+  // 4:3 thumbnail (1280x960) for the Selected work cards on the home page. A grey placeholder shows until it is set.
+  thumbnail?: string;
+  thumbnailAlt?: string;
   info: ProjectInfo[];
   tagline?: string;
   gallery: string[];
@@ -54,6 +60,8 @@ export const projects: Project[] = [
     collection: "digital",
     project: "Concept",
     image: Risk_Dash_main,
+    thumbnail: riskTriageThumb,
+    thumbnailAlt: "Risk triage web app on a laptop flagging a paint step at risk, with the task view on a phone",
     info: [
       { label: "Project", value: "Concept" },
       { label: "Type", value: "Web app" },
@@ -68,6 +76,8 @@ export const projects: Project[] = [
     collection: "digital",
     project: "Nordic Paws · Client work",
     image: NordicPaws_main,
+    thumbnail: ecommerceThumb,
+    thumbnailAlt: "Pet food online shop on a laptop with product recommendation cards, and a product page on a phone",
     info: [
       { label: "Project", value: "Nordic Paws · Client work" },
       { label: "Type", value: "Responsive web" },
@@ -89,6 +99,8 @@ export const projects: Project[] = [
     collection: "digital",
     project: "Yolks · Concept",
     image: yolks_main,
+    thumbnail: parentingThumb,
+    thumbnailAlt: "Parenting app dashboard on a laptop showing today's focus, a suggested activity and zone buttons",
     info: [
       { label: "Project", value: "Yolks · Concept" },
       { label: "Type", value: "Web app" },

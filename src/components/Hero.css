@@ -1,0 +1,56 @@
+/* Styles for Hero.tsx: the Variant C ("messy to clear") headline motion and the load sequence after it.
+
+   The values are the approved prototype's, unchanged: durations, delays, stagger, easing, and the
+   per-word offsets and rotations (set inline in Hero.tsx as --i, --dx, --dy and --rot).
+
+   Only two things differ from the prototype's CSS:
+   - The keyframes are called hero-word-settle and hero-fade-in. The prototype's name "fade-in" is
+     already taken by the page wrapper's fade in tailwind.config.ts and would overwrite it.
+   - "to" for the words is written as it is in the prototype (transform: none), and every animation
+     only fills backwards, so nothing keeps a transform or an opacity once it has finished.
+
+   Only transform and opacity are animated, so the layout never moves. */
+
+/* The headline is split into 10 words (index 0-9) across 3 lines. */
+.hero-word {
+  display: inline-block;
+  animation: hero-word-settle 600ms cubic-bezier(.22, .7, .25, 1) backwards;
+  animation-delay: calc(150ms + var(--i) * 33.333ms); /* 300ms total stagger / 9 gaps */
+}
+
+@keyframes hero-word-settle {
+  from {
+    opacity: 0.4;
+    transform: translate(var(--dx), var(--dy)) rotate(var(--rot));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Last word ends at 450 + 600 = 1050ms */
+
+.hero-paragraph {
+  animation: hero-fade-in 500ms ease-out 900ms backwards; /* 1050 - 150 */
+}
+
+/* The Selected work grid (in SelectedWork.tsx) fades as one. */
+.work-cards {
+  animation: hero-fade-in 600ms ease-out 1200ms backwards; /* 1050 + 150 */
+}
+
+@keyframes hero-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Everything waits, paused on its first frame, until Hero.tsx adds "motion-ready" to <html>. */
+.hero-word, .hero-paragraph, .work-cards { animation-play-state: paused; }
+.motion-ready .hero-word,
+.motion-ready .hero-paragraph,
+.motion-ready .work-cards { animation-play-state: running; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-word, .hero-paragraph, .work-cards { animation: none; }
+}
