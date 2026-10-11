@@ -6,34 +6,27 @@ const Contact = () => {
     <section id="contact" className="py-16 sm:py-24 md:py-32">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-container mx-auto">
-          <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-start">
-            {/* Left - Contact Photo */}
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-12">
+            {/* Contact Photo: first on mobile, right column on desktop */}
             <img
               src={contactPhoto}
               alt="Dora Ernoić - founder of Studio Bura design studio in Zagreb, Croatia"
-              className="w-full aspect-[3/4] object-cover rounded-lg"
+              className="w-full aspect-[3/4] object-cover rounded-lg md:order-2"
               loading="lazy"
             />
 
-            {/* Right - Contact Info */}
-            <div>
-              <h2 className="text-4xl sm:text-5xl md:text-7xl font-light mb-6 sm:mb-8 tracking-tight">
-                Contact
-              </h2>
-              <div className="space-y-3 sm:space-y-4 text-sm sm:text-base md:text-lg font-light leading-relaxed">
-                <p>
-                  My name is Dora Ernoić, founder of Studio Bura. I work at the intersection of digital product design, spatial design, and user experience, using design as a tool to solve complex spatial, functional, and experiential challenges.
+            {/* Contact Info: heading at the top, details pinned to the bottom of the photo on desktop */}
+            <div className="flex flex-col md:justify-between md:order-1">
+              <div>
+                <h2 className="text-3xl/none sm:text-4xl/none md:text-5xl/none font-light mb-6 sm:mb-8 tracking-tight">
+                  Contact
+                </h2>
+                <p className="text-sm sm:text-base md:text-lg font-light leading-relaxed">
+                  Open to product design roles and freelance projects.
                 </p>
-                <p>
-                  With a background in architecture and industrial design, I approach each project through human-centered and product-driven thinking, combining spatial logic with an understanding of behavior, perception, and real-world use. This perspective shapes how I design digital products, interfaces, and services, as well as physical environments.
-                </p>
-                <p>
-                  I develop intuitive environments and interactions — from user journeys, flows, and UX/UI concepts for web and mobile platforms to spatial systems, installations, and immersive visualizations that help people understand and navigate an experience before it even exists.
-                </p>
-                <p>
-                  In my free time, you can catch me running or cooking, exploring either new places or new food.
-                </p>
+              </div>
 
+              <div className="space-y-3 sm:space-y-4 text-sm sm:text-base md:text-lg font-light leading-relaxed">
                 {/* Location & Phone */}
                 <address className="pt-6 sm:pt-8 space-y-1 text-base sm:text-lg not-italic">
                  <p>Zagreb, Croatia</p>
