@@ -37,6 +37,10 @@ export interface Project {
   // 4:3 thumbnail (1280x960) for the Selected work cards on the home page. A grey placeholder shows until it is set.
   thumbnail?: string;
   thumbnailAlt?: string;
+  // Link previews (scripts/generate-og-pages.mjs). Description: about 160 characters at most.
+  // ogImage: 1200x630; until it is set the preview uses the thumbnail, then the main image.
+  seoDescription?: string;
+  ogImage?: string;
   info: ProjectInfo[];
   tagline?: string;
   gallery: string[];
@@ -62,6 +66,8 @@ export const projects: Project[] = [
     image: Risk_Dash_main,
     thumbnail: riskTriageThumb,
     thumbnailAlt: "Risk triage web app on a laptop flagging a paint step at risk, with the task view on a phone",
+    seoDescription:
+      "B2B concept for retail store builds: a web app that separates late steps from blocked ones and drafts an AI nudge, while the coordinator makes the call.",
     info: [
       { label: "Project", value: "Concept" },
       { label: "Type", value: "Web app" },
@@ -78,6 +84,8 @@ export const projects: Project[] = [
     image: NordicPaws_main,
     thumbnail: ecommerceThumb,
     thumbnailAlt: "Pet food online shop on a laptop with product recommendation cards, and a product page on a phone",
+    seoDescription:
+      "Design task concept: an e-commerce design system and responsive shop for a fictional pet food brand, for desktop and mobile.",
     info: [
       { label: "Project", value: "Nordic Paws · Client work" },
       { label: "Type", value: "Responsive web" },
@@ -101,6 +109,8 @@ export const projects: Project[] = [
     image: yolks_main,
     thumbnail: parentingThumb,
     thumbnailAlt: "Parenting app dashboard on a laptop showing today's focus, a suggested activity and zone buttons",
+    seoDescription:
+      "Yolks, an AI-assisted concept web app that suggests activities for parents based on how their child feels: active, calm or overwhelmed. Grounded in neurodesign.",
     info: [
       { label: "Project", value: "Yolks · Concept" },
       { label: "Type", value: "Web app" },
@@ -116,6 +126,8 @@ export const projects: Project[] = [
     collection: "digital",
     project: "MatchPoint · Concept",
     image: matchpointMain,
+    seoDescription:
+      "MatchPoint, a mobile app concept for finding tennis partners at your level, booking courts and staying motivated through light gamification.",
     info: [
       { label: "Project", value: "MatchPoint · Concept" },
       { label: "Type", value: "Mobile App" },
@@ -131,6 +143,8 @@ export const projects: Project[] = [
     collection: "digital",
     project: "Concept · Not affiliated with Strava",
     image: StravaUI_main,
+    seoDescription:
+      "In-run coaching feature concept for Strava, shaped by behavioural insight and interaction design. An independent concept, not affiliated with Strava.",
     info: [
       { label: "Project", value: "Concept · Not affiliated with Strava" },
       { label: "Type", value: "Mobile app" },
@@ -146,6 +160,8 @@ export const projects: Project[] = [
     collection: "interior",
     project: "2025",
     image: cho7Main,
+    seoDescription:
+      "Residential interior concept: an open-plan kitchen and living area with an island, more natural light and warm, earthy tones, around Wegner's CH07 Shell Chair.",
     info: [
       { label: "Project", value: "2025" },
       { label: "Type", value: "Private apartment" },
@@ -161,6 +177,8 @@ export const projects: Project[] = [
     collection: "interior",
     project: "2025",
     image: mr90Main,
+    seoDescription:
+      "Master bedroom suite concept: sleeping area, bathroom and walk-in closet in warm tones and dark wood, opening onto the forest, with the Barcelona Chair.",
     info: [
       { label: "Project", value: "2025" },
       { label: "Type", value: "Private housing" },
@@ -176,6 +194,8 @@ export const projects: Project[] = [
     collection: "interior",
     project: "2025",
     image: childrensRoomMain,
+    seoDescription:
+      "A sensory-oriented children's room that grows with the child: clear active and calm zones, a sensory wall and movement equipment, based on neurodesign.",
     info: [
       { label: "Project", value: "2025" },
       { label: "Type", value: "Private housing" },
@@ -191,6 +211,8 @@ export const projects: Project[] = [
     collection: "interior",
     project: "2025",
     image: childrensRoom2Main,
+    seoDescription:
+      "A children's room in a house surrounded by nature: natural light, a large glass wall, natural materials and a climbing wall, guided by neurodesign.",
     info: [
       { label: "Project", value: "2025" },
       { label: "Type", value: "Private housing" },

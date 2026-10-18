@@ -4,10 +4,13 @@ import {
   PROJECT_COLLECTIONS,
   type ProjectCollection,
 } from "@/data/projects";
+import { pageTitle, useDocumentTitle } from "@/hooks/use-document-title";
 
 const collectionOrder: ProjectCollection[] = ["digital", "interior"];
 
 const ProjectsIndex = () => {
+  useDocumentTitle(pageTitle("Projects"));
+
   return (
     <div className="pt-20 flex-1">
       <section className="py-16 sm:py-24 md:py-32">

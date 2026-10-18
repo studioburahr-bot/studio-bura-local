@@ -11,6 +11,7 @@ import FigmaEmbed from "@/components/FigmaEmbed";
 import RiskHeroAnimation from "@/components/RiskHeroAnimation";
 import ForkliftAnimation from "@/components/ForkliftAnimation";
 import ScreenRecording from "@/components/ScreenRecording";
+import { HOME_TITLE, pageTitle, useDocumentTitle } from "@/hooks/use-document-title";
 // CHO7 project assets
 import cho7Floorplan from "@/assets/projects/cho7-floorplan.png?webp";
 import cho7Moodboard from "@/assets/projects/cho7-moodboard.png?webp";
@@ -95,6 +96,7 @@ import yolks_06 from "@/assets/projects/Yolks_06.webp?webp";
 const ProjectDetail = () => {
   const { collection, projectId } = useParams<{ collection: string; projectId: string }>();
   const project = projectId ? getProjectById(projectId) : undefined;
+  useDocumentTitle(project ? pageTitle(project.title) : HOME_TITLE);
 
   if (!project || !isProjectCollection(collection)) {
     return (

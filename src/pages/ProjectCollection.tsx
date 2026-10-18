@@ -8,9 +8,11 @@ import {
   isProjectCollection,
 } from "@/data/projects";
 import NotFound from "@/pages/NotFound";
+import { HOME_TITLE, pageTitle, useDocumentTitle } from "@/hooks/use-document-title";
 
 const ProjectCollection = () => {
   const { collection } = useParams<{ collection: string }>();
+  useDocumentTitle(isProjectCollection(collection) ? pageTitle(PROJECT_COLLECTIONS[collection].title) : HOME_TITLE);
 
   if (!isProjectCollection(collection)) {
     const project = collection ? getProjectById(collection) : undefined;

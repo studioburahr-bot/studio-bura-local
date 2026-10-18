@@ -22,8 +22,9 @@ export default defineConfig(({ mode }) => ({
     react(),
     imagetools({
       defaultDirectives: (url: URL) => {
-        // Convert JPG and PNG to WebP format for better compression
-        if (url.searchParams.has("webp") === false) {
+        // Convert JPG and PNG to WebP format for better compression, unless an import asks for a
+        // format itself (scripts/generate-og-pages.mjs asks for JPG link-preview images)
+        if (url.searchParams.has("webp") === false && url.searchParams.has("format") === false) {
           url.searchParams.set("format", "webp");
         }
         // Set quality to 85 for good balance between size and quality

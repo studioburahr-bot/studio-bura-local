@@ -6,8 +6,11 @@ import Projects from "@/components/Projects";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import { HOME_TITLE, useDocumentTitle } from "@/hooks/use-document-title";
 
 const Index = () => {
+  useDocumentTitle(HOME_TITLE);
+
   return (
     <div className="min-h-screen bg-background animate-fade-in">
       <Navigation />
