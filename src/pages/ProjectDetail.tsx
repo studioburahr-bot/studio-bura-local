@@ -89,6 +89,7 @@ import yolks_03 from "@/assets/projects/Yolks_03.webp?webp";
 import yolks_04 from "@/assets/projects/Yolks_04.webp?webp";
 import yolks_05 from "@/assets/projects/Yolks_05.webp?webp";
 import yolks_06 from "@/assets/projects/Yolks_06.webp?webp";
+import yolks_07 from "@/assets/projects/Yolks_07.webp?webp";
 
 
 
@@ -848,6 +849,7 @@ const ProjectDetail = () => {
       <img src={yolks_04} className="w-full h-auto" />
       <img src={yolks_05} className="w-full h-auto" />
       <img src={yolks_06} className="w-full h-auto" />
+      <img src={yolks_07} className="w-full h-auto" />
     </div>
   </section>
 )}
