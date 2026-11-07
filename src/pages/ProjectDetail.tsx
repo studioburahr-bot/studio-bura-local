@@ -13,6 +13,8 @@ import RiskHeroAnimation from "@/components/RiskHeroAnimation";
 import HeroSection from "@/components/case-study/HeroSection";
 import StatementSection from "@/components/case-study/StatementSection";
 import OverviewSection from "@/components/case-study/OverviewSection";
+import DotsChain from "@/components/case-study/DotsChain";
+import PersonasSection from "@/components/case-study/PersonasSection";
 import ForkliftAnimation from "@/components/ForkliftAnimation";
 import ScreenRecording from "@/components/ScreenRecording";
 import { HOME_TITLE, pageTitle, useDocumentTitle } from "@/hooks/use-document-title";
@@ -212,6 +214,16 @@ const ProjectDetail = () => {
               </div>
               <StatementSection lines={project.caseStudy.statement} overlay={overlays?.overview} />
               <OverviewSection left={project.caseStudy.overview.left} right={project.caseStudy.overview.right} />
+              <DotsChain
+                count={project.caseStudy.dots.count}
+                raisedSlot={project.caseStudy.dots.raisedSlot}
+                description={project.caseStudy.dots.description}
+              />
+              <PersonasSection
+                label={project.caseStudy.personas.label}
+                personas={project.caseStudy.personas.items}
+                question={project.caseStudy.question}
+              />
             </div>
             <img src={Risk_Dash_2} className="w-full h-auto" />
             <ForkliftAnimation />

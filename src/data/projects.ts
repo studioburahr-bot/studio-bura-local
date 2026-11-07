@@ -152,6 +152,36 @@ export const projects: Project[] = [
           },
         ],
       },
+      dots: {
+        count: 12,
+        raisedSlot: 4,
+        description: "One blocked step holds up every step after it.",
+      },
+      personas: {
+        label: "PERSONAS",
+        items: [
+          {
+            icon: "coordinator",
+            text: [
+              [
+                { text: "Coordinator", bold: true },
+                { text: " runs the build and needs to know which problem to fix first when several land at once." },
+              ],
+            ],
+          },
+          {
+            icon: "sales",
+            text: [
+              [
+                { text: "Sales", bold: true },
+                { text: " does the physical work and confirms each step, but rarely reads email or formal channels." },
+              ],
+            ],
+          },
+        ],
+      },
+      question:
+        "How might we help a coordinator decide which problem to fix first, using signals the team already produces, without adding work for the people on the floor?",
     },
   },
   {

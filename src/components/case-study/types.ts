@@ -20,6 +20,15 @@ export interface TextBlockContent {
   paragraphs: RichParagraph[];
 }
 
+// Icons drawn by PersonaIcons.tsx.
+export type PersonaIconName = "coordinator" | "sales";
+
+export interface PersonaContent {
+  icon: PersonaIconName;
+  // The role name is a bold run at the start ("Coordinator" runs the build ...).
+  text: RichLine[];
+}
+
 export interface CaseStudyContent {
   // Project accent colours as HSL channels ("218 75.6% 46.7%"), set as --project-accent and
   // --project-accent-strong on the case study's page wrapper.
@@ -31,4 +40,15 @@ export interface CaseStudyContent {
     left: TextBlockContent[];
     right: TextBlockContent[];
   };
+  // Dot row (DotsChain): slot count, 1-based raised slot, screen reader sentence.
+  dots: {
+    count: number;
+    raisedSlot: number;
+    description: string;
+  };
+  personas: {
+    label: string;
+    items: PersonaContent[];
+  };
+  question: string;
 }
