@@ -38,6 +38,18 @@ All colors MUST be HSL.
 
     --radius: 0rem;
 
+    /* Case study tokens (tailwind.config.ts: ink-muted colour, case study fontSize entries) */
+    --ink-muted: 45 2.1% 37.3%; /* #61605D */
+    /* Text styles below md; the md block further down sets the desktop values */
+    --text-hero: 2.5rem; /* 40 / 48 */
+    --text-hero-lh: 3rem;
+    --text-statement: 1.5rem; /* 24 / 32 */
+    --text-statement-lh: 2rem;
+    --text-heading-3: 1.5rem; /* 24 / 32 */
+    --text-heading-3-lh: 2rem;
+    --text-body: 1.125rem; /* 18 / 28 */
+    --text-body-lh: 1.75rem;
+
     /* Project hero background - warm beige like Behance */
     --project-hero: 40 30% 88%;
     --project-hero-foreground: 30 10% 25%;
@@ -88,6 +100,20 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 0 0% 95%;
     --sidebar-border: 0 0% 15%;
     --sidebar-ring: 0 0% 100%;
+  }
+
+  /* Case study text styles from md (768px) up: the Figma desktop values */
+  @media (min-width: 768px) {
+    :root {
+      --text-hero: 4rem; /* 64 / 80 */
+      --text-hero-lh: 5rem;
+      --text-statement: 2rem; /* 32 / 48 */
+      --text-statement-lh: 3rem;
+      --text-heading-3: 2rem; /* 32 / 48 */
+      --text-heading-3-lh: 3rem;
+      --text-body: 1.25rem; /* 20 / 28 */
+      --text-body-lh: 1.75rem;
+    }
   }
 }
 

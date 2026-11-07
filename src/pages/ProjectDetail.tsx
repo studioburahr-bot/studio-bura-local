@@ -1,4 +1,5 @@
-import { useParams, Link, Navigate } from "react-router-dom";
+import { useParams, useSearchParams, Link, Navigate } from "react-router-dom";
+import type { CSSProperties } from "react";
 import { ArrowLeft } from "lucide-react";
 import {
   PROJECT_COLLECTIONS,
@@ -9,6 +10,9 @@ import {
 import FigmaPrototypeDevice from "@/components/FigmaPrototypeDevice";
 import FigmaEmbed from "@/components/FigmaEmbed";
 import RiskHeroAnimation from "@/components/RiskHeroAnimation";
+import HeroSection from "@/components/case-study/HeroSection";
+import StatementSection from "@/components/case-study/StatementSection";
+import OverviewSection from "@/components/case-study/OverviewSection";
 import ForkliftAnimation from "@/components/ForkliftAnimation";
 import ScreenRecording from "@/components/ScreenRecording";
 import { HOME_TITLE, pageTitle, useDocumentTitle } from "@/hooks/use-document-title";
@@ -52,8 +56,6 @@ import StravaUI_04 from "@/assets/projects/StravaUI_04.webp";
 import StravaUI_05 from "@/assets/projects/StravaUI_05.webp";
 import StravaUI_06 from "@/assets/projects/StravaUI_06.webp";
 // Retail store risk triage tool assets
-import Risk_Dash_hero_title from "@/assets/projects/Risk_Dash_hero_title.webp";
-import Risk_Dash_1 from "@/assets/projects/Risk_Dash_1.webp";
 import Risk_Dash_2 from "@/assets/projects/Risk_Dash_2.webp";
 import Risk_Dash_3 from "@/assets/projects/Risk_Dash_3.webp";
 import Risk_Dash_4 from "@/assets/projects/Risk_Dash_4.webp";
@@ -94,9 +96,21 @@ import yolks_07 from "@/assets/projects/Yolks_07.webp?webp";
 
 
 
+// Dev only (?overlay=1): Figma exports drawn over the coded case study sections at 50%, to check them.
+// The files are in design-ref/ (gitignored) and are served by the dev server by path. Nothing here is
+// imported, so production builds never include them; import.meta.env.DEV is false there.
+const RISK_TRIAGE_OVERLAYS = import.meta.env.DEV
+  ? {
+      hero: "/design-ref/design/risk-triage/risk_triage_hero.png",
+      overview: "/design-ref/design/risk-triage/risk_triage_overview.png",
+    }
+  : undefined;
+
 const ProjectDetail = () => {
   const { collection, projectId } = useParams<{ collection: string; projectId: string }>();
   const project = projectId ? getProjectById(projectId) : undefined;
+  const [searchParams] = useSearchParams();
+  const overlays = import.meta.env.DEV && searchParams.get("overlay") === "1" ? RISK_TRIAGE_OVERLAYS : undefined;
   useDocumentTitle(project ? pageTitle(project.title) : HOME_TITLE);
 
   if (!project || !isProjectCollection(collection)) {
@@ -174,12 +188,29 @@ const ProjectDetail = () => {
       )}
 
       {/* Risk dashboard Content */}
-      {project.id === "risk-triage-tool" && (
-        <section className="-mt-8 sm:-mt-12">
+      {project.id === "risk-triage-tool" && project.caseStudy && (
+        <section
+          style={
+            {
+              "--project-accent": project.caseStudy.accent,
+              "--project-accent-strong": project.caseStudy.accentStrong,
+            } as CSSProperties
+          }
+        >
           <div className="max-w-container mx-auto px-4 sm:px-6">
-            <img src={Risk_Dash_hero_title} className="w-full h-auto" />
-            <RiskHeroAnimation />
-            <img src={Risk_Dash_1} className="w-full h-auto" />
+            {/* Coded sections. One section gap everywhere: 128px from md (gap-32), 64px below (gap-16),
+                also above the hero (from the header) and below the last coded section. */}
+            <div className="flex flex-col gap-16 pt-16 pb-16 md:gap-32 md:pt-32 md:pb-32">
+              <HeroSection lines={project.caseStudy.hero} overlay={overlays?.hero} />
+              {/* The animation has empty space above and below its artwork: 120 of its 2000 viewBox units,
+                  i.e. 6% of its width. The negative margin (percent margins follow the width) takes that
+                  back out, so the visible gap to the hero and the statement is the section gap. */}
+              <div className="-my-[6%]">
+                <RiskHeroAnimation />
+              </div>
+              <StatementSection lines={project.caseStudy.statement} overlay={overlays?.overview} />
+              <OverviewSection left={project.caseStudy.overview.left} right={project.caseStudy.overview.right} />
+            </div>
             <img src={Risk_Dash_2} className="w-full h-auto" />
             <ForkliftAnimation />
             <img src={Risk_Dash_3} className="w-full h-auto" />

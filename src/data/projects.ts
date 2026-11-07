@@ -10,6 +10,7 @@ import yolks_main from "@/assets/projects/yolks_main.png";
 import riskTriageThumb from "@/assets/projects/risk-triage-thumb.webp";
 import ecommerceThumb from "@/assets/projects/ecommerce-thumb.webp";
 import parentingThumb from "@/assets/projects/parenting-thumb.webp";
+import type { CaseStudyContent } from "@/components/case-study/types";
 
 export type ProjectCollection = "digital" | "interior";
 
@@ -53,6 +54,8 @@ export interface Project {
     cropX?: number;
     cropY?: number;
   };
+  // Copy and accent colours for the coded case study sections (src/components/case-study).
+  caseStudy?: CaseStudyContent;
 }
 
 export const projects: Project[] = [
@@ -73,6 +76,83 @@ export const projects: Project[] = [
       { label: "Type", value: "Web app" },
     ],
     gallery: [],
+    caseStudy: {
+      accent: "218 75.6% 46.7%", // #1D5FD1
+      accentStrong: "218.9 56.9% 12.7%", // #0E1B33
+      hero: ["Every step looks late.", "Know which one to chase."],
+      statement: [
+        "Mid-build, several things go wrong at once.",
+        "Which one do you fix first, when every fix",
+        "moves something else down the line?",
+      ],
+      overview: {
+        left: [
+          {
+            label: "ROLE",
+            paragraphs: [
+              [
+                [{ text: "Self-initiated concept.", bold: true }],
+                "Product strategy, UX/UI and a coded prototype, built on a background in architecture and hands-on work",
+                "coordinating store builds.",
+              ],
+            ],
+          },
+          {
+            label: "KEY DECISIONS",
+            paragraphs: [
+              [
+                [
+                  {
+                    text: "Rank problems by how much they hold up the steps after them and the launch, not by how late they are.",
+                    bold: true,
+                  },
+                ],
+              ],
+              [
+                [{ text: "The AI drafts the nudge;", bold: true }],
+                [{ text: "the coordinator decides whether to send it.", bold: true }],
+              ],
+            ],
+          },
+          {
+            label: "OUTCOME",
+            paragraphs: [
+              [
+                [
+                  {
+                    text: "A clickable coded prototype of the core flow. Designed so the coordinator stops walking the floor to find out what’s stuck.",
+                    bold: true,
+                  },
+                ],
+              ],
+            ],
+          },
+        ],
+        right: [
+          {
+            label: "THE PROBLEM",
+            heading: "The plan was never the problem.",
+            paragraphs: [
+              [
+                "A store rebuild is planned down to the shift. Once it starts, several steps slip at once. The updates land in different chats and emails, and none of them says what it holds up. So the coordinator walks the floor to see what’s really done, and works out alone which slip to chase first. Existing tools track that status but don't triage consequence.",
+              ],
+            ],
+          },
+          {
+            label: "APPROACH",
+            paragraphs: [
+              [
+                "The research was the job.",
+                "I've run these builds, sequencing trades, chasing handoffs, absorbing the gaps myself.",
+              ],
+              [
+                "Field-ops tools track compliance across many stores; construction schedulers assume everyone watches the plan. Neither weighs what one slipped step costs the steps after it.",
+              ],
+            ],
+          },
+        ],
+      },
+    },
   },
   {
     id: "e-commerce-design-system",

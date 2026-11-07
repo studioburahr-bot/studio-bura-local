@@ -17,7 +17,29 @@ export default {
       fontFamily: {
         sans: ['Poppins', 'sans-serif'],
       },
+      // Case study text styles, named after the Figma text styles. Weight is set separately (font-bold).
+      // Sizes that change below md read CSS variables set in src/index.css, so one class covers both.
+      fontSize: {
+        hero: ["var(--text-hero)", { lineHeight: "var(--text-hero-lh)", letterSpacing: "0" }],
+        statement: ["var(--text-statement)", { lineHeight: "var(--text-statement-lh)", letterSpacing: "0" }],
+        "heading-3": ["var(--text-heading-3)", { lineHeight: "var(--text-heading-3-lh)", letterSpacing: "0" }],
+        body: ["var(--text-body)", { lineHeight: "var(--text-body-lh)", letterSpacing: "0" }],
+        "body-sm": ["1rem", { lineHeight: "1.5rem", letterSpacing: "0" }],
+        label: ["0.875rem", { lineHeight: "1.25rem", letterSpacing: "0" }],
+      },
       colors: {
+        // Case study colours, named after the Figma colour variables.
+        // ink and surface reuse the site's foreground/background; the accents are set per project
+        // (CSS variables on the case study's page wrapper, values in src/data/projects.ts).
+        ink: {
+          DEFAULT: "hsl(var(--foreground))",
+          muted: "hsl(var(--ink-muted))",
+        },
+        surface: "hsl(var(--background))",
+        "project-accent": {
+          DEFAULT: "hsl(var(--project-accent))",
+          strong: "hsl(var(--project-accent-strong))",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
