@@ -110,7 +110,7 @@ export const projects: Project[] = [
               ],
               [
                 [{ text: "The AI drafts the nudge;", bold: true }],
-                [{ text: "the coordinator decides whether to send it.", bold: true }],
+                [{ text: "the coordinator makes the call.", bold: true }],
               ],
             ],
           },

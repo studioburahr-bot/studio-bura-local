@@ -199,8 +199,10 @@ const ProjectDetail = () => {
         >
           <div className="max-w-container mx-auto px-4 sm:px-6">
             {/* Coded sections. One section gap everywhere: 128px from md (gap-32), 64px below (gap-16),
-                also above the hero (from the header) and below the last coded section. */}
-            <div className="flex flex-col gap-16 pt-16 pb-16 md:gap-32 md:pt-32 md:pb-32">
+                also below the last coded section. Above the hero, from md: the same 128px (pt-32).
+                Below md: pt-1.5, because the header already ends in 48px of padding (pb-12); with it the
+                visible gap from the "Type" line to the hero text is 64px. */}
+            <div className="flex flex-col gap-16 pt-1.5 pb-16 md:gap-32 md:pt-32 md:pb-32">
               <HeroSection lines={project.caseStudy.hero} overlay={overlays?.hero} />
               {/* The animation has empty space above and below its artwork: 120 of its 2000 viewBox units,
                   i.e. 6% of its width. The negative margin (percent margins follow the width) takes that

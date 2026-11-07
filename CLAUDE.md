@@ -8,7 +8,7 @@ Case study pages (src/pages/ProjectDetail.tsx) are moving from exported Figma im
 
 - Components live in `src/components/case-study/`: `SectionGrid`, `SectionLabel`, `HeroSection`, `StatementSection`, `OverviewSection`, plus `RichText` and `types.ts`. Build new section types there so every case study can reuse them.
 - Every section sits on `SectionGrid` (`grid grid-cols-12 gap-x-5`), inside the page's existing `max-w-container mx-auto px-4 sm:px-6`. This keeps the left edge in line with the top bar and the "Back to …" link.
-- Grid spans from md up: hero heading cols 1–8, statement cols 1–7, left blocks cols 1–3, right blocks cols 8–12 (`md:col-start-8 md:col-span-5`). Below md every block is `col-span-12`, stacked in DOM order.
+- Grid spans from md up: hero heading cols 1–12 (its lines break at sentences), statement cols 1–7, left blocks cols 1–3, right blocks cols 8–12 (`md:col-start-8 md:col-span-5`). Below md every block is `col-span-12`, stacked in DOM order.
 - All copy lives in the project's `caseStudy` entry in `src/data/projects.ts`, typed by `CaseStudyContent`. JSX only renders it.
 - Project accent colours are HSL channels in `caseStudy.accent` / `accentStrong`, set as `--project-accent` / `--project-accent-strong` on the case study's page wrapper.
 - The project header (title, Project, Type) is shared by all projects; leave it as it is.
@@ -19,7 +19,8 @@ Case study pages (src/pages/ProjectDetail.tsx) are moving from exported Figma im
 - Colours: only the tokens `ink`, `ink-muted`, `surface`, `project-accent`, `project-accent-strong` (tailwind.config.ts). Text is `text-ink` or `text-ink-muted`, at full opacity.
 - Text styles: only the fontSize tokens `hero`, `statement`, `heading-3`, `body`, `body-sm`, `label`. The first four switch size at md through CSS variables in src/index.css, so one class covers both sizes. Weight is a separate class (`font-bold`); "Body small bold" is `text-body-sm font-bold`. Load any new Poppins weight in the Google Fonts link in index.html (it loads 300–700); never rely on faux bold.
 - Spacing uses the default Tailwind scale (Figma spacing is rounded to it). An arbitrary value is a last resort: add a comment saying why, and report it.
-- Vertical rhythm: one section gap, 128px from md and 64px below (`gap-16 md:gap-32` on the stack of coded sections, the same as padding above the first and below the last). Apply it on the stack, not per element.
+- Vertical rhythm: one section gap, 128px from md and 64px below (`gap-16 md:gap-32` on the stack of coded sections, the same as padding below the last). Apply it on the stack, not per element.
+- Header to hero: from md, `pt-32` on the stack. Below md, the visible gap (header's last text line to hero text) is 64px: the header ends in 48px of padding, so the stack gets `pt-1.5`.
 - An animation with built-in empty space gets a negative margin that removes that space, so the visible gap is still the section gap. For RiskHeroAnimation that is `-my-[6%]` (120 of 2000 viewBox units; percent margins follow the width).
 - Inside a block: label, h3 and text are 12px apart (`gap-3`). Blocks in a column are 64px apart (`gap-16`). Paragraph gap = one line of that paragraph's style (`body` gap-7, `body-sm` gap-6).
 
