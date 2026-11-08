@@ -134,7 +134,7 @@ export const projects: Project[] = [
             heading: "The plan was never the problem.",
             paragraphs: [
               [
-                "A store rebuild is planned down to the shift. Once it starts, several steps slip at once. The updates land in different chats and emails, and none of them says what it holds up. So the coordinator walks the floor to see what’s really done, and works out alone which slip to chase first. Existing tools track that status but don't triage consequence.",
+                "A store rebuild is planned down to the shift. Once it starts, several steps slip at once. The updates land in different chats and emails, and none of them says what it holds up. So the coordinator walks the floor to see what’s really done, and works out alone which slip to chase first. Existing tools track that status but don’t triage consequence.",
               ],
             ],
           },
@@ -143,7 +143,7 @@ export const projects: Project[] = [
             paragraphs: [
               [
                 "The research was the job.",
-                "I've run these builds, sequencing trades, chasing handoffs, absorbing the gaps myself.",
+                "I’ve run these builds, sequencing trades, chasing handoffs, absorbing the gaps myself.",
               ],
               [
                 "Field-ops tools track compliance across many stores; construction schedulers assume everyone watches the plan. Neither weighs what one slipped step costs the steps after it.",
@@ -182,6 +182,76 @@ export const projects: Project[] = [
       },
       question:
         "How might we help a coordinator decide which problem to fix first, using signals the team already produces, without adding work for the people on the floor?",
+      chainIntro: {
+        heading: "First, map how a build actually chains",
+        paragraphs: [
+          [
+            "Before any screen, I mapped the real dependency chain;",
+            "what waits on what, what resolves itself, what needs a human.",
+            "That map is what the tool reasons over and what the AI later reads for risk.",
+          ],
+        ],
+      },
+      chain: {
+        label: "Dependency chain diagram",
+        steps: [
+          { title: "Clear-out", owner: "Facilities" },
+          { title: "Wall", owner: "Carpentry" },
+          { title: "Paint / Graphics", owner: "Carpentry / Graphics team" },
+        ],
+        dependencyNote: ["Dependency, not a checklist item.", "One step can’t start until the one before it clears."],
+        ownerNote: ["Owner is a position, not a person.", "Whoever’s on that shift picks it up."],
+        gate: "+24h dry time",
+        gateDecision: [
+          { kind: "dropped", label: "DROPPED", lines: ["Drying as a step someone confirms"] },
+          {
+            kind: "chose",
+            label: "CHOSE",
+            lines: [
+              "A time gate, not a task.",
+              "Nobody works the dry time",
+              "but nothing downstream starts until it clears.",
+            ],
+          },
+        ],
+        liftedStep: { title: "Racking", owner: "Sales / Floor" },
+        addStep: "+ Add step",
+        unplaced: {
+          label: "UNPLACED",
+          steps: [
+            { title: "Electrical", owner: "Electrician" },
+            { title: "Assembly", owner: "Assembly team", tag: "System-read · AssemblyHub" },
+          ],
+          note: [
+            "Most steps need a one-tap confirm from the floor.",
+            "This one’s status is read from an existing system instead.",
+          ],
+        },
+      },
+      boardIntro: {
+        heading: "One build, one board",
+        paragraphs: [
+          ["Every step leads with its state, so the board answers “where are we” before anyone asks."],
+          ["Below the chain, the AI flags the one step worth chasing.", "It gets its own section further down."],
+        ],
+      },
+      board: {
+        decision: [
+          { kind: "dropped", label: "DROPPED", lines: ["A board of every build in the store"] },
+          {
+            kind: "chose",
+            label: "CHOSE",
+            lines: ["A coordinator runs one build at a time.", "Crews shared across builds are a manager’s call."],
+          },
+        ],
+        annotation: "Where a system already knows (AssemblyHub), the board reads it.",
+        caption:
+          "Where no system can, it takes one tap from the floor. Paint is checked on site; racking is confirmed from the floor.",
+        boardAlt:
+          "Build board for one store rebuild: a dependency chain with Assembly done, Paint at risk before a 24-hour dry time, and Racking and Signage waiting, with a status card for each step.",
+        aiAlt:
+          "AI assessment card recommending a nudge on tomorrow’s paint, because a slip would cost the June 18 launch its only buffer day, with Details, Dismiss risk and Nudge actions.",
+      },
     },
   },
   {

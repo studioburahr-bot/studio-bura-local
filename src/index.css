@@ -40,6 +40,9 @@ All colors MUST be HSL.
 
     /* Case study tokens (tailwind.config.ts: ink-muted colour, case study fontSize entries) */
     --ink-muted: 45 2.1% 37.3%; /* #61605D */
+    /* #E2E3E7: 4.5:1 as text on project-accent (#1D5FD1), 4.9:1 behind ink-muted text */
+    --surface-muted: 228 9.4% 89.6%;
+    --line: 0 0% 65.5%; /* #A7A7A7 */
     /* Text styles below md; the md block further down sets the desktop values */
     --text-hero: 2.5rem; /* 40 / 48 */
     --text-hero-lh: 3rem;

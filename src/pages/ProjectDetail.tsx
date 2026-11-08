@@ -15,6 +15,9 @@ import StatementSection from "@/components/case-study/StatementSection";
 import OverviewSection from "@/components/case-study/OverviewSection";
 import DotsChain from "@/components/case-study/DotsChain";
 import PersonasSection from "@/components/case-study/PersonasSection";
+import CapabilityIntro from "@/components/case-study/CapabilityIntro";
+import ChainDiagram from "@/components/case-study/ChainDiagram";
+import BoardBlock from "@/components/case-study/BoardBlock";
 import ForkliftAnimation from "@/components/ForkliftAnimation";
 import ScreenRecording from "@/components/ScreenRecording";
 import { HOME_TITLE, pageTitle, useDocumentTitle } from "@/hooks/use-document-title";
@@ -58,7 +61,8 @@ import StravaUI_04 from "@/assets/projects/StravaUI_04.webp";
 import StravaUI_05 from "@/assets/projects/StravaUI_05.webp";
 import StravaUI_06 from "@/assets/projects/StravaUI_06.webp";
 // Retail store risk triage tool assets
-import Risk_Dash_2 from "@/assets/projects/Risk_Dash_2.webp";
+import Risk_Dash_board from "@/assets/projects/Risk_Dash_board.webp";
+import Risk_Dash_ai_assessment from "@/assets/projects/Risk_Dash_ai_assessment.webp";
 import Risk_Dash_3 from "@/assets/projects/Risk_Dash_3.webp";
 import Risk_Dash_4 from "@/assets/projects/Risk_Dash_4.webp";
 import Risk_Dash_5 from "@/assets/projects/Risk_Dash_5.webp";
@@ -105,6 +109,7 @@ const RISK_TRIAGE_OVERLAYS = import.meta.env.DEV
   ? {
       hero: "/design-ref/design/risk-triage/risk_triage_hero.png",
       overview: "/design-ref/design/risk-triage/risk_triage_overview.png",
+      dash2: "/design-ref/design/risk-triage/risk_triage_dash2.png",
     }
   : undefined;
 
@@ -224,8 +229,19 @@ const ProjectDetail = () => {
                 personas={project.caseStudy.personas.items}
                 question={project.caseStudy.question}
               />
+              <CapabilityIntro intro={project.caseStudy.chainIntro} overlay={overlays?.dash2} />
+              <ChainDiagram chain={project.caseStudy.chain} />
+              <CapabilityIntro intro={project.caseStudy.boardIntro} />
+              <BoardBlock
+                decision={project.caseStudy.board.decision}
+                board={{ src: Risk_Dash_board, alt: project.caseStudy.board.boardAlt, width: 1600, height: 666 }}
+                annotation={project.caseStudy.board.annotation}
+                // The AssemblyHub chip on the board's first card sits 57% of the way down the image
+                annotationAt="57%"
+                caption={project.caseStudy.board.caption}
+                ai={{ src: Risk_Dash_ai_assessment, alt: project.caseStudy.board.aiAlt, width: 1600, height: 254 }}
+              />
             </div>
-            <img src={Risk_Dash_2} className="w-full h-auto" />
             <ForkliftAnimation />
             <img src={Risk_Dash_3} className="w-full h-auto" />
             <img src={Risk_Dash_4} className="w-full h-auto" />

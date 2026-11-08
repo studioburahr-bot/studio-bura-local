@@ -26,6 +26,11 @@ export default {
         body: ["var(--text-body)", { lineHeight: "var(--text-body-lh)", letterSpacing: "0" }],
         "body-sm": ["1rem", { lineHeight: "1.5rem", letterSpacing: "0" }],
         label: ["0.875rem", { lineHeight: "1.25rem", letterSpacing: "0" }],
+        // Same size as label for now; kept separate so annotations can change on their own.
+        annotation: ["0.875rem", { lineHeight: "1.25rem", letterSpacing: "0" }],
+        // Diagram card text, and the diagram's small mono tags (with font-mono: the system monospace stack).
+        diagram: ["0.75rem", { lineHeight: "1rem", letterSpacing: "0" }],
+        "diagram-mono": ["0.625rem", { lineHeight: "0.75rem", letterSpacing: "0" }],
       },
       colors: {
         // Case study colours, named after the Figma colour variables.
@@ -35,7 +40,13 @@ export default {
           DEFAULT: "hsl(var(--foreground))",
           muted: "hsl(var(--ink-muted))",
         },
-        surface: "hsl(var(--background))",
+        surface: {
+          DEFAULT: "hsl(var(--background))",
+          // Light grey: text and borders on project-accent, and grey backgrounds behind ink-muted text.
+          muted: "hsl(var(--surface-muted))",
+        },
+        // Thin decorative lines (annotation leader lines).
+        line: "hsl(var(--line))",
         "project-accent": {
           DEFAULT: "hsl(var(--project-accent))",
           strong: "hsl(var(--project-accent-strong))",
