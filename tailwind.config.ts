@@ -95,6 +95,10 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
       },
+      boxShadow: {
+        // Phone screenshots in case studies (Figma's phone shadow, rounded to whole px).
+        phone: "0 12px 32px -14px rgb(17 17 20 / 0.22), 0 1px 4px rgb(17 17 20 / 0.05)",
+      },
       maxWidth: {
         container: "1400px",
         hero: "768px",

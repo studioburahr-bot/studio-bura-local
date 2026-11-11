@@ -252,6 +252,64 @@ export const projects: Project[] = [
         aiAlt:
           "AI assessment card recommending a nudge on tomorrow’s paint, because a slip would cost the June 18 launch its only buffer day, with Details, Dismiss risk and Nudge actions.",
       },
+      floorIntro: {
+        heading: "The confirmation the floor will actually send",
+        paragraphs: [
+          ["The same loop from the other side of the glass:", "what the coordinator nudges lands here as one light task."],
+          [
+            "Confirming costs one tap, so people who never answer email still send the signal back: a tap when it’s done, a reason when it isn’t.",
+          ],
+        ],
+      },
+      floor: {
+        alts: {
+          unclaimed: "Floor app task: Racking, unclaimed, due today at 6:00 PM, with an “I’ll take this” button.",
+          claimed: "The task claimed by you at 3:10 PM, with a “Mark done” button and a “Not ready” link.",
+          done: "The task marked done by Sales floor at 5:42 PM.",
+          notReady:
+            "A sheet asking “Why isn’t this ready?”: Paint isn’t finished, Racking not on site, Not enough people this shift, Something else.",
+          blocked: "The task blocked, reason “Paint isn’t finished”, flagged by Sales floor at 4:15 PM.",
+        },
+        captions: {
+          claimed: "One tap makes it yours, and the coordinator sees who has it.",
+          done: "Closed and auditable; full trail from claim to done.",
+        },
+        unclaimedDecision: [
+          { kind: "dropped", label: "DROPPED", lines: ["A manager assigns it to a name"] },
+          {
+            kind: "chose",
+            label: "CHOSE",
+            lines: ["The task hangs on the shift-position, not a name.", "Anyone on shift can take it."],
+          },
+        ],
+        claimedEdges: [
+          {
+            kind: "edge",
+            label: "EDGE",
+            lines: [
+              "Offline on the floor, the tap queues locally; the coordinator sees green only after sync.",
+              "The UI never shows a state it can’t back up.",
+            ],
+          },
+          {
+            kind: "edge",
+            label: "EDGE",
+            lines: ["A claimed task can be handed to another position, with a trace of who passed it to whom."],
+          },
+        ],
+        blockedDecision: [
+          { kind: "dropped", label: "DROPPED", lines: ["A chat thread nobody actually reads"] },
+          { kind: "chose", label: "CHOSE", lines: ["A structured reason with a clear next step."] },
+        ],
+        arrows: {
+          claim: "Tap “I’ll take this”",
+          markDone: "Tap “Mark done”",
+          notReady: "Tap “Not ready”",
+          reason: "Pick a reason",
+        },
+        altPathLabel: "If it isn’t ready",
+        takeaway: ["Effort rises only where the signal is worth more:", "done is one tap, a problem is one extra screen."],
+      },
     },
   },
   {

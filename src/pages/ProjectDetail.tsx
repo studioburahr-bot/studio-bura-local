@@ -18,6 +18,7 @@ import PersonasSection from "@/components/case-study/PersonasSection";
 import CapabilityIntro from "@/components/case-study/CapabilityIntro";
 import ChainDiagram from "@/components/case-study/ChainDiagram";
 import BoardBlock from "@/components/case-study/BoardBlock";
+import FloorFlow from "@/components/case-study/FloorFlow";
 import ForkliftAnimation from "@/components/ForkliftAnimation";
 import ScreenRecording from "@/components/ScreenRecording";
 import { HOME_TITLE, pageTitle, useDocumentTitle } from "@/hooks/use-document-title";
@@ -63,7 +64,11 @@ import StravaUI_06 from "@/assets/projects/StravaUI_06.webp";
 // Retail store risk triage tool assets
 import Risk_Dash_board from "@/assets/projects/Risk_Dash_board.webp";
 import Risk_Dash_ai_assessment from "@/assets/projects/Risk_Dash_ai_assessment.webp";
-import Risk_Dash_3 from "@/assets/projects/Risk_Dash_3.webp";
+import Risk_Floor_unclaimed from "@/assets/projects/Risk_Floor_unclaimed.webp";
+import Risk_Floor_claimed from "@/assets/projects/Risk_Floor_claimed.webp";
+import Risk_Floor_done from "@/assets/projects/Risk_Floor_done.webp";
+import Risk_Floor_not_ready from "@/assets/projects/Risk_Floor_not_ready.webp";
+import Risk_Floor_blocked from "@/assets/projects/Risk_Floor_blocked.webp";
 import Risk_Dash_4 from "@/assets/projects/Risk_Dash_4.webp";
 import Risk_Dash_5 from "@/assets/projects/Risk_Dash_5.webp";
 import nudgeFlow from "@/assets/projects/nudge-flow.mp4";
@@ -110,6 +115,7 @@ const RISK_TRIAGE_OVERLAYS = import.meta.env.DEV
       hero: "/design-ref/design/risk-triage/risk_triage_hero.png",
       overview: "/design-ref/design/risk-triage/risk_triage_overview.png",
       dash2: "/design-ref/design/risk-triage/risk_triage_dash2.png",
+      dash3: "/design-ref/design/risk-triage/risk_triage_dash3.png",
     }
   : undefined;
 
@@ -243,7 +249,22 @@ const ProjectDetail = () => {
               />
             </div>
             <ForkliftAnimation />
-            <img src={Risk_Dash_3} className="w-full h-auto" />
+            {/* Second stack of coded sections, between two existing pieces. The section gap above it
+                (pt-16 md:pt-32) and between its sections; no padding below, because Risk_Dash_4 starts
+                with its own blank space (170px at 1440). */}
+            <div className="flex flex-col gap-16 pt-16 md:gap-32 md:pt-32">
+              <CapabilityIntro intro={project.caseStudy.floorIntro} overlay={overlays?.dash3} />
+              <FloorFlow
+                flow={project.caseStudy.floor}
+                images={{
+                  unclaimed: { src: Risk_Floor_unclaimed, width: 512, height: 558 },
+                  claimed: { src: Risk_Floor_claimed, width: 512, height: 639 },
+                  done: { src: Risk_Floor_done, width: 512, height: 465 },
+                  notReady: { src: Risk_Floor_not_ready, width: 512, height: 1050 },
+                  blocked: { src: Risk_Floor_blocked, width: 512, height: 583 },
+                }}
+              />
+            </div>
             <img src={Risk_Dash_4} className="w-full h-auto" />
             {/* Screen recording of the prototype, with a link to try it: one block.
                 Space above and below the block: my-12 is 48px on mobile, sm:my-24 is 96px from 640px up. */}

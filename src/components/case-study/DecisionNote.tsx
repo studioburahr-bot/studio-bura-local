@@ -8,8 +8,8 @@ import type { DecisionRow } from "./types";
 // CHOSE and EDGE are ink. The dash is decorative (aria-hidden); the <dl> pairs each label with its text.
 const DecisionNote = ({ rows, className }: { rows: DecisionRow[]; className?: string }) => (
   <dl className={cn("flex flex-col gap-2", className)}>
-    {rows.map((row) => (
-      <div key={row.label} className="flex items-start">
+    {rows.map((row, i) => (
+      <div key={i} className="flex items-start">
         <dt className="w-16 shrink-0 text-label text-ink-muted">{row.label}</dt>
         <dd className="flex items-start">
           <span aria-hidden="true" className="w-7 shrink-0 text-center text-label text-ink-muted">

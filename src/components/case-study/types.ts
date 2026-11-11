@@ -83,6 +83,23 @@ export interface BoardBlockContent {
   aiAlt: string;
 }
 
+// The floor app flow (FloorFlow): five phone screens joined by arrows. Arrow labels name the tap that
+// leads to the next screen. The screenshots themselves are imported by the page.
+export type FloorScreen = "unclaimed" | "claimed" | "done" | "notReady" | "blocked";
+
+export interface FloorFlowContent {
+  alts: Record<FloorScreen, string>;
+  captions: { claimed: string; done: string };
+  // Notes under phones: a decision under the first and last, EDGE rows under the second.
+  unclaimedDecision: DecisionRow[];
+  claimedEdges: DecisionRow[];
+  blockedDecision: DecisionRow[];
+  arrows: { claim: string; markDone: string; notReady: string; reason: string };
+  // Marks where the alternative path starts. Visible in the stacked layout, sr-only in the desktop flow.
+  altPathLabel: string;
+  takeaway: RichLine[];
+}
+
 export interface CaseStudyContent {
   // Project accent colours as HSL channels ("218 75.6% 46.7%"), set as --project-accent and
   // --project-accent-strong on the case study's page wrapper.
@@ -109,4 +126,6 @@ export interface CaseStudyContent {
   chain: ChainDiagramContent;
   boardIntro: CapabilityIntroContent;
   board: BoardBlockContent;
+  floorIntro: CapabilityIntroContent;
+  floor: FloorFlowContent;
 }
