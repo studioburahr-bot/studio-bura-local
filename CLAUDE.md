@@ -58,10 +58,11 @@ Case study pages (src/pages/ProjectDetail.tsx) are being converted from exported
 ### Text
 
 - Copy uses curly quotes and apostrophes (“ ” ’), never straight ones.
+- Labels shown in capitals (`SectionLabel`) are stored in sentence case in the copy data (“The problem”) and made uppercase with CSS (`uppercase`); all-caps source text can be read letter by letter.
 - Each paragraph is its own `<p>`. An intentional line break is a new line in the copy data, rendered by `RichLines` as `<span class="block">`; markup has no `<br>`. Where a break only suits the wide layout, pass `breakFrom="xl"`: the lines are `xl:block` spans joined by a space, and below xl the text wraps naturally (the outcomes headings and closing statement).
 - Headings use `text-balance`. To keep a phrase together (e.g. “the floor”), put a non-breaking space in the copy data (` `), never a manual break. A hyphenated word that must not split (“at‑risk”) takes a non-breaking hyphen (`‑`); Poppins has the glyph.
 - Statement-style paragraphs that aren't headings (takeaways, the closing statement) use `text-pretty`, so the last line is never one short word.
-- Hierarchy: the page's only h1 is the project title in the header. Hero heading, statement, How might we and capability intro headings are h2; headings inside blocks are h3, whatever their size (the Overview's “The plan was never the problem.” is an h3 in the `statement` style). Labels (ROLE, THE PROBLEM, …) are `SectionLabel`, a `<p>`; where a label is the section's only heading (WHAT IT’S DESIGNED TO CHANGE), it's `SectionLabel as="h2"`.
+- Hierarchy: the page's only h1 is the project title in the header. Hero heading, statement, How might we and capability intro headings are h2; headings inside blocks are h3, whatever their size (the Overview's “The plan was never the problem.” is an h3 in the `statement` style). Labels (Role, The problem, …, shown in capitals) are `SectionLabel`, a `<p>`; where a label is the section's only heading (What it’s designed to change), it's `SectionLabel as="h2"`.
 
 ### Don't touch
 

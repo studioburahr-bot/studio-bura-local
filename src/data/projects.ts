@@ -88,7 +88,7 @@ export const projects: Project[] = [
       overview: {
         left: [
           {
-            label: "ROLE",
+            label: "Role",
             paragraphs: [
               [
                 [{ text: "Self-initiated concept.", bold: true }],
@@ -98,7 +98,7 @@ export const projects: Project[] = [
             ],
           },
           {
-            label: "KEY DECISIONS",
+            label: "Key decisions",
             paragraphs: [
               [
                 [
@@ -115,7 +115,7 @@ export const projects: Project[] = [
             ],
           },
           {
-            label: "OUTCOME",
+            label: "Outcome",
             paragraphs: [
               [
                 [
@@ -130,7 +130,7 @@ export const projects: Project[] = [
         ],
         right: [
           {
-            label: "THE PROBLEM",
+            label: "The problem",
             heading: "The plan was never the problem.",
             paragraphs: [
               [
@@ -139,7 +139,7 @@ export const projects: Project[] = [
             ],
           },
           {
-            label: "APPROACH",
+            label: "Approach",
             paragraphs: [
               [
                 "The research was the job.",
@@ -158,7 +158,7 @@ export const projects: Project[] = [
         description: "One blocked step holds up every step after it.",
       },
       personas: {
-        label: "PERSONAS",
+        label: "Personas",
         items: [
           {
             icon: "coordinator",
@@ -217,7 +217,7 @@ export const projects: Project[] = [
         liftedStep: { title: "Racking", owner: "Sales / Floor" },
         addStep: "+ Add step",
         unplaced: {
-          label: "UNPLACED",
+          label: "Unplaced",
           steps: [
             { title: "Electrical", owner: "Electrician" },
             { title: "Assembly", owner: "Assembly team", tag: "System-read · AssemblyHub" },
@@ -382,7 +382,7 @@ export const projects: Project[] = [
       },
       // Line breaks in the headings and the statement apply from xl only; below that the text wraps.
       outcomes: {
-        label: "WHAT IT’S DESIGNED TO CHANGE",
+        label: "What it’s designed to change",
         items: [
           {
             icon: "chase",
