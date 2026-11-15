@@ -1,4 +1,5 @@
-import { useParams, Link, Navigate } from "react-router-dom";
+import { useParams, useSearchParams, Link, Navigate } from "react-router-dom";
+import type { CSSProperties } from "react";
 import { ArrowLeft } from "lucide-react";
 import {
   PROJECT_COLLECTIONS,
@@ -9,6 +10,18 @@ import {
 import FigmaPrototypeDevice from "@/components/FigmaPrototypeDevice";
 import FigmaEmbed from "@/components/FigmaEmbed";
 import RiskHeroAnimation from "@/components/RiskHeroAnimation";
+import HeroSection from "@/components/case-study/HeroSection";
+import StatementSection from "@/components/case-study/StatementSection";
+import OverviewSection from "@/components/case-study/OverviewSection";
+import DotsChain from "@/components/case-study/DotsChain";
+import PersonasSection from "@/components/case-study/PersonasSection";
+import CapabilityIntro from "@/components/case-study/CapabilityIntro";
+import ChainDiagram from "@/components/case-study/ChainDiagram";
+import BoardBlock from "@/components/case-study/BoardBlock";
+import FloorFlow from "@/components/case-study/FloorFlow";
+import AiPanel from "@/components/case-study/AiPanel";
+import DecisionBlock from "@/components/case-study/DecisionBlock";
+import OutcomesSection from "@/components/case-study/OutcomesSection";
 import ForkliftAnimation from "@/components/ForkliftAnimation";
 import ScreenRecording from "@/components/ScreenRecording";
 import { HOME_TITLE, pageTitle, useDocumentTitle } from "@/hooks/use-document-title";
@@ -52,12 +65,20 @@ import StravaUI_04 from "@/assets/projects/StravaUI_04.webp";
 import StravaUI_05 from "@/assets/projects/StravaUI_05.webp";
 import StravaUI_06 from "@/assets/projects/StravaUI_06.webp";
 // Retail store risk triage tool assets
-import Risk_Dash_hero_title from "@/assets/projects/Risk_Dash_hero_title.webp";
-import Risk_Dash_1 from "@/assets/projects/Risk_Dash_1.webp";
-import Risk_Dash_2 from "@/assets/projects/Risk_Dash_2.webp";
-import Risk_Dash_3 from "@/assets/projects/Risk_Dash_3.webp";
-import Risk_Dash_4 from "@/assets/projects/Risk_Dash_4.webp";
-import Risk_Dash_5 from "@/assets/projects/Risk_Dash_5.webp";
+import Risk_Dash_board from "@/assets/projects/Risk_Dash_board.webp";
+import Risk_Dash_ai_assessment from "@/assets/projects/Risk_Dash_ai_assessment.webp";
+import Risk_Floor_unclaimed from "@/assets/projects/Risk_Floor_unclaimed.webp";
+import Risk_Floor_claimed from "@/assets/projects/Risk_Floor_claimed.webp";
+import Risk_Floor_done from "@/assets/projects/Risk_Floor_done.webp";
+import Risk_Floor_not_ready from "@/assets/projects/Risk_Floor_not_ready.webp";
+import Risk_Floor_blocked from "@/assets/projects/Risk_Floor_blocked.webp";
+import Risk_AI_assessed from "@/assets/projects/Risk_AI_assessed.webp";
+import Risk_Decide_nudged from "@/assets/projects/Risk_Decide_nudged.webp";
+import Risk_Decide_dismissed from "@/assets/projects/Risk_Decide_dismissed.webp";
+import Risk_AI_next from "@/assets/projects/Risk_AI_next.webp";
+import Risk_AI_chain from "@/assets/projects/Risk_AI_chain.webp";
+import Risk_AI_signage from "@/assets/projects/Risk_AI_signage.webp";
+import Risk_AI_evidence from "@/assets/projects/Risk_AI_evidence.webp";
 import nudgeFlow from "@/assets/projects/nudge-flow.mp4";
 // E-commerce design system assets
 import NordicPaws_1 from "@/assets/projects/NordicPaws_1.webp";
@@ -94,9 +115,30 @@ import yolks_07 from "@/assets/projects/Yolks_07.webp?webp";
 
 
 
+// Dev only (?overlay=1): Figma exports drawn over the coded case study sections at 50%, to check them.
+// One entry per project id; each name is passed to a section's `overlay` prop. The files are in
+// design-ref/ (gitignored) and are served by the dev server by path. Nothing here is imported, so
+// production builds never include them; import.meta.env.DEV is false there.
+const DEV_OVERLAYS: Record<string, Record<string, string>> | undefined = import.meta.env.DEV
+  ? {
+      "risk-triage-tool": {
+        hero: "/design-ref/design/risk-triage/risk_triage_hero.png",
+        overview: "/design-ref/design/risk-triage/risk_triage_overview.png",
+        dash2: "/design-ref/design/risk-triage/risk_triage_dash2.png",
+        dash3: "/design-ref/design/risk-triage/risk_triage_dash3.png",
+        dash4a: "/design-ref/design/risk-triage/risk_triage_dash4a.png",
+        dash4b: "/design-ref/design/risk-triage/risk_triage_dash4b.png",
+        dash5: "/design-ref/design/risk-triage/risk_triage_dash5.png",
+      },
+    }
+  : undefined;
+
 const ProjectDetail = () => {
   const { collection, projectId } = useParams<{ collection: string; projectId: string }>();
   const project = projectId ? getProjectById(projectId) : undefined;
+  const [searchParams] = useSearchParams();
+  const overlays =
+    import.meta.env.DEV && searchParams.get("overlay") === "1" && projectId ? DEV_OVERLAYS?.[projectId] : undefined;
   useDocumentTitle(project ? pageTitle(project.title) : HOME_TITLE);
 
   if (!project || !isProjectCollection(collection)) {
@@ -174,19 +216,96 @@ const ProjectDetail = () => {
       )}
 
       {/* Risk dashboard Content */}
-      {project.id === "risk-triage-tool" && (
-        <section className="-mt-8 sm:-mt-12">
+      {project.id === "risk-triage-tool" && project.caseStudy && (
+        <section
+          style={
+            {
+              "--project-accent": project.caseStudy.accent,
+              "--project-accent-strong": project.caseStudy.accentStrong,
+            } as CSSProperties
+          }
+        >
           <div className="max-w-container mx-auto px-4 sm:px-6">
-            <img src={Risk_Dash_hero_title} className="w-full h-auto" />
-            <RiskHeroAnimation />
-            <img src={Risk_Dash_1} className="w-full h-auto" />
-            <img src={Risk_Dash_2} className="w-full h-auto" />
+            {/* Coded sections. One section gap everywhere: 128px from md (gap-32), 64px below (gap-16),
+                also below the last coded section. Above the hero, from md: the same 128px (pt-32).
+                Below md: pt-1.5, because the header already ends in 48px of padding (pb-12); with it the
+                visible gap from the "Type" line to the hero text is 64px. */}
+            <div className="flex flex-col gap-16 pt-1.5 pb-16 md:gap-32 md:pt-32 md:pb-32">
+              <HeroSection lines={project.caseStudy.hero} overlay={overlays?.hero} />
+              {/* The animation has empty space above and below its artwork: 120 of its 2000 viewBox units,
+                  i.e. 6% of its width. The negative margin (percent margins follow the width) takes that
+                  back out, so the visible gap to the hero and the statement is the section gap. */}
+              <div className="-my-[6%]">
+                <RiskHeroAnimation />
+              </div>
+              <StatementSection lines={project.caseStudy.statement} overlay={overlays?.overview} />
+              <OverviewSection left={project.caseStudy.overview.left} right={project.caseStudy.overview.right} />
+              <DotsChain
+                count={project.caseStudy.dots.count}
+                raisedSlot={project.caseStudy.dots.raisedSlot}
+                description={project.caseStudy.dots.description}
+              />
+              <PersonasSection
+                label={project.caseStudy.personas.label}
+                personas={project.caseStudy.personas.items}
+                question={project.caseStudy.question}
+              />
+              <CapabilityIntro intro={project.caseStudy.chainIntro} overlay={overlays?.dash2} />
+              <ChainDiagram chain={project.caseStudy.chain} />
+              <CapabilityIntro intro={project.caseStudy.boardIntro} />
+              <BoardBlock
+                decision={project.caseStudy.board.decision}
+                board={{ src: Risk_Dash_board, alt: project.caseStudy.board.boardAlt, width: 1600, height: 666 }}
+                annotation={project.caseStudy.board.annotation}
+                // The AssemblyHub chip on the board's first card sits 57% of the way down the image
+                annotationAt="57%"
+                caption={project.caseStudy.board.caption}
+                ai={{ src: Risk_Dash_ai_assessment, alt: project.caseStudy.board.aiAlt, width: 1600, height: 254 }}
+              />
+            </div>
             <ForkliftAnimation />
-            <img src={Risk_Dash_3} className="w-full h-auto" />
-            <img src={Risk_Dash_4} className="w-full h-auto" />
+            {/* Second stack of coded sections, after the forklift. The section gap above it
+                (pt-16 md:pt-32), between its sections and below the last one (pb-16 md:pb-32), so the
+                screen recording that follows starts one section gap down; the recording block has no
+                top margin of its own. */}
+            <div className="flex flex-col gap-16 py-16 md:gap-32 md:py-32">
+              <CapabilityIntro intro={project.caseStudy.floorIntro} overlay={overlays?.dash3} />
+              <FloorFlow
+                flow={project.caseStudy.floor}
+                images={{
+                  unclaimed: { src: Risk_Floor_unclaimed, width: 512, height: 558 },
+                  claimed: { src: Risk_Floor_claimed, width: 512, height: 639 },
+                  done: { src: Risk_Floor_done, width: 512, height: 465 },
+                  notReady: { src: Risk_Floor_not_ready, width: 512, height: 1050 },
+                  blocked: { src: Risk_Floor_blocked, width: 512, height: 583 },
+                }}
+              />
+              <CapabilityIntro intro={project.caseStudy.aiIntro} overlay={overlays?.dash4a} />
+              <AiPanel
+                rows={project.caseStudy.aiPanel}
+                images={{
+                  assessed: { src: Risk_AI_assessed, width: 1558, height: 395 },
+                  next: { src: Risk_AI_next, width: 1558, height: 277 },
+                  // The note beside "chain" points at the chain timeline, 25% of the way down the screenshot
+                  chain: { src: Risk_AI_chain, width: 1558, height: 562, noteAt: "25%" },
+                  signage: { src: Risk_AI_signage, width: 1558, height: 150 },
+                  evidence: { src: Risk_AI_evidence, width: 1558, height: 341 },
+                }}
+              />
+              {/* The dash4b export starts 56px above the intro's heading block. */}
+              <CapabilityIntro intro={project.caseStudy.decideIntro} overlay={overlays?.dash4b} overlayOffset="-56px" />
+              <DecisionBlock
+                block={project.caseStudy.decide}
+                images={{
+                  nudged: { src: Risk_Decide_nudged, width: 1560, height: 516 },
+                  dismissed: { src: Risk_Decide_dismissed, width: 1558, height: 452 },
+                }}
+              />
+            </div>
             {/* Screen recording of the prototype, with a link to try it: one block.
-                Space above and below the block: my-12 is 48px on mobile, sm:my-24 is 96px from 640px up. */}
-            <div className="my-12 sm:my-24">
+                No margin of its own: the section gap above comes from the stack above (its bottom padding),
+                and the one below from the closing section's top padding. */}
+            <div>
               {/* Width (the max-w value; mx-auto keeps it centred): 60% of the image column from 768px up,
                   i.e. 1200 of the 2000-wide design. Below that, the full column minus a 16px gutter each side. */}
               <ScreenRecording
@@ -206,7 +325,11 @@ const ProjectDetail = () => {
                 </Link>
               </div>
             </div>
-            <img src={Risk_Dash_5} className="w-full h-auto" />
+            {/* Closing section: one section gap under the recording block (which has no margin of its own).
+                No padding below: the page's shared blank space sets the gap to the footer. */}
+            <div className="pt-16 md:pt-32">
+              <OutcomesSection outcomes={project.caseStudy.outcomes} overlay={overlays?.dash5} />
+            </div>
           </div>
         </section>
       )}

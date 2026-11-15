@@ -17,7 +17,40 @@ export default {
       fontFamily: {
         sans: ['Poppins', 'sans-serif'],
       },
+      // Case study text styles, named after the Figma text styles. Weight is set separately (font-bold).
+      // Sizes that change below md read CSS variables set in src/index.css, so one class covers both.
+      fontSize: {
+        hero: ["var(--text-hero)", { lineHeight: "var(--text-hero-lh)", letterSpacing: "0" }],
+        statement: ["var(--text-statement)", { lineHeight: "var(--text-statement-lh)", letterSpacing: "0" }],
+        "heading-3": ["var(--text-heading-3)", { lineHeight: "var(--text-heading-3-lh)", letterSpacing: "0" }],
+        body: ["var(--text-body)", { lineHeight: "var(--text-body-lh)", letterSpacing: "0" }],
+        "body-sm": ["1rem", { lineHeight: "1.5rem", letterSpacing: "0" }],
+        label: ["0.875rem", { lineHeight: "1.25rem", letterSpacing: "0" }],
+        // Same size as label for now; kept separate so annotations can change on their own.
+        annotation: ["0.875rem", { lineHeight: "1.25rem", letterSpacing: "0" }],
+        // Diagram card text, and the diagram's small mono tags (with font-mono: the system monospace stack).
+        diagram: ["0.75rem", { lineHeight: "1rem", letterSpacing: "0" }],
+        "diagram-mono": ["0.625rem", { lineHeight: "0.75rem", letterSpacing: "0" }],
+      },
       colors: {
+        // Case study colours, named after the Figma colour variables.
+        // ink and surface reuse the site's foreground/background; the accents are set per project
+        // (CSS variables on the case study's page wrapper, values in src/data/projects.ts).
+        ink: {
+          DEFAULT: "hsl(var(--foreground))",
+          muted: "hsl(var(--ink-muted))",
+        },
+        surface: {
+          DEFAULT: "hsl(var(--background))",
+          // Light grey: text and borders on project-accent, and grey backgrounds behind ink-muted text.
+          muted: "hsl(var(--surface-muted))",
+        },
+        // Thin decorative lines (annotation leader lines).
+        line: "hsl(var(--line))",
+        "project-accent": {
+          DEFAULT: "hsl(var(--project-accent))",
+          strong: "hsl(var(--project-accent-strong))",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -61,6 +94,10 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+      },
+      boxShadow: {
+        // Phone screenshots in case studies (Figma's phone shadow, rounded to whole px).
+        phone: "0 12px 32px -14px rgb(17 17 20 / 0.22), 0 1px 4px rgb(17 17 20 / 0.05)",
       },
       maxWidth: {
         container: "1400px",
