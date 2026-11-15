@@ -22,9 +22,10 @@ const SectionGrid = ({ children, overlay, overlayOffset, className, ...rest }: S
         src={overlay}
         alt=""
         aria-hidden="true"
-        style={overlayOffset ? { top: overlayOffset } : undefined}
-        // Dev-only overlay: the Figma frame is 1352px wide (the container's content width at 1440)
-        className="pointer-events-none absolute left-0 top-0 z-10 w-[1352px] max-w-none opacity-50"
+        // The Figma frame is 1352px wide (the container's content width at 1440). Width and offset are
+        // inline styles rather than classes, so production CSS has no rule for this dev-only image.
+        style={{ width: 1352, top: overlayOffset ?? 0 }}
+        className="pointer-events-none absolute left-0 z-10 max-w-none opacity-50"
       />
     )}
   </section>

@@ -116,17 +116,20 @@ import yolks_07 from "@/assets/projects/Yolks_07.webp?webp";
 
 
 // Dev only (?overlay=1): Figma exports drawn over the coded case study sections at 50%, to check them.
-// The files are in design-ref/ (gitignored) and are served by the dev server by path. Nothing here is
-// imported, so production builds never include them; import.meta.env.DEV is false there.
-const RISK_TRIAGE_OVERLAYS = import.meta.env.DEV
+// One entry per project id; each name is passed to a section's `overlay` prop. The files are in
+// design-ref/ (gitignored) and are served by the dev server by path. Nothing here is imported, so
+// production builds never include them; import.meta.env.DEV is false there.
+const DEV_OVERLAYS: Record<string, Record<string, string>> | undefined = import.meta.env.DEV
   ? {
-      hero: "/design-ref/design/risk-triage/risk_triage_hero.png",
-      overview: "/design-ref/design/risk-triage/risk_triage_overview.png",
-      dash2: "/design-ref/design/risk-triage/risk_triage_dash2.png",
-      dash3: "/design-ref/design/risk-triage/risk_triage_dash3.png",
-      dash4a: "/design-ref/design/risk-triage/risk_triage_dash4a.png",
-      dash4b: "/design-ref/design/risk-triage/risk_triage_dash4b.png",
-      dash5: "/design-ref/design/risk-triage/risk_triage_dash5.png",
+      "risk-triage-tool": {
+        hero: "/design-ref/design/risk-triage/risk_triage_hero.png",
+        overview: "/design-ref/design/risk-triage/risk_triage_overview.png",
+        dash2: "/design-ref/design/risk-triage/risk_triage_dash2.png",
+        dash3: "/design-ref/design/risk-triage/risk_triage_dash3.png",
+        dash4a: "/design-ref/design/risk-triage/risk_triage_dash4a.png",
+        dash4b: "/design-ref/design/risk-triage/risk_triage_dash4b.png",
+        dash5: "/design-ref/design/risk-triage/risk_triage_dash5.png",
+      },
     }
   : undefined;
 
@@ -134,7 +137,8 @@ const ProjectDetail = () => {
   const { collection, projectId } = useParams<{ collection: string; projectId: string }>();
   const project = projectId ? getProjectById(projectId) : undefined;
   const [searchParams] = useSearchParams();
-  const overlays = import.meta.env.DEV && searchParams.get("overlay") === "1" ? RISK_TRIAGE_OVERLAYS : undefined;
+  const overlays =
+    import.meta.env.DEV && searchParams.get("overlay") === "1" && projectId ? DEV_OVERLAYS?.[projectId] : undefined;
   useDocumentTitle(project ? pageTitle(project.title) : HOME_TITLE);
 
   if (!project || !isProjectCollection(collection)) {
