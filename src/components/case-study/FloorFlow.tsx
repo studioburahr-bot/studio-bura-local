@@ -112,9 +112,10 @@ const FloorFlow = ({ flow, images }: FloorFlowProps) => {
 
         {/* Takeaway: a <p> in the statement style. On xl it shares row 5 with phone 4, top-aligned, and
             is exactly cols 1-4 of the page grid: its cell spans the whole flow row and holds a 12-column
-            grid. That cell overlaps the phones, so it lets clicks through except on the text. */}
+            grid. That cell overlaps the phones, so it lets clicks through except on the text. text-pretty
+            keeps "more:" from ending up alone on a line where cols 1-4 are narrow (1280). */}
         <div className="mt-16 grid w-full grid-cols-12 gap-x-5 xl:pointer-events-none xl:col-span-5 xl:col-start-1 xl:row-start-5 xl:mt-0">
-          <p className="col-span-12 text-statement font-bold text-ink xl:pointer-events-auto xl:col-span-4">
+          <p className="col-span-12 text-pretty text-statement font-bold text-ink xl:pointer-events-auto xl:col-span-4">
             <RichLines lines={flow.takeaway} />
           </p>
         </div>

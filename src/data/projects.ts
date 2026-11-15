@@ -253,7 +253,8 @@ export const projects: Project[] = [
           "AI assessment card recommending a nudge on tomorrow’s paint, because a slip would cost the June 18 launch its only buffer day, with Details, Dismiss risk and Nudge actions.",
       },
       floorIntro: {
-        heading: "The confirmation the floor will actually send",
+        // Non-breaking space: text-balance never splits "the floor"
+        heading: "The confirmation the\u00A0floor will actually send",
         paragraphs: [
           ["The same loop from the other side of the glass:", "what the coordinator nudges lands here as one light task."],
           [
@@ -310,6 +311,52 @@ export const projects: Project[] = [
         altPathLabel: "If it isn’t ready",
         takeaway: ["Effort rises only where the signal is worth more:", "done is one tap, a problem is one extra screen."],
       },
+      aiIntro: {
+        heading: "Late isn’t the same as at risk",
+        paragraphs: [
+          [
+            "Several steps look late at once, so a coordinator either chases all of them or misses the one that matters. The AI reads the live chain and ranks the steps by what hangs on them and puts the one that can still cost the launch on top.",
+          ],
+          ["It drafts the nudge; it never sends it."],
+          ["The call stays the coordinator’s."],
+        ],
+      },
+      aiPanel: [
+        {
+          screen: "assessed",
+          alt: "AI assessment marking paint at risk: booked for Jun 14 but not confirmed, with a “Nudge Carpentry team” button.",
+          note: ["The risky step isn’t late yet.", "Paint is booked, but nobody has confirmed it."],
+        },
+        {
+          screen: "next",
+          alt: "What happens next, projected by AI: if paint is done tomorrow the launch keeps its buffer; if it slips a day the buffer is gone.",
+          decision: [
+            { kind: "dropped", label: "DROPPED", lines: ["Rank by deadline"] },
+            { kind: "chose", label: "CHOSE", lines: ["Rank by what the delay costs the launch.", "Both outcomes are spelled out."] },
+          ],
+        },
+        {
+          screen: "chain",
+          alt: "Where paint sits in the chain: Assembly done, Paint at risk, a 24-hour dry time, then Racking, Signage and the locked Jun 18 launch, with the cost of a slip.",
+          note: ["A checklist can’t show racking and signage frozen behind paint. The chain can."],
+        },
+        {
+          screen: "signage",
+          alt: "Why Signage isn’t flagged: its delivery is late, but it isn’t installed until Jun 16, so it blocks nothing before then.",
+          note: [
+            "The late step is explained, not hidden.",
+            "Signage slipped but blocks nothing before Jun 16, so it stays off the list.",
+          ],
+        },
+        {
+          screen: "evidence",
+          alt: "Evidence list with a source for each line: paint not confirmed (on-site check), Assembly closed Jun 11 (AssemblyHub), 24-hour dry time (chain setup), launch Jun 18 (locked).",
+          note: [
+            "Every line names its source: read from a system, checked on site, or set in the plan.",
+            "The AI’s own judgement is labelled as the AI’s.",
+          ],
+        },
+      ],
     },
   },
   {

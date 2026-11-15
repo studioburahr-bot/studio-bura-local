@@ -100,6 +100,17 @@ export interface FloorFlowContent {
   takeaway: RichLine[];
 }
 
+// The AI panel (AiPanel): screenshot blocks stacked as one panel, each with a side note, either
+// plain text or a DecisionNote. The screenshots themselves are imported by the page.
+export type AiScreen = "assessed" | "next" | "chain" | "signage" | "evidence";
+
+export interface AiPanelRow {
+  screen: AiScreen;
+  alt: string;
+  note?: RichLine[];
+  decision?: DecisionRow[];
+}
+
 export interface CaseStudyContent {
   // Project accent colours as HSL channels ("218 75.6% 46.7%"), set as --project-accent and
   // --project-accent-strong on the case study's page wrapper.
@@ -128,4 +139,6 @@ export interface CaseStudyContent {
   board: BoardBlockContent;
   floorIntro: CapabilityIntroContent;
   floor: FloorFlowContent;
+  aiIntro: CapabilityIntroContent;
+  aiPanel: AiPanelRow[];
 }

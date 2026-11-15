@@ -19,6 +19,7 @@ import CapabilityIntro from "@/components/case-study/CapabilityIntro";
 import ChainDiagram from "@/components/case-study/ChainDiagram";
 import BoardBlock from "@/components/case-study/BoardBlock";
 import FloorFlow from "@/components/case-study/FloorFlow";
+import AiPanel from "@/components/case-study/AiPanel";
 import ForkliftAnimation from "@/components/ForkliftAnimation";
 import ScreenRecording from "@/components/ScreenRecording";
 import { HOME_TITLE, pageTitle, useDocumentTitle } from "@/hooks/use-document-title";
@@ -69,7 +70,11 @@ import Risk_Floor_claimed from "@/assets/projects/Risk_Floor_claimed.webp";
 import Risk_Floor_done from "@/assets/projects/Risk_Floor_done.webp";
 import Risk_Floor_not_ready from "@/assets/projects/Risk_Floor_not_ready.webp";
 import Risk_Floor_blocked from "@/assets/projects/Risk_Floor_blocked.webp";
-import Risk_Dash_4 from "@/assets/projects/Risk_Dash_4.webp";
+import Risk_AI_assessed from "@/assets/projects/Risk_AI_assessed.webp";
+import Risk_AI_next from "@/assets/projects/Risk_AI_next.webp";
+import Risk_AI_chain from "@/assets/projects/Risk_AI_chain.webp";
+import Risk_AI_signage from "@/assets/projects/Risk_AI_signage.webp";
+import Risk_AI_evidence from "@/assets/projects/Risk_AI_evidence.webp";
 import Risk_Dash_5 from "@/assets/projects/Risk_Dash_5.webp";
 import nudgeFlow from "@/assets/projects/nudge-flow.mp4";
 // E-commerce design system assets
@@ -116,6 +121,7 @@ const RISK_TRIAGE_OVERLAYS = import.meta.env.DEV
       overview: "/design-ref/design/risk-triage/risk_triage_overview.png",
       dash2: "/design-ref/design/risk-triage/risk_triage_dash2.png",
       dash3: "/design-ref/design/risk-triage/risk_triage_dash3.png",
+      dash4a: "/design-ref/design/risk-triage/risk_triage_dash4a.png",
     }
   : undefined;
 
@@ -249,9 +255,9 @@ const ProjectDetail = () => {
               />
             </div>
             <ForkliftAnimation />
-            {/* Second stack of coded sections, between two existing pieces. The section gap above it
-                (pt-16 md:pt-32) and between its sections; no padding below, because Risk_Dash_4 starts
-                with its own blank space (170px at 1440). */}
+            {/* Second stack of coded sections, after the forklift. The section gap above it
+                (pt-16 md:pt-32) and between its sections; no padding below, because the screen recording
+                block that follows has its own margin (my-12 sm:my-24). */}
             <div className="flex flex-col gap-16 pt-16 md:gap-32 md:pt-32">
               <CapabilityIntro intro={project.caseStudy.floorIntro} overlay={overlays?.dash3} />
               <FloorFlow
@@ -264,8 +270,19 @@ const ProjectDetail = () => {
                   blocked: { src: Risk_Floor_blocked, width: 512, height: 583 },
                 }}
               />
+              <CapabilityIntro intro={project.caseStudy.aiIntro} overlay={overlays?.dash4a} />
+              <AiPanel
+                rows={project.caseStudy.aiPanel}
+                images={{
+                  assessed: { src: Risk_AI_assessed, width: 1558, height: 395 },
+                  next: { src: Risk_AI_next, width: 1558, height: 277 },
+                  // The note beside "chain" points at the chain timeline, 25% of the way down the screenshot
+                  chain: { src: Risk_AI_chain, width: 1558, height: 562, noteAt: "25%" },
+                  signage: { src: Risk_AI_signage, width: 1558, height: 150 },
+                  evidence: { src: Risk_AI_evidence, width: 1558, height: 341 },
+                }}
+              />
             </div>
-            <img src={Risk_Dash_4} className="w-full h-auto" />
             {/* Screen recording of the prototype, with a link to try it: one block.
                 Space above and below the block: my-12 is 48px on mobile, sm:my-24 is 96px from 640px up. */}
             <div className="my-12 sm:my-24">
