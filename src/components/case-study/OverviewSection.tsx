@@ -5,11 +5,12 @@ import { RichParagraphs } from "./RichText";
 import type { TextBlockContent } from "./types";
 
 // One labelled block: label, optional h3, paragraphs, 12px apart (Figma gap 12).
+// The h3 uses the statement text style (24/32, 32/48 from md), not heading-3, which is 24/32 everywhere.
 // small: Body small (16/24, paragraph gap 24) for the left column; otherwise Body (paragraph gap 28).
 const TextBlock = ({ block, small }: { block: TextBlockContent; small?: boolean }) => (
   <div className="flex flex-col gap-3">
     <SectionLabel>{block.label}</SectionLabel>
-    {block.heading && <h3 className="text-balance text-heading-3 font-bold text-ink">{block.heading}</h3>}
+    {block.heading && <h3 className="text-balance text-statement font-bold text-ink">{block.heading}</h3>}
     <RichParagraphs
       paragraphs={block.paragraphs}
       className={cn("text-ink", small ? "gap-6 text-body-sm" : "gap-7 text-body")}

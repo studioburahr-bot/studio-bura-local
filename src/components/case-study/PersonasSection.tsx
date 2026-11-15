@@ -2,15 +2,16 @@ import SectionGrid from "./SectionGrid";
 import SectionLabel from "./SectionLabel";
 import { RichLines } from "./RichText";
 import PersonaIcon from "./PersonaIcons";
+import IconSquare from "./IconSquare";
 import type { PersonaContent } from "./types";
 
 // 56px accent square with a 28px icon (surface colour), then the description 12px below.
 // Figma text style: Body small; the role name is a bold run in the copy.
 const PersonaCard = ({ persona }: { persona: PersonaContent }) => (
   <div className="flex flex-col gap-3">
-    <div className="flex size-14 items-center justify-center rounded bg-project-accent text-surface">
+    <IconSquare>
       <PersonaIcon name={persona.icon} className="size-7" />
-    </div>
+    </IconSquare>
     <p className="text-body-sm text-ink">
       <RichLines lines={persona.text} />
     </p>

@@ -126,6 +126,24 @@ export interface DecisionBlockContent {
   cards: DecisionCard[];
 }
 
+// The closing section (OutcomesSection): what the tool is designed to change, a closing statement and
+// a disclaimer. Intentional breaks in headings and the statement apply from xl only.
+export type OutcomeIconName = "chase" | "deadtime" | "early";
+
+export interface OutcomeItem {
+  icon: OutcomeIconName;
+  heading: RichLine[];
+  text: string;
+}
+
+export interface OutcomesContent {
+  // Rendered as the section's h2 (label style).
+  label: string;
+  items: OutcomeItem[];
+  statement: RichLine[];
+  disclaimer: string;
+}
+
 export interface CaseStudyContent {
   // Project accent colours as HSL channels ("218 75.6% 46.7%"), set as --project-accent and
   // --project-accent-strong on the case study's page wrapper.
@@ -158,4 +176,5 @@ export interface CaseStudyContent {
   aiPanel: AiPanelRow[];
   decideIntro: CapabilityIntroContent;
   decide: DecisionBlockContent;
+  outcomes: OutcomesContent;
 }

@@ -380,6 +380,30 @@ export const projects: Project[] = [
           },
         ],
       },
+      // Line breaks in the headings and the statement apply from xl only; below that the text wraps.
+      outcomes: {
+        label: "WHAT IT’S DESIGNED TO CHANGE",
+        items: [
+          {
+            icon: "chase",
+            heading: ["Chase the step that matters,", "not the one that’s late"],
+            text: "Would be measured by how often the step the coordinator chases is the one that would have held up the launch.",
+          },
+          {
+            icon: "deadtime",
+            heading: ["Less dead time between", "ready and picked up"],
+            text: "Would be measured by the time from a step clearing to someone claiming the next one.",
+          },
+          {
+            icon: "early",
+            heading: ["Risk shows up before the day it’s due"],
+            // A non-breaking hyphen (U+2011) keeps “at-risk” on one line; Poppins has the glyph.
+            text: "Would be measured by how many at\u2011risk steps are first spotted on the day they’re due.",
+          },
+        ],
+        statement: ["When risk surfaces at 8am,", "the 4pm scramble stops being one person’s to carry."],
+        disclaimer: "Data shown is illustrative and does not reflect real client figures.",
+      },
     },
   },
   {

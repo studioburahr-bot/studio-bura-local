@@ -21,6 +21,7 @@ import BoardBlock from "@/components/case-study/BoardBlock";
 import FloorFlow from "@/components/case-study/FloorFlow";
 import AiPanel from "@/components/case-study/AiPanel";
 import DecisionBlock from "@/components/case-study/DecisionBlock";
+import OutcomesSection from "@/components/case-study/OutcomesSection";
 import ForkliftAnimation from "@/components/ForkliftAnimation";
 import ScreenRecording from "@/components/ScreenRecording";
 import { HOME_TITLE, pageTitle, useDocumentTitle } from "@/hooks/use-document-title";
@@ -78,7 +79,6 @@ import Risk_AI_next from "@/assets/projects/Risk_AI_next.webp";
 import Risk_AI_chain from "@/assets/projects/Risk_AI_chain.webp";
 import Risk_AI_signage from "@/assets/projects/Risk_AI_signage.webp";
 import Risk_AI_evidence from "@/assets/projects/Risk_AI_evidence.webp";
-import Risk_Dash_5 from "@/assets/projects/Risk_Dash_5.webp";
 import nudgeFlow from "@/assets/projects/nudge-flow.mp4";
 // E-commerce design system assets
 import NordicPaws_1 from "@/assets/projects/NordicPaws_1.webp";
@@ -126,6 +126,7 @@ const RISK_TRIAGE_OVERLAYS = import.meta.env.DEV
       dash3: "/design-ref/design/risk-triage/risk_triage_dash3.png",
       dash4a: "/design-ref/design/risk-triage/risk_triage_dash4a.png",
       dash4b: "/design-ref/design/risk-triage/risk_triage_dash4b.png",
+      dash5: "/design-ref/design/risk-triage/risk_triage_dash5.png",
     }
   : undefined;
 
@@ -298,9 +299,9 @@ const ProjectDetail = () => {
               />
             </div>
             {/* Screen recording of the prototype, with a link to try it: one block.
-                Space above: the section gap, from the stack above. Space below: mb-12 is 48px on mobile,
-                sm:mb-24 is 96px from 640px up. */}
-            <div className="mb-12 sm:mb-24">
+                No margin of its own: the section gap above comes from the stack above (its bottom padding),
+                and the one below from the closing section's top padding. */}
+            <div>
               {/* Width (the max-w value; mx-auto keeps it centred): 60% of the image column from 768px up,
                   i.e. 1200 of the 2000-wide design. Below that, the full column minus a 16px gutter each side. */}
               <ScreenRecording
@@ -320,7 +321,11 @@ const ProjectDetail = () => {
                 </Link>
               </div>
             </div>
-            <img src={Risk_Dash_5} className="w-full h-auto" />
+            {/* Closing section: one section gap under the recording block (which has no margin of its own).
+                No padding below: the page's shared blank space sets the gap to the footer. */}
+            <div className="pt-16 md:pt-32">
+              <OutcomesSection outcomes={project.caseStudy.outcomes} overlay={overlays?.dash5} />
+            </div>
           </div>
         </section>
       )}

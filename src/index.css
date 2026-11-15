@@ -48,7 +48,7 @@ All colors MUST be HSL.
     --text-hero-lh: 3rem;
     --text-statement: 1.5rem; /* 24 / 32 */
     --text-statement-lh: 2rem;
-    --text-heading-3: 1.5rem; /* 24 / 32 */
+    --text-heading-3: 1.5rem; /* 24 / 32 at every width */
     --text-heading-3-lh: 2rem;
     --text-body: 1.125rem; /* 18 / 28 */
     --text-body-lh: 1.75rem;
@@ -112,8 +112,6 @@ All colors MUST be HSL.
       --text-hero-lh: 5rem;
       --text-statement: 2rem; /* 32 / 48 */
       --text-statement-lh: 3rem;
-      --text-heading-3: 2rem; /* 32 / 48 */
-      --text-heading-3-lh: 3rem;
       --text-body: 1.25rem; /* 20 / 28 */
       --text-body-lh: 1.75rem;
     }
