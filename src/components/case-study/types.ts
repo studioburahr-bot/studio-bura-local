@@ -111,6 +111,21 @@ export interface AiPanelRow {
   decision?: DecisionRow[];
 }
 
+// Decision block (DecisionBlock): a DecisionNote beside captioned screenshots of the outcomes it
+// leads to, stacked. The screenshots themselves are imported by the page.
+export type DecideScreen = "nudged" | "dismissed";
+
+export interface DecisionCard {
+  screen: DecideScreen;
+  caption: string;
+  alt: string;
+}
+
+export interface DecisionBlockContent {
+  decision: DecisionRow[];
+  cards: DecisionCard[];
+}
+
 export interface CaseStudyContent {
   // Project accent colours as HSL channels ("218 75.6% 46.7%"), set as --project-accent and
   // --project-accent-strong on the case study's page wrapper.
@@ -141,4 +156,6 @@ export interface CaseStudyContent {
   floor: FloorFlowContent;
   aiIntro: CapabilityIntroContent;
   aiPanel: AiPanelRow[];
+  decideIntro: CapabilityIntroContent;
+  decide: DecisionBlockContent;
 }

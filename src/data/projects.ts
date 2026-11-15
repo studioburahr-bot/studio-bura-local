@@ -343,10 +343,7 @@ export const projects: Project[] = [
         {
           screen: "signage",
           alt: "Why Signage isn’t flagged: its delivery is late, but it isn’t installed until Jun 16, so it blocks nothing before then.",
-          note: [
-            "The late step is explained, not hidden.",
-            "Signage slipped but blocks nothing before Jun 16, so it stays off the list.",
-          ],
+          note: ["Signage is late but blocks nothing before Jun 16, so it stays off the list."],
         },
         {
           screen: "evidence",
@@ -357,6 +354,32 @@ export const projects: Project[] = [
           ],
         },
       ],
+      decideIntro: {
+        heading: "The coordinator decides, either way",
+        paragraphs: [
+          ["Nudge it and the block shows who was asked and when."],
+          ["Dismiss it and the recommendation leaves the panel, with an undo; the step stays at risk in the chain."],
+          ["The AI’s assessment stays visible in both, so the decision and the reasoning never get separated."],
+        ],
+      },
+      decide: {
+        decision: [
+          { kind: "dropped", label: "DROPPED", lines: ["Count on the coordinator to cover it"] },
+          { kind: "chose", label: "CHOSE", lines: ["The nudge goes to the team that owns the step."] },
+        ],
+        cards: [
+          {
+            screen: "nudged",
+            caption: "Nudged",
+            alt: "The AI assessment after a nudge: paint still at risk, “Nudged · awaiting reply”, sent 09:14 to Carpentry team, morning shift, with a View message link.",
+          },
+          {
+            screen: "dismissed",
+            caption: "Dismissed",
+            alt: "The AI assessment after dismissing the recommendation: “Recommendation dismissed” with Undo, paint still at risk in the chain, reason recorded: Check later.",
+          },
+        ],
+      },
     },
   },
   {

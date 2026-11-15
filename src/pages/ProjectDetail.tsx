@@ -20,6 +20,7 @@ import ChainDiagram from "@/components/case-study/ChainDiagram";
 import BoardBlock from "@/components/case-study/BoardBlock";
 import FloorFlow from "@/components/case-study/FloorFlow";
 import AiPanel from "@/components/case-study/AiPanel";
+import DecisionBlock from "@/components/case-study/DecisionBlock";
 import ForkliftAnimation from "@/components/ForkliftAnimation";
 import ScreenRecording from "@/components/ScreenRecording";
 import { HOME_TITLE, pageTitle, useDocumentTitle } from "@/hooks/use-document-title";
@@ -71,6 +72,8 @@ import Risk_Floor_done from "@/assets/projects/Risk_Floor_done.webp";
 import Risk_Floor_not_ready from "@/assets/projects/Risk_Floor_not_ready.webp";
 import Risk_Floor_blocked from "@/assets/projects/Risk_Floor_blocked.webp";
 import Risk_AI_assessed from "@/assets/projects/Risk_AI_assessed.webp";
+import Risk_Decide_nudged from "@/assets/projects/Risk_Decide_nudged.webp";
+import Risk_Decide_dismissed from "@/assets/projects/Risk_Decide_dismissed.webp";
 import Risk_AI_next from "@/assets/projects/Risk_AI_next.webp";
 import Risk_AI_chain from "@/assets/projects/Risk_AI_chain.webp";
 import Risk_AI_signage from "@/assets/projects/Risk_AI_signage.webp";
@@ -122,6 +125,7 @@ const RISK_TRIAGE_OVERLAYS = import.meta.env.DEV
       dash2: "/design-ref/design/risk-triage/risk_triage_dash2.png",
       dash3: "/design-ref/design/risk-triage/risk_triage_dash3.png",
       dash4a: "/design-ref/design/risk-triage/risk_triage_dash4a.png",
+      dash4b: "/design-ref/design/risk-triage/risk_triage_dash4b.png",
     }
   : undefined;
 
@@ -256,9 +260,10 @@ const ProjectDetail = () => {
             </div>
             <ForkliftAnimation />
             {/* Second stack of coded sections, after the forklift. The section gap above it
-                (pt-16 md:pt-32) and between its sections; no padding below, because the screen recording
-                block that follows has its own margin (my-12 sm:my-24). */}
-            <div className="flex flex-col gap-16 pt-16 md:gap-32 md:pt-32">
+                (pt-16 md:pt-32), between its sections and below the last one (pb-16 md:pb-32), so the
+                screen recording that follows starts one section gap down; the recording block has no
+                top margin of its own. */}
+            <div className="flex flex-col gap-16 py-16 md:gap-32 md:py-32">
               <CapabilityIntro intro={project.caseStudy.floorIntro} overlay={overlays?.dash3} />
               <FloorFlow
                 flow={project.caseStudy.floor}
@@ -282,10 +287,20 @@ const ProjectDetail = () => {
                   evidence: { src: Risk_AI_evidence, width: 1558, height: 341 },
                 }}
               />
+              {/* The dash4b export starts 56px above the intro's heading block. */}
+              <CapabilityIntro intro={project.caseStudy.decideIntro} overlay={overlays?.dash4b} overlayOffset="-56px" />
+              <DecisionBlock
+                block={project.caseStudy.decide}
+                images={{
+                  nudged: { src: Risk_Decide_nudged, width: 1560, height: 516 },
+                  dismissed: { src: Risk_Decide_dismissed, width: 1558, height: 452 },
+                }}
+              />
             </div>
             {/* Screen recording of the prototype, with a link to try it: one block.
-                Space above and below the block: my-12 is 48px on mobile, sm:my-24 is 96px from 640px up. */}
-            <div className="my-12 sm:my-24">
+                Space above: the section gap, from the stack above. Space below: mb-12 is 48px on mobile,
+                sm:mb-24 is 96px from 640px up. */}
+            <div className="mb-12 sm:mb-24">
               {/* Width (the max-w value; mx-auto keeps it centred): 60% of the image column from 768px up,
                   i.e. 1200 of the 2000-wide design. Below that, the full column minus a 16px gutter each side. */}
               <ScreenRecording
