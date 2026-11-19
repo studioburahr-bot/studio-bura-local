@@ -23,6 +23,7 @@ import AiPanel from "@/components/case-study/AiPanel";
 import DecisionBlock from "@/components/case-study/DecisionBlock";
 import OutcomesSection from "@/components/case-study/OutcomesSection";
 import ForkliftAnimation from "@/components/ForkliftAnimation";
+import SubscribeSaveDemo from "@/components/SubscribeSaveDemo";
 import ScreenRecording from "@/components/ScreenRecording";
 import { HOME_TITLE, pageTitle, useDocumentTitle } from "@/hooks/use-document-title";
 // CHO7 project assets
@@ -340,7 +341,25 @@ const ProjectDetail = () => {
           <div className="max-w-container mx-auto px-4 sm:px-6">
             <img src={NordicPaws_1} className="w-full h-auto" />
             <img src={NordicPaws_2} className="w-full h-auto" />
-            <img src={NordicPaws_3} className="w-full h-auto" />
+            {/* Conversion section image. The Subscribe & save card in it is covered by the working demo,
+                placed in % of the image (2000 x 3259) so it stays on the static card at every width:
+                the card sits at x 898-1469, y 568 in the image; the demo's 740-wide frame is scaled so its
+                659-wide card matches (572 / 659), which puts the frame's corner at 863, 474 and makes it 642 wide. */}
+            <div className="relative">
+              <img src={NordicPaws_3} className="w-full h-auto" />
+              {/* White patch over the static card (x 892-1475, y 562-868: its box plus 6px), so rounding
+                  at small widths can't let a hairline of it show past the demo's edge */}
+              <div
+                aria-hidden
+                className="absolute bg-white"
+                style={{ left: "44.6%", top: "17.245%", width: "29.15%", height: "9.39%" }}
+              />
+              <SubscribeSaveDemo
+                caption="Motion spec designed in Jitter, implemented in code with AI."
+                className="absolute"
+                style={{ left: "43.164%", top: "14.552%", width: "32.116%" }}
+              />
+            </div>
             <img src={NordicPaws_4} className="w-full h-auto" />
             {project.prototype && (
               <FigmaEmbed
