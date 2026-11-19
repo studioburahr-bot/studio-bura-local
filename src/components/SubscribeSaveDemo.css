@@ -1,0 +1,145 @@
+/*
+  Subscribe & save demo (e-commerce case study).
+  Reproduces the Nordic Paws PDP purchase options from Figma (frames "one-time-anim" / "subscribe-anim",
+  740 x 450). Colours and type are the Nordic Paws design system, not the site's tokens, because this is
+  the product UI shown as a working sample, like a screenshot.
+
+  Motion spec (designed in Jitter):
+    - selected radio:   dot scales in, 150ms ease-out
+    - card borders:     grey <-> green, 150ms
+    - subscribe card:   opens 72 -> 222px, 300ms ease-in-out; the one-time card moves with it (same curve)
+    - headline price:   old price leaves 8px up, new one arrives 8px from below, 250ms (+50ms stagger)
+    - details:          fade in + 8px up after the card has opened (checks +300ms, fields +350ms), 200ms
+                        on close they fade out first, 100ms
+*/
+
+.ssd {
+  --ssd-text: #2b2a28;
+  --ssd-muted: #94918e;
+  --ssd-sale: #c04a4a;
+  --ssd-border: #dad8d5;
+  --ssd-selected: #2f6b5d;
+  --ssd-ease: cubic-bezier(0.65, 0, 0.35, 1); /* ease-in-out */
+  --ssd-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  font-family: "Inter", sans-serif;
+  color: var(--ssd-text);
+}
+
+/* Cards */
+.ssd-card {
+  border: 1px solid var(--ssd-border);
+  transition: border-color 150ms linear;
+}
+.ssd-card[data-selected="true"] {
+  border-color: var(--ssd-selected);
+}
+.ssd-card:has(input:focus-visible) {
+  outline: 2px solid var(--ssd-text);
+  outline-offset: 2px;
+}
+
+.ssd-sub {
+  height: 72px;
+  transition:
+    height 300ms var(--ssd-ease),
+    border-color 150ms linear;
+}
+.ssd-sub[data-selected="true"] {
+  height: 222px;
+}
+
+/* Radio */
+.ssd-radio-dot {
+  transform: scale(0);
+  transition: transform 150ms var(--ssd-ease-out);
+}
+[data-selected="true"] .ssd-radio-dot {
+  transform: scale(1);
+}
+
+/* Subscribe details: out fast, in after the card has opened */
+.ssd-details {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 100ms linear,
+    transform 0ms linear 100ms;
+}
+.ssd-sub[data-selected="true"] .ssd-details {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 200ms var(--ssd-ease-out) var(--ssd-delay, 300ms),
+    transform 200ms var(--ssd-ease-out) var(--ssd-delay, 300ms);
+}
+
+/* Headline price swap. Keyframes, not transitions: the leaving price goes up, the arriving one comes
+   from below, so the two directions can't share one resting position. No animation before the first
+   change (data-changed), so the page doesn't load with a price sliding in. */
+.ssd-price[data-state="out"] {
+  opacity: 0;
+}
+.ssd[data-changed="true"] .ssd-price[data-state="in"] {
+  animation: ssd-price-in 250ms var(--ssd-ease-out) 50ms both;
+}
+.ssd[data-changed="true"] .ssd-price[data-state="out"] {
+  animation: ssd-price-out 250ms var(--ssd-ease-out) both;
+}
+@keyframes ssd-price-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes ssd-price-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+/* Demo cursor */
+.ssd-cursor {
+  opacity: 0;
+  transform: translate(120px, 120px);
+}
+.ssd-cursor[data-phase="arrive"],
+.ssd-cursor[data-phase="press"],
+.ssd-cursor[data-phase="release"] {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+  transition:
+    opacity 500ms var(--ssd-ease-out),
+    transform 500ms var(--ssd-ease-out);
+}
+.ssd-cursor[data-phase="press"] {
+  transform: translate(0, 0) scale(0.9);
+  transition: transform 50ms linear;
+}
+.ssd-cursor[data-phase="release"] {
+  transition: transform 50ms linear;
+}
+.ssd-cursor[data-phase="leave"] {
+  opacity: 0;
+  transform: translate(40px, 40px);
+  transition:
+    opacity 300ms var(--ssd-ease-out),
+    transform 300ms var(--ssd-ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ssd *,
+  .ssd *::before,
+  .ssd *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
